@@ -3,6 +3,7 @@
     package="com.example.funnytimesuserapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,16 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FunnyTimesUserApp">
         <activity
+            android:name=".AuthSection.SignUpScreen"
+            android:exported="false" />
+        <activity
             android:name=".SplashSection.SplashMenu"
-            android:exported="true"
             android:configChanges="locale|orientation"
-            android:theme="@style/SplashTheme"
-            />
+            android:exported="true"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/SplashTheme"
-            >
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -9,7 +9,7 @@ import java.util.*
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.ft_splash_screen)
 
         finishSplashToLog()
 

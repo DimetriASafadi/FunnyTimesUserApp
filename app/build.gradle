@@ -54,4 +54,8 @@ dependencies {
     // animation library
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
+
+    // password library
+    implementation 'com.maksim88:PasswordEditText:v0.9'
+
 }
