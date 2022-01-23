@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    >
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_15sdp"
+        app:riv_corner_radius="@dimen/_2sdp"
+        android:layout_marginHorizontal="@dimen/_3sdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ft_flag_icon"
+        />
+    <TextView
+        android:id="@+id/PSCityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/ft_black"
+        android:alpha="0.3"
+        android:fontFamily="@font/montserrat_arabic"
+        android:text="966+"
+        android:paddingEnd="@dimen/_10sdp"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/_2sdp"
+        />
+
+</LinearLayout>

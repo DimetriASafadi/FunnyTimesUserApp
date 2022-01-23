@@ -58,4 +58,10 @@ dependencies {
     // password library
     implementation 'com.maksim88:PasswordEditText:v0.9'
 
+    // RoundedImageview library
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    // Pin Code library
+    implementation 'com.chaos.view:pinview:1.4.4'
+
 }

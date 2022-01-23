@@ -21,6 +21,7 @@ import java.util.*
 class CommonFuncs {
     val SPName:String = "TakeedSharedPreferences"
     var loadingDia: Dialog? = null
+    var codePhone: Dialog? = null
 
     @Suppress("DEPRECATION")
     fun setLocale2(context: Activity,langua:String) {
@@ -133,6 +134,20 @@ class CommonFuncs {
         builder.setNeutralButton(context.getString(R.string.ok)){ dialog, which ->
         }
         builder.show()
+    }
+
+    fun showPhoneDoneDialog(activity: Activity) {
+        codePhone = Dialog(activity)
+        codePhone?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        codePhone?.setCancelable(false)
+        codePhone?.setContentView(R.layout.ft_phone_added_successfully_dialog)
+        val window: Window = codePhone?.window!!
+        window.setBackgroundDrawable(
+            ColorDrawable(activity.resources
+                .getColor(R.color.tk_dialog_bg, null))
+        )
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        codePhone?.show()
     }
 
 }

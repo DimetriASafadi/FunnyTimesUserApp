@@ -2,6 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -23,7 +24,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/montserrat_arabic"
-            android:text="إنشاء حساب جديد"
+            android:text="تسجيل الدخول"
             android:textColor="@color/ft_dark_blue"
             android:textSize="@dimen/_14ssp"
             android:textStyle="bold"
@@ -96,54 +97,15 @@
                 android:paddingVertical="@dimen/_3sdp"
                 android:textSize="@dimen/_12ssp" />
 
+
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fontFamily="@font/montserrat_arabic"
-            android:text="تأكيد كلمة المرور*"
-            android:textColor="@color/ft_black"
-            android:textSize="@dimen/_12ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/ft_radius_stroke"
-            android:fontFamily="@font/montserrat_arabic"
-            android:inputType="textPassword"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="@dimen/_8sdp"
-            android:textSize="@dimen/_12ssp" >
-            <com.maksim88.passwordedittext.PasswordEditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_arabic"
-                android:background="@color/white"
-                android:gravity="right"
-                android:hint="تأكيد كلمة المرور"
-                android:inputType="textPassword"
-                android:paddingHorizontal="@dimen/_5sdp"
-                android:paddingVertical="@dimen/_3sdp"
-                android:textSize="@dimen/_12ssp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
@@ -160,12 +122,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
-                android:text="ـأوافق على "
-                android:textSize="@dimen/_10ssp" />
+                android:text="تذكرني"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/ft_black"
+                android:alpha="0.4"
+                />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
                 android:fontFamily="@font/montserrat_arabic"
                 android:text="شروط الخدمة "
                 android:textColor="@color/ft_blue"
@@ -176,15 +142,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
-                android:text="و "
-                android:textSize="@dimen/_10ssp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_arabic"
-                android:text="سياسة الخصوصية"
-                android:textColor="@color/ft_blue"
+                android:text="نسيت كلمة المرور ؟"
+                android:textColor="@color/ft_dark_blue"
                 android:textSize="@dimen/_10ssp" />
 
         </LinearLayout>
@@ -194,13 +153,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/ft_radius_fill"
             android:backgroundTint="@color/ft_orange"
             android:fontFamily="@font/montserrat_arabic"
             android:gravity="center"
             android:paddingVertical="@dimen/_7sdp"
-            android:text="تسجيل"
+            android:text="تسجيل الدخول"
             android:textColor="@color/ft_white"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -279,7 +238,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -295,7 +254,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
-                android:text=" تسجيل الدخول"
+                android:text="اشتراك"
                 android:textColor="@color/ft_blue"
                 android:textSize="@dimen/_11ssp"
                 android:textStyle="bold" />
@@ -310,7 +269,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:fontFamily="@font/montserrat_arabic"
-        android:text="متابعة كزائر"
+        android:text="متابعة كزائر ؟"
         android:textColor="@color/ft_orange"
         android:textSize="@dimen/_11ssp"
         android:textStyle="bold"
