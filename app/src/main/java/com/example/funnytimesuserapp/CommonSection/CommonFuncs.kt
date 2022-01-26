@@ -19,7 +19,7 @@ import com.example.funnytimesuserapp.R
 import java.util.*
 
 class CommonFuncs {
-    val SPName:String = "TakeedSharedPreferences"
+    val SPName:String = "FunnyTimesPreferences"
     var loadingDia: Dialog? = null
     var codePhone: Dialog? = null
 
@@ -140,7 +140,8 @@ class CommonFuncs {
         codePhone = Dialog(activity)
         codePhone?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         codePhone?.setCancelable(false)
-        codePhone?.setContentView(R.layout.ft_phone_added_successfully_dialog)
+//        codePhone?.setContentView(R.layout.ft_phone_added_successfully_dialog)
+        codePhone?.setContentView(R.layout.ft_main_filter_dialog)
         val window: Window = codePhone?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources

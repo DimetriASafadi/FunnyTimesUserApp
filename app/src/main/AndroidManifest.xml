@@ -12,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FunnyTimesUserApp">
         <activity
-            android:name=".AuthSection.NewPasswordScreen"
+            android:name=".MainMenu"
             android:exported="false" />
         <activity
+            android:name=".AuthSection.NewPasswordScreen"
+            android:exported="false"
+            android:theme="@style/SplashTheme" />
+        <activity
             android:name=".AuthSection.PassResetCodeConfirmScreen"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.CodeConfirmScreen"
             android:exported="false"

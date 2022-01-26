@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
+
 }
 
 android {
@@ -42,10 +43,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.compose.ui:ui-text:1.2.0-alpha01'
-    testImplementation 'junit:junit:4.+'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
     //    Resize Libraries
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
@@ -56,12 +57,16 @@ dependencies {
 
 
     // password library
-    implementation 'com.maksim88:PasswordEditText:v0.9'
+    implementation('com.maksim88:PasswordEditText:v0.9')
 
     // RoundedImageview library
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
     // Pin Code library
     implementation 'com.chaos.view:pinview:1.4.4'
+
+    implementation('com.github.guojilong:RangeSeekBar:v1.0.7')
+
+
 
 }

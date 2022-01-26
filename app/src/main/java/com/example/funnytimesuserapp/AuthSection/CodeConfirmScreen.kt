@@ -1,8 +1,10 @@
 package com.example.funnytimesuserapp.AuthSection
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
+import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtCodeConfirmScreenBinding
 
 class CodeConfirmScreen : AppCompatActivity() {
@@ -17,7 +19,7 @@ class CodeConfirmScreen : AppCompatActivity() {
         setContentView(view)
 
         binding.CheckCode.setOnClickListener {
-            commonFuncs.showPhoneDoneDialog(this)
+            startActivity(Intent(this,MainMenu::class.java))
         }
 
 
