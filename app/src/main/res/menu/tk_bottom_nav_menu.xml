@@ -5,24 +5,28 @@
         android:id="@+id/nav_home"
         android:icon="@drawable/ft_menu_home_icon"
         android:title="الرئيسية"
+        android:enabled="true"
         />
 
     <item
         android:id="@+id/nav_category"
         android:icon="@drawable/ft_menu_category_icon"
         android:title="التصنيفات"
+        android:enabled="true"
         />
 
     <item
         android:id="@+id/nav_favourite"
         android:icon="@drawable/ft_menu_favourite_icon"
         android:title="المفضلة"
+        android:enabled="true"
         />
 
     <item
         android:id="@+id/nav_user"
         android:icon="@drawable/ft_menu_user_icon"
         android:title="صفحتي"
+        android:enabled="true"
         />
 
     <item

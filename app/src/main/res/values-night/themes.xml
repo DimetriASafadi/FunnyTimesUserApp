@@ -47,5 +47,6 @@
 
     <style name="BottomNavigationViewTextStyle">
         <item name="android:fontFamily">@font/montserrat_arabic</item>
+        <item name="android:textSize">@dimen/_8ssp</item>
     </style>
 </resources>

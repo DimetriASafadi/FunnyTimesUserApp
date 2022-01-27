@@ -12,21 +12,94 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/menu_colors_selector"
+        app:itemTextColor="@color/menu_colors_selector"
         app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
         app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/tk_bottom_nav_menu" />
+        app:menu="@menu/tk_bottom_nav_menu"
+        />
 
 
     <FrameLayout
         android:id="@+id/main_menu_host_frag"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ft_ring_notification_icon" />
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ft_cart_shop_icon" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:layout_editor_absoluteX="13dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/HomeSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_toStartOf="@+id/SearchFilter"
+            android:background="@drawable/ft_radius_fill_light"
+            android:backgroundTint="@color/ft_grey"
+            android:drawableStart="@drawable/ft_search_home_icon"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/montserrat_arabic"
+            android:hint="ابحث"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:textColor="@color/ft_black"
+            android:textColorHint="@color/ft_grey_1"
+            android:textSize="@dimen/_11ssp" />
+
+        <ImageView
+            android:id="@+id/SearchFilter"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ft_filter_home_icon" />
+
+
+    </RelativeLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

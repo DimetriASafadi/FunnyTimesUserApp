@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.funnytimesuserapp.databinding.FtMainFavouriteBinding
+import com.example.funnytimesuserapp.databinding.FtMainHomeBinding
 
 class FragHome : Fragment() {
-    private var _binding: FtMainFavouriteBinding? = null
+    private var _binding: FtMainHomeBinding? = null
     private val binding get() = _binding!!
 
 
@@ -21,7 +21,7 @@ class FragHome : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FtMainFavouriteBinding.inflate(inflater, container, false)
+        _binding = FtMainHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
