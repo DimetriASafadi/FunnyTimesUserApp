@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <RelativeLayout
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/NHItemImage"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/ft_splash_logo"
+            app:riv_corner_radius="@dimen/_10sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="40ر.س"
+            android:maxLines="1"
+            android:textColor="@color/ft_white"
+            android:fontFamily="@font/montserrat_arabic"
+            android:textSize="@dimen/_11ssp"
+            android:background="@drawable/ft_radius_fill_light"
+            android:backgroundTint="@color/ft_trans_orange"
+            />
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <TextView
+        android:id="@+id/NHItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="شاليه أخضر مع ملعب طائرة"
+        android:textSize="@dimen/_11ssp"
+        android:textColor="@color/ft_black"
+        android:fontFamily="@font/montserrat_arabic"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:maxLines="1"
+        />
+        <TextView
+            android:id="@+id/NHItemShopName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="شاليه أخضر مع ملعب طائرة"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/ft_orange"
+            android:fontFamily="@font/montserrat_arabic"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:maxLines="1"
+            />
+    <TextView
+        android:id="@+id/NHItemLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="حي الرياض,الرياض"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/ft_menu_unselected"
+        android:fontFamily="@font/montserrat_arabic"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        >
+        <com.willy.ratingbar.BaseRatingBar
+            android:id="@+id/NHItemRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srb_starHeight="@dimen/_10sdp"
+            app:srb_starWidth="@dimen/_10sdp"
+            app:srb_starPadding="@dimen/_3sdp"
+            app:srb_rating="2.5"
+            app:srb_stepSize="0.5"
+            app:srb_clickable="false"
+            app:srb_drawableFilled="@drawable/ft_rate_star_fill_icon"
+            app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
+            />
+        <TextView
+            android:id="@+id/NHItemRatingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(50)"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/ft_menu_unselected"
+            android:fontFamily="@font/montserrat_arabic"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/NHItemIsFavorite"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_gravity="end"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:alpha="0.1"
+            android:src="@color/ft_black" />
+
+        <ImageView
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ft_favorite_heart_unlike_icon"
+            />
+    </RelativeLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

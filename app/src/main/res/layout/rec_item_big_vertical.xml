@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_170sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_170sdp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/BVItemImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ft_splash_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:riv_corner_radius="@dimen/_10sdp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/BVItemIsFavorite"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:alpha="0.2"
+            android:src="@color/ft_black" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignStart="@+id/BVItemIsFavorite"
+            android:layout_alignTop="@+id/BVItemIsFavorite"
+            android:layout_alignEnd="@+id/BVItemIsFavorite"
+            android:layout_alignBottom="@+id/BVItemIsFavorite"
+            android:layout_margin="@dimen/_6sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:src="@drawable/ft_favorite_heart_unlike_icon" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/BVItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="شاليه أخضر مع ملعب طائرة"
+        android:textSize="@dimen/_11ssp"
+        android:textColor="@color/ft_black"
+        android:fontFamily="@font/montserrat_arabic"
+        android:layout_marginTop="@dimen/_3sdp"
+        />
+    <TextView
+        android:id="@+id/BVItemLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="حي الرياض,الرياض"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/ft_menu_unselected"
+        android:fontFamily="@font/montserrat_arabic"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        >
+        <com.willy.ratingbar.BaseRatingBar
+            android:id="@+id/BVItemRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srb_starHeight="@dimen/_10sdp"
+            app:srb_starWidth="@dimen/_10sdp"
+            app:srb_starPadding="@dimen/_3sdp"
+            app:srb_rating="2.5"
+            app:srb_stepSize="0.5"
+            app:srb_clickable="false"
+            app:srb_drawableFilled="@drawable/ft_rate_star_fill_icon"
+            app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
+            />
+        <TextView
+            android:id="@+id/BVItemRatingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(50)"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/ft_menu_unselected"
+            android:fontFamily="@font/montserrat_arabic"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>
