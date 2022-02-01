@@ -25,9 +25,13 @@
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_main_setting.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_main_user.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_big_horizontal.xml" value="0.3546875" />
-        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_insider_item.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_big_vertical.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_insider_item.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_most_served.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_normal_horizontal.xml" value="0.5" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_service_big_vertical.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_service_full_horizontal.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_service_insider.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/menu/tk_bottom_nav_menu.xml" value="0.3546875" />
       </map>
     </option>

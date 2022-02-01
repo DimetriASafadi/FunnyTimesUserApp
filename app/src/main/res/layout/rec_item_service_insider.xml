@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/_5sdp">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/IImage"
+        android:id="@+id/SIImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
@@ -14,28 +14,10 @@
         android:src="@color/ft_orange"
         app:riv_corner_radius="@dimen/_8sdp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
-        android:background="@drawable/ft_radius_fill_light"
-        android:backgroundTint="@color/ft_trans_dark_blue"
-        android:fontFamily="@font/montserrat_arabic"
-        android:maxLength="7"
-        android:maxLines="1"
-        android:paddingVertical="@dimen/_3sdp"
-        android:paddingHorizontal="@dimen/_5sdp"
-        android:text="40ر.س"
-        android:textColor="@color/ft_white"
-        android:textSize="@dimen/_11ssp" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ITitle"
+        android:layout_above="@+id/SITitle"
         android:layout_gravity="center_vertical"
         android:layout_marginVertical="@dimen/_2sdp"
         android:layout_marginStart="@dimen/_4sdp"
@@ -43,7 +25,7 @@
         android:orientation="horizontal">
 
         <com.willy.ratingbar.BaseRatingBar
-            android:id="@+id/IRating"
+            android:id="@+id/SIRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srb_clickable="false"
@@ -56,7 +38,7 @@
             app:srb_stepSize="0.5" />
 
         <TextView
-            android:id="@+id/IRatingText"
+            android:id="@+id/SIRatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_2sdp"
@@ -69,7 +51,7 @@
 
 
     <TextView
-        android:id="@+id/ITitle"
+        android:id="@+id/SITitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -78,14 +60,14 @@
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_arabic"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="شاليه أخضر مع ملعب طائرة"
         android:textColor="@color/ft_white"
         android:textSize="@dimen/_10ssp"
         android:textStyle="bold" />
 
     <RelativeLayout
-        android:id="@+id/IIsFavourite"
+        android:id="@+id/SIIsFavourite"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
         android:layout_marginEnd="@dimen/_5sdp"

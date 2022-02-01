@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_150sdp"
-    android:layout_height="@dimen/_120sdp"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_140sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/_5sdp">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/IImage"
+        android:id="@+id/SFHImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
@@ -15,27 +15,29 @@
         app:riv_corner_radius="@dimen/_8sdp" />
 
     <TextView
+        android:id="@+id/SFHPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:background="@drawable/ft_radius_fill_light"
         android:backgroundTint="@color/ft_trans_dark_blue"
         android:fontFamily="@font/montserrat_arabic"
-        android:maxLength="7"
         android:maxLines="1"
-        android:paddingVertical="@dimen/_3sdp"
         android:paddingHorizontal="@dimen/_5sdp"
-        android:text="40ر.س"
+        android:paddingVertical="@dimen/_3sdp"
+        android:text="40ر.س65069804"
         android:textColor="@color/ft_white"
         android:textSize="@dimen/_11ssp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ITitle"
+        android:layout_above="@+id/SFHTitle"
         android:layout_gravity="center_vertical"
         android:layout_marginVertical="@dimen/_2sdp"
         android:layout_marginStart="@dimen/_4sdp"
@@ -43,7 +45,7 @@
         android:orientation="horizontal">
 
         <com.willy.ratingbar.BaseRatingBar
-            android:id="@+id/IRating"
+            android:id="@+id/SFHRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srb_clickable="false"
@@ -56,7 +58,7 @@
             app:srb_stepSize="0.5" />
 
         <TextView
-            android:id="@+id/IRatingText"
+            android:id="@+id/SFHRatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_2sdp"
@@ -69,23 +71,24 @@
 
 
     <TextView
-        android:id="@+id/ITitle"
-        android:layout_width="match_parent"
+        android:id="@+id/SFHTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_toStartOf="@+id/SFHPrice"
         android:fontFamily="@font/montserrat_arabic"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="شاليه أخضر مع ملعب طائرة"
         android:textColor="@color/ft_white"
         android:textSize="@dimen/_10ssp"
         android:textStyle="bold" />
 
+
     <RelativeLayout
-        android:id="@+id/IIsFavourite"
+        android:id="@+id/SFHIsFavourite"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
         android:layout_marginEnd="@dimen/_5sdp"

@@ -14,7 +14,6 @@ import android.util.Log
 import android.util.Patterns
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import com.example.funnytimesuserapp.R
 import java.util.*
 
@@ -81,7 +80,7 @@ class CommonFuncs {
         loadingDia = Dialog(activity)
         loadingDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         loadingDia?.setCancelable(false)
-        loadingDia?.setContentView(R.layout.ft_loading_dialog)
+        loadingDia?.setContentView(R.layout.ft_dialog_loading)
         val window: Window = loadingDia?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources
@@ -141,7 +140,7 @@ class CommonFuncs {
         codePhone?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         codePhone?.setCancelable(false)
 //        codePhone?.setContentView(R.layout.ft_phone_added_successfully_dialog)
-        codePhone?.setContentView(R.layout.ft_main_filter_dialog)
+        codePhone?.setContentView(R.layout.ft_dialog_main_filter)
         val window: Window = codePhone?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources
