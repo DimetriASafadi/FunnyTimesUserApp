@@ -24,6 +24,7 @@
         android:layout_marginBottom="@dimen/_25sdp"
         android:background="@drawable/ft_radius_fill"
         android:backgroundTint="@color/ft_orange"
+        android:textColor="@color/ft_white"
         android:fontFamily="@font/montserrat_arabic"
         android:gravity="center"
         android:paddingVertical="@dimen/_7sdp"

@@ -10,28 +10,30 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_centerInParent="true"
-        android:gravity="center_vertical"
         android:background="@drawable/ft_radius_fill"
-        android:backgroundTint="@color/ft_dark_blue"
-        android:padding="@dimen/_10sdp"
-        >
+        android:backgroundTint="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10sdp">
+
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/spin_kit"
             style="@style/SpinKitView.Large.CubeGrid"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
-            android:layout_gravity="center"
             android:layout_centerInParent="true"
-            app:SpinKit_Color="@color/ft_white" />
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/ft_dark_blue" />
+
         <ImageView
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/ft_splash_logo"
             android:layout_centerInParent="true"
-            app:tint="@color/ft_dark_blue" />
+            android:src="@drawable/ft_logo_transparent" />
     </RelativeLayout>
+
+
 
 
 </RelativeLayout>

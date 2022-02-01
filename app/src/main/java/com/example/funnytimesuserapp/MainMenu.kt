@@ -2,7 +2,9 @@ package com.example.funnytimesuserapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.MainMenuSection.CategorySection.FragCategory
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FragFavourite
 import com.example.funnytimesuserapp.MainMenuSection.HomeSection.FragHome
@@ -14,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainMenu : AppCompatActivity() {
 
     lateinit var binding: FtMainMenuBinding
+    val commonFuncs = CommonFuncs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,31 +51,45 @@ class MainMenu : AppCompatActivity() {
                 R.id.nav_home -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment1).commit()
                     active = fragment1
+                    binding.TopSection.visibility = View.VISIBLE
+                    binding.SearchSection.visibility = View.VISIBLE
                     return@setOnItemSelectedListener true
                 }
                 R.id.nav_category -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment2).commit()
                     active = fragment2
+                    binding.TopSection.visibility = View.VISIBLE
+                    binding.SearchSection.visibility = View.VISIBLE
                     return@setOnItemSelectedListener true
                 }
                 R.id.nav_favourite -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment3).detach(fragment3).attach(fragment3).commit()
                     active = fragment3
+                    binding.TopSection.visibility = View.VISIBLE
+                    binding.SearchSection.visibility = View.VISIBLE
                     return@setOnItemSelectedListener true
                 }
                 R.id.nav_user -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment4).commit()
                     active = fragment4
+                    binding.TopSection.visibility = View.VISIBLE
+                    binding.SearchSection.visibility = View.GONE
                     return@setOnItemSelectedListener true
 
                 }
                 R.id.nav_setting -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment5).commit()
                     active = fragment5
+                    binding.TopSection.visibility = View.VISIBLE
+                    binding.SearchSection.visibility = View.GONE
                     return@setOnItemSelectedListener true
                 }
             }
             false
+        }
+
+        binding.SearchFilter.setOnClickListener {
+            commonFuncs.showLoadingDialog(this)
         }
 
 

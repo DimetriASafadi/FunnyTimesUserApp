@@ -74,6 +74,21 @@ dependencies {
     // RatingBar library
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
+    // Glide libraries
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // Indicator libraries
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    implementation 'me.relex:circleindicator:2.1.6'
+
+
+//    https://www.baeldung.com/kotlin/json-convert-data-class
+    // gson library
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // volley library
+    implementation("com.android.volley:volley:1.2.1")
 
 
 }

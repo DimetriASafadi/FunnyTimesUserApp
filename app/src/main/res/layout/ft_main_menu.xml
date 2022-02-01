@@ -28,79 +28,118 @@
         android:id="@+id/main_menu_host_frag"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ft_ring_notification_icon" />
 
-        <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ft_cart_shop_icon" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        tools:layout_editor_absoluteX="13dp">
-
-        <AutoCompleteTextView
-            android:id="@+id/HomeSearch"
-            android:layout_width="0dp"
+        <RelativeLayout
+            android:id="@+id/TopSection"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_toStartOf="@+id/SearchFilter"
-            android:background="@drawable/ft_radius_fill_light"
-            android:backgroundTint="@color/ft_grey"
-            android:drawableStart="@drawable/ft_search_home_icon"
-            android:drawablePadding="@dimen/_5sdp"
-            android:fontFamily="@font/montserrat_arabic"
-            android:hint="ابحث"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:lines="1"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/ft_black"
-            android:textColorHint="@color/ft_grey_1"
-            android:textSize="@dimen/_11ssp" />
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp">
 
-        <ImageView
-            android:id="@+id/SearchFilter"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ft_filter_home_icon" />
+            <RelativeLayout
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/IsNotification"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ft_ring_notification_icon" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_5sdp"
+                    android:layout_height="@dimen/_5sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:src="@color/ft_orange" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ft_cart_shop_icon" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/IsCart"
+                    android:layout_width="@dimen/_5sdp"
+                    android:layout_height="@dimen/_5sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:src="@color/ft_orange" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/SearchSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/HomeSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_toStartOf="@+id/SearchFilter"
+                android:background="@drawable/ft_radius_fill_light"
+                android:backgroundTint="@color/ft_grey"
+                android:drawableStart="@drawable/ft_search_home_icon"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/montserrat_arabic"
+                android:hint="ابحث"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:lines="1"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:textColor="@color/ft_black"
+                android:textColorHint="@color/ft_grey_1"
+                android:textSize="@dimen/_11ssp" />
+
+            <ImageView
+                android:id="@+id/SearchFilter"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ft_filter_home_icon" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

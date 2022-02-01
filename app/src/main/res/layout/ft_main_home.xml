@@ -29,6 +29,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <me.relex.circleindicator.CircleIndicator2
+            android:id="@+id/BannerIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ci_orientation="horizontal"
+            app:ci_width="@dimen/_5sdp"
+            app:ci_height="@dimen/_5sdp"
+            app:ci_margin="@dimen/_5sdp"
+            app:ci_gravity="center"
+            app:ci_drawable="@drawable/ft_indicator_selected_icon"
+            app:ci_drawable_unselected="@drawable/ft_indicator_unselected_icon"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/HomeAdBannersRecycler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/HomeAdBannersRecycler" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/HomeCategoriesRecycler"
         android:layout_width="match_parent"

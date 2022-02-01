@@ -5,9 +5,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.FragmentActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.Adapters.SplashAdapter
 import com.example.funnytimesuserapp.AuthSection.CodeConfirmScreen
+import com.example.funnytimesuserapp.AuthSection.SignInScreen
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
+import com.example.funnytimesuserapp.CommonSection.Constants.APIMain
 import com.example.funnytimesuserapp.databinding.FtSplashMenuBinding
 import java.util.*
 
@@ -32,11 +39,14 @@ class SplashMenu : FragmentActivity() {
         commonFuncs.WriteOnSP(this,"EnteredBefore","Yes")
 
         binding.StartButton.setOnClickListener {
-            startActivity(Intent(this,CodeConfirmScreen::class.java))
+            startActivity(Intent(this,SignInScreen::class.java))
         }
 
 
 
 
     }
+
+
+
 }

@@ -76,10 +76,10 @@ class CommonFuncs {
         return sharedPreferences.contains(key)
     }
 
-    fun showDialog(activity: Activity) {
+    fun showLoadingDialog(activity: Activity) {
         loadingDia = Dialog(activity)
         loadingDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        loadingDia?.setCancelable(false)
+        loadingDia?.setCancelable(true)
         loadingDia?.setContentView(R.layout.ft_dialog_loading)
         val window: Window = loadingDia?.window!!
         window.setBackgroundDrawable(
@@ -90,7 +90,7 @@ class CommonFuncs {
         loadingDia?.show()
     }
 
-    fun hideDialog(){
+    fun hideLoadingDialog(){
         if (loadingDia != null){
             if (loadingDia?.isShowing!!){
                 loadingDia?.dismiss()

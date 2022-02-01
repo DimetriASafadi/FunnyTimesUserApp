@@ -3,6 +3,8 @@
     package="com.example.funnytimesuserapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -10,10 +12,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".APISection.AppController"
         android:theme="@style/Theme.FunnyTimesUserApp">
-        <activity
-            android:name=".MainMenuSection.HomeSection.HomeCategory"
-            android:exported="false" />
+
         <activity
             android:name=".MainMenu"
             android:exported="false"
