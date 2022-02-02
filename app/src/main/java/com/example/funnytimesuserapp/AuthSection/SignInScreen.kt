@@ -11,9 +11,11 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
-import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserID
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
+import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtSignInScreenBinding
-import java.lang.Exception
+import org.json.JSONObject
 import java.nio.charset.Charset
 
 class SignInScreen : AppCompatActivity() {
@@ -54,12 +56,33 @@ class SignInScreen : AppCompatActivity() {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url, Response.Listener<String> { response ->
                 Log.e("Response", response.toString())
-                commonFuncs.hideLoadingDialog()
+                val jsonobj = JSONObject(response.toString())
+                val data = jsonobj.getJSONObject("data")
+                val token = data.getString("access_token")
+                val userid = data.getJSONObject("user").getInt("id")
+                val isactive = data.getJSONObject("user").getString("status")
+                if (isactive == "active"){
+                    commonFuncs.WriteOnSP(this,KeyUserID,userid.toString())
+                    commonFuncs.WriteOnSP(this,KeyUserToken,token)
+                    commonFuncs.hideLoadingDialog()
+                    startActivity(Intent(this,MainMenu::class.java))
+                    finish()
+                }else{
+                    val intent = Intent(this,PhoneConfirmScreen::class.java)
+                    intent.putExtra("TempToken",token)
+                    startActivity(intent)
+                    commonFuncs.hideLoadingDialog()
+                    finish()
+                }
             }, Response.ErrorListener { error ->
                 if (error.networkResponse != null && error.networkResponse.data != null) {
                     val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
+                    val err = JSONObject(errorw)
+                    val errMessage = err.getJSONObject("status").getString("message")
+                    commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول",errMessage)
                     Log.e("eResponser", errorw.toString())
                 } else {
+                    commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول","حصل خطأ ما")
                     Log.e("eResponsew", "RequestError:$error")
                 }
                 commonFuncs.hideLoadingDialog()

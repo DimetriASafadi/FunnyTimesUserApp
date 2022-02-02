@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AuthSection.SignUpScreen">
+    tools:context=".AuthSection.PhoneConfirmScreen">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -89,6 +89,7 @@
                 />
 
             <EditText
+                android:id="@+id/PhoneNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -98,20 +99,29 @@
                 android:gravity="end"
                 android:hint="رقم الهاتف"
                 android:textColor="@color/ft_black"
+                android:textColorHint="@color/ft_grey_1"
                 android:inputType="number"
                 android:paddingHorizontal="@dimen/_5sdp"
                 android:paddingVertical="@dimen/_3sdp"
                 android:textSize="@dimen/_12ssp" />
 
-            <Spinner
-                android:id="@+id/PhoCountryCodesSpin"
+            <com.gbksoft.countrycodepickerlib.CountryCodePicker
+                android:id="@+id/CountryPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
+                app:ccp_textSize="@dimen/_10ssp"
                 android:layoutDirection="ltr"
-                android:padding="0dp"
-                android:background="@drawable/ft_spinner_background"
                 />
+
+<!--            <Spinner-->
+<!--                android:id="@+id/PhoCountryCodesSpin"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:spinnerMode="dropdown"-->
+<!--                android:layoutDirection="ltr"-->
+<!--                android:padding="0dp"-->
+<!--                android:background="@drawable/ft_spinner_background"-->
+<!--                />-->
 
 
 
@@ -129,7 +139,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/SendCodeToPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15sdp"

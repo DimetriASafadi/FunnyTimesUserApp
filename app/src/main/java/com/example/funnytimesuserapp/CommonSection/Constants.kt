@@ -6,5 +6,6 @@ object Constants {
     val AppSPName = "FunnyTimesPreferences"
     val KeyOpenBefore = "OpenBefore"
     val KeyUserToken = "UserToken"
+    val KeyUserID = "UserID"
     val KeyAppLanguage = "AppLanguage"
 }

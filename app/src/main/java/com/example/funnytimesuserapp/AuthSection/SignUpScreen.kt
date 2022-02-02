@@ -11,8 +11,10 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
-import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.CommonSection.Constants.APIMain
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
 import com.example.funnytimesuserapp.databinding.FtSignUpScreenBinding
+import org.json.JSONObject
 import java.nio.charset.Charset
 
 class SignUpScreen : AppCompatActivity() {
@@ -70,20 +72,28 @@ class SignUpScreen : AppCompatActivity() {
     }
     fun sign_up_Request(username:String,password:String) {
         commonFuncs.showLoadingDialog(this)
-        val url = Constants.APIMain + "api/auth/signup"
+        val url = APIMain + "api/auth/signup"
         try {
             val stringRequest = object : StringRequest(
                 Request.Method.POST, url, Response.Listener<String> { response ->
                     Log.e("Response", response.toString())
-                    startActivity(Intent(this,PhoneConfirmScreen::class.java))
+                    val data = JSONObject(response.toString()).getJSONObject("data")
+                    val tempToken = data.getString("access_token")
+                    val intent = Intent(this,PhoneConfirmScreen::class.java)
+                    intent.putExtra(KeyUserToken,tempToken)
+                    startActivity(intent)
                     finish()
                     commonFuncs.hideLoadingDialog()
                 }, Response.ErrorListener { error ->
                     Log.e("Error", error.toString())
                     if (error.networkResponse != null && error.networkResponse.data != null) {
                         val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
+                        val err = JSONObject(errorw)
+                        val errMessage = err.getJSONObject("status").getString("message")
+                        commonFuncs.showDefaultDialog(this,"فشل التسجيل",errMessage)
                         Log.e("eResponser", errorw.toString())
                     } else {
+                        commonFuncs.showDefaultDialog(this,"فشل التسجيل","حصل خطأ ما")
                         Log.e("eResponsew", "RequestError:$error")
                     }
                     commonFuncs.hideLoadingDialog()

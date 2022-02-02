@@ -90,5 +90,8 @@ dependencies {
     // volley library
     implementation("com.android.volley:volley:1.2.1")
 
+    // countries codes
+    implementation 'com.github.gbksoft:GBKCountryCodePicker:v1.0.0'
+
 
 }
