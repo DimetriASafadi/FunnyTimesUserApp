@@ -117,25 +117,6 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/SRememberMe"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/ft_dark_blue"
-                android:text="@null"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_arabic"
-                android:text="تذكرني"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="@color/ft_black"
-                android:alpha="0.4"
-                />
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -260,6 +241,7 @@
                 />
 
             <TextView
+                android:id="@+id/SGoToRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"

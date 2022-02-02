@@ -5,16 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.FragmentActivity
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.Adapters.SplashAdapter
-import com.example.funnytimesuserapp.AuthSection.CodeConfirmScreen
 import com.example.funnytimesuserapp.AuthSection.SignInScreen
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
-import com.example.funnytimesuserapp.CommonSection.Constants.APIMain
+import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyOpenBefore
 import com.example.funnytimesuserapp.databinding.FtSplashMenuBinding
 import java.util.*
 
@@ -25,7 +20,7 @@ class SplashMenu : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (commonFuncs.IsInSP(this,"AppLang")){
+        if (commonFuncs.IsInSP(this, Constants.KeyAppLanguage)){
             commonFuncs.setLocale2(this,commonFuncs.GetFromSP(this,"AppLang")!!)
         }else{
             commonFuncs.setLocale2(this,"ar")
@@ -37,14 +32,12 @@ class SplashMenu : FragmentActivity() {
         binding.SplashsContainer.adapter = SplashAdapter(this)
         binding.SplashsContainer.layoutDirection = View.LAYOUT_DIRECTION_RTL
         commonFuncs.WriteOnSP(this,"EnteredBefore","Yes")
-
         binding.StartButton.setOnClickListener {
+            commonFuncs.WriteOnSP(this,KeyOpenBefore,"Yes")
             startActivity(Intent(this,SignInScreen::class.java))
+            finish()
         }
-
-
-
-
+        binding.SplashIndicator.setViewPager(binding.SplashsContainer)
     }
 
 

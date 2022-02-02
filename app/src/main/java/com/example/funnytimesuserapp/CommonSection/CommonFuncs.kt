@@ -14,17 +14,19 @@ import android.util.Log
 import android.util.Patterns
 import android.view.ViewGroup
 import android.view.Window
+import com.example.funnytimesuserapp.CommonSection.Constants.AppSPName
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
 import com.example.funnytimesuserapp.R
 import java.util.*
 
 class CommonFuncs {
-    val SPName:String = "FunnyTimesPreferences"
+    val SPName:String = AppSPName
     var loadingDia: Dialog? = null
     var codePhone: Dialog? = null
 
     @Suppress("DEPRECATION")
     fun setLocale2(context: Activity,langua:String) {
-        WriteOnSP(context,"AppLang",langua)
+        WriteOnSP(context,KeyAppLanguage,langua)
         //Log.e("Lan",session.getLanguage());
         val locale = Locale(langua)
         val config = Configuration(context.resources.configuration)
@@ -79,7 +81,7 @@ class CommonFuncs {
     fun showLoadingDialog(activity: Activity) {
         loadingDia = Dialog(activity)
         loadingDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        loadingDia?.setCancelable(true)
+        loadingDia?.setCancelable(false)
         loadingDia?.setContentView(R.layout.ft_dialog_loading)
         val window: Window = loadingDia?.window!!
         window.setBackgroundDrawable(

@@ -17,31 +17,31 @@
 
         <activity
             android:name=".MainMenu"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.NewPasswordScreen"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.PassResetCodeConfirmScreen"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.CodeConfirmScreen"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.PhoneConfirmScreen"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.SignInScreen"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.SignUpScreen"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".SplashSection.SplashMenu"

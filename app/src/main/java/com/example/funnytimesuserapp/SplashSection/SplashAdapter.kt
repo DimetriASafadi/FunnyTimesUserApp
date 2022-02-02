@@ -32,16 +32,13 @@ class SplashAdapter( context: Context) : RecyclerView.Adapter<PagerVH>() {
         val SplashIcon = holder.itemView.findViewById<ImageView>(R.id.SplashIcon)
         val SplashTitle = holder.itemView.findViewById<TextView>(R.id.SplashTitle)
         val SplashDesc = holder.itemView.findViewById<TextView>(R.id.SplashDesc)
-        val SplashCounter = holder.itemView.findViewById<ImageView>(R.id.SplashCounter)
+//        val SplashCounter = holder.itemView.findViewById<ImageView>(R.id.SplashCounter)
 
-        SplashCounter.setColorFilter(ContextCompat.getColor(context, R.color.ft_orange), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         if(position == 0){
             SplashIcon.setImageResource(R.drawable.ft_splash_a_icon)
 //            SplashTitle.text = resources.getText(R.string.splash_a_title)
 //            SplashDesc.text = resources.getText(R.string.splash_a_desc)
-
-            SplashCounter.setImageResource(R.drawable.ft_splash_a_counter)
             SplashTitle.typeface = myCustomFont
             SplashDesc.typeface = myCustomFont
         }
@@ -49,8 +46,6 @@ class SplashAdapter( context: Context) : RecyclerView.Adapter<PagerVH>() {
             SplashIcon.setImageResource(R.drawable.ft_splash_b_icon)
 //            SplashTitle.text = resources.getText(R.string.splash_b_title)
 //            SplashDesc.text = resources.getText(R.string.splash_b_desc)
-
-            SplashCounter.setImageResource(R.drawable.ft_splash_b_counter)
             SplashTitle.typeface = myCustomFont
             SplashDesc.typeface = myCustomFont
         }
@@ -58,9 +53,6 @@ class SplashAdapter( context: Context) : RecyclerView.Adapter<PagerVH>() {
             SplashIcon.setImageResource(R.drawable.ft_splash_c_icon)
 //            SplashTitle.text = resources.getText(R.string.splash_c_title)
 //            SplashDesc.text = resources.getText(R.string.splash_c_desc)
-
-
-            SplashCounter.setImageResource(R.drawable.ft_splash_c_counter)
             SplashTitle.typeface = myCustomFont
             SplashDesc.typeface = myCustomFont
         }

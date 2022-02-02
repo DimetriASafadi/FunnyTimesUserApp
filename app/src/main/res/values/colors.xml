@@ -21,6 +21,9 @@
     <color name="ft_menu_unselected">#CDCDCD</color>
     <color name="ft_menu_selected">#F9A236</color>
 
+    <color name="ft_splash_selected">#F9A236</color>
+    <color name="ft_splash_unselected">#E7E7E7</color>
+
     <color name="tk_dialog_bg">#65000000</color>
     <color name="tk_transparent">#00000000</color>
     <color name="tk_weak_black">#32000000</color>

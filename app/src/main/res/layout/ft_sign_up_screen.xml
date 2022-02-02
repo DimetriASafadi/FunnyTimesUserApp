@@ -46,6 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
+            android:id="@+id/SUEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
@@ -84,6 +85,7 @@
             android:paddingVertical="@dimen/_8sdp"
             android:textSize="@dimen/_12ssp" >
             <com.maksim88.passwordedittext.PasswordEditText
+                android:id="@+id/SUPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -125,6 +127,7 @@
             android:paddingVertical="@dimen/_8sdp"
             android:textSize="@dimen/_12ssp" >
             <com.maksim88.passwordedittext.PasswordEditText
+                android:id="@+id/SUConfirmPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -161,9 +164,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
                 android:text="ـأوافق على "
+                android:textColor="@color/ft_grey_2"
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
+                android:id="@+id/SUReadServicePolicies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
@@ -177,9 +182,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
                 android:text="و "
+                android:textColor="@color/ft_grey_2"
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
+                android:id="@+id/SUReadPrivacyPolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
@@ -190,7 +197,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/SignUpBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_15sdp"
@@ -288,10 +295,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
                 android:text="لدي حساب؟ "
                 android:textSize="@dimen/_11ssp" />
 
             <TextView
+                android:id="@+id/SUGoToSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_arabic"

@@ -60,17 +60,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SplashTitle" />
 
-        <ImageView
-            android:id="@+id/SplashCounter"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:src="@drawable/ft_splash_a_counter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SplashDesc"
-            app:tint="@color/ft_orange" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
