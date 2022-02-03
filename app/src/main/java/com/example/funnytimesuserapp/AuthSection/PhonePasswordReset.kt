@@ -6,80 +6,78 @@ import android.os.Bundle
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
-import com.example.funnytimesuserapp.databinding.FtPhoneConfirmScreenBinding
+import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.databinding.FtPhonePasswordResetBinding
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class PhoneConfirmScreen : AppCompatActivity() {
+class PhonePasswordReset : AppCompatActivity() {
 
-
-    lateinit var binding : FtPhoneConfirmScreenBinding
-    val commonFuncs = CommonFuncs()
-
-    var temptoken = ""
-    var comingFrom = ""
-
+    lateinit var binding: FtPhonePasswordResetBinding
+    val  commonFuncs = CommonFuncs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FtPhoneConfirmScreenBinding.inflate(layoutInflater)
+        binding = FtPhonePasswordResetBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        temptoken = intent.getStringExtra("TempToken").toString()
-        comingFrom = intent.getStringExtra("comingFrom").toString()
-
-
-
-        binding.CountryPicker.registerCarrierNumberEditText(binding.PhoneNumber)
-
-        binding.ClearPhoneNum.setOnClickListener {
-            binding.PhoneNumber.setText("")
-        }
-
-        binding.SendCodeToPhone.setOnClickListener {
-            Log.e("Phone",binding.CountryPicker.fullNumberWithPlus.toString())
-
-            if (binding.PhoneNumber.text.toString().isNullOrEmpty()){
-                binding.PhoneNumber.error = "لا يمكن ترك الحقل فارغ"
-                binding.PhoneNumber.requestFocus()
+        binding.ResetCountryPicker.registerCarrierNumberEditText(binding.ResetPhoneNumber)
+        binding.SendResetToPhone.setOnClickListener {
+            if (binding.ResetPhoneNumber.text.toString().isNullOrEmpty()){
+                binding.ResetPhoneNumber.error = "لا يمكن ترك الحقل فارغ"
+                binding.ResetPhoneNumber.requestFocus()
                 return@setOnClickListener
             }
-            update_phone_Request(binding.CountryPicker.fullNumberWithPlus.toString())
+            reset_Request(binding.ResetCountryPicker.fullNumberWithPlus.toString())
         }
+
+        binding.ClearResetPhoneNum.setOnClickListener {
+            binding.ResetPhoneNumber.setText("")
+        }
+
+        binding.Back.setOnClickListener {
+            finish()
+        }
+
+
+
 
     }
 
-    fun update_phone_Request(phonenum:String) {
+    fun reset_Request(phonenum:String) {
         Log.e("PhoneNumber",phonenum)
         commonFuncs.showLoadingDialog(this)
-        val url = Constants.APIMain + "api/auth/add/phone"
+        val url = Constants.APIMain + "api/auth/reset"
         try {
             val stringRequest = object : StringRequest(
                 Request.Method.POST, url, Response.Listener<String> { response ->
                     Log.e("Response", response.toString())
-//                    val data = JSONObject(response.toString()).getJSONObject("data")
-//                    val tempToken = data.getString("access_token")
-                    val intent = Intent(this,PhoneConfirmScreen::class.java)
-                    intent.putExtra("comingFrom",comingFrom)
-                    intent.putExtra(Constants.KeyUserToken,temptoken)
-                    startActivity(intent)
-                    commonFuncs.hideLoadingDialog()
+                    val data = JSONObject(response.toString()).getJSONObject("status")
+                    val status = data.getString("status").toBoolean()
+                    if (status){
+                        commonFuncs.hideLoadingDialog()
+                        val intent = Intent(this,PassResetCodeConfirmScreen::class.java)
+                        intent.putExtra("SendToPhone",phonenum)
+                        startActivity(intent)
+                        finish()
+                    }else{
+                        commonFuncs.showDefaultDialog(this,"فشل إعادة التعيين","حصل خطأ ما")
+                    }
                 }, Response.ErrorListener { error ->
                     Log.e("Error", error.toString())
                     if (error.networkResponse != null && error.networkResponse.data != null) {
                         val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
                         val err = JSONObject(errorw)
                         val errMessage = err.getJSONObject("status").getString("message")
-                        commonFuncs.showDefaultDialog(this,"فشل التحقق",errMessage)
+                        commonFuncs.showDefaultDialog(this,"فشل إعادة التعيين",errMessage)
                         Log.e("eResponser", errorw.toString())
                     } else {
-                        commonFuncs.showDefaultDialog(this,"فشل التحقق","حصل خطأ ما")
+                        commonFuncs.showDefaultDialog(this,"فشل إعادة التعيين","حصل خطأ ما")
                         Log.e("eResponsew", "RequestError:$error")
                     }
                     commonFuncs.hideLoadingDialog()
@@ -90,11 +88,7 @@ class PhoneConfirmScreen : AppCompatActivity() {
                     params["phone"] = phonenum
                     return params
                 }
-            override fun getHeaders(): MutableMap<String, String> {
-                val header = HashMap<String,String>()
-                header["Authorization"] = "Bearer $temptoken"
-                return header
-            }
+
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)

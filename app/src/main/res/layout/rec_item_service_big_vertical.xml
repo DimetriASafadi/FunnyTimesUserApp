@@ -40,11 +40,10 @@
             android:layout_alignTop="@+id/SBVIsFavorite"
             android:layout_alignEnd="@+id/SBVIsFavorite"
             android:layout_alignBottom="@+id/SBVIsFavorite"
-            android:layout_margin="@dimen/_6sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
             android:src="@drawable/ft_favorite_heart_unlike_icon" />
     </RelativeLayout>
 

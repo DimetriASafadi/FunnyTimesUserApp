@@ -43,7 +43,7 @@ class SignInScreen : AppCompatActivity() {
             login_Request(username,password)
         }
         binding.SForgotPass.setOnClickListener {
-
+            startActivity(Intent(this,PhonePasswordReset::class.java))
         }
         binding.SGoToRegister.setOnClickListener {
             startActivity(Intent(this,SignUpScreen::class.java))
@@ -74,12 +74,14 @@ class SignInScreen : AppCompatActivity() {
                 }else{
                     if (userphone == "null"){
                         val intent = Intent(this,PhoneConfirmScreen::class.java)
+                        intent.putExtra("comingFrom","signin")
                         intent.putExtra("TempToken",token)
                         startActivity(intent)
                         commonFuncs.hideLoadingDialog()
                         finish()
                     }else{
                         val intent = Intent(this,CodeConfirmScreen::class.java)
+                        intent.putExtra("comingFrom","signin")
                         intent.putExtra("TempToken",token)
                         startActivity(intent)
                         commonFuncs.hideLoadingDialog()

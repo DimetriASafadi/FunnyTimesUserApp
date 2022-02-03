@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
@@ -14,8 +15,11 @@ import android.util.Log
 import android.util.Patterns
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.TextView
+import com.example.funnytimesuserapp.AuthSection.SignInScreen
 import com.example.funnytimesuserapp.CommonSection.Constants.AppSPName
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
+import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.R
 import java.util.*
 
@@ -23,6 +27,7 @@ class CommonFuncs {
     val SPName:String = AppSPName
     var loadingDia: Dialog? = null
     var codePhone: Dialog? = null
+    var passwordDoneDialog: Dialog? = null
 
     @Suppress("DEPRECATION")
     fun setLocale2(context: Activity,langua:String) {
@@ -137,12 +142,65 @@ class CommonFuncs {
         builder.show()
     }
 
-    fun showPhoneDoneDialog(activity: Activity) {
+//    fun showPhoneDoneDialog(activity: Activity) {
+//        codePhone = Dialog(activity)
+//        codePhone?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        codePhone?.setCancelable(false)
+////        codePhone?.setContentView(R.layout.ft_phone_added_successfully_dialog)
+//        codePhone?.setContentView(R.layout.ft_dialog_main_filter)
+//        val window: Window = codePhone?.window!!
+//        window.setBackgroundDrawable(
+//            ColorDrawable(activity.resources
+//                .getColor(R.color.tk_dialog_bg, null))
+//        )
+//        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+//        codePhone?.show()
+//    }
+
+    fun showPasswordDoneDialog(activity: Activity) {
+        passwordDoneDialog = Dialog(activity)
+        passwordDoneDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        passwordDoneDialog?.setCancelable(false)
+        passwordDoneDialog?.setContentView(R.layout.ft_dialog_password_reset_done)
+        val donebtn = passwordDoneDialog?.findViewById<TextView>(R.id.GoToSignIn)
+        donebtn!!.setOnClickListener {
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    val intent = Intent(activity, SignInScreen::class.java).apply {}
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    activity.startActivity(intent)
+                    activity.finish()
+                }
+            }, 3000)
+        }
+
+        val window: Window = passwordDoneDialog?.window!!
+        window.setBackgroundDrawable(
+            ColorDrawable(activity.resources
+                .getColor(R.color.tk_dialog_bg, null))
+        )
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        passwordDoneDialog?.show()
+    }
+
+    fun showCodeDoneDialog(activity: Activity) {
         codePhone = Dialog(activity)
         codePhone?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         codePhone?.setCancelable(false)
-//        codePhone?.setContentView(R.layout.ft_phone_added_successfully_dialog)
-        codePhone?.setContentView(R.layout.ft_dialog_main_filter)
+        codePhone?.setContentView(R.layout.ft_dialog_phone_added_successfully)
+        val donebtn = codePhone?.findViewById<TextView>(R.id.GoToHome)
+        donebtn?.setOnClickListener {
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    codePhone!!.dismiss()
+                    val intent = Intent(activity, MainMenu::class.java).apply {}
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    activity.startActivity(intent)
+                    activity.finish()
+                }
+            }, 3000)
+        }
+
         val window: Window = codePhone?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources

@@ -80,6 +80,7 @@
 
 
             <ImageView
+                android:id="@+id/ClearPhoneNum"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
                 android:layout_gravity="center_vertical"
@@ -110,6 +111,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:ccp_textSize="@dimen/_10ssp"
+                app:ccp_arrowColor="@color/ft_black"
+                app:ccp_contentColor="@color/ft_black"
+                app:ccpDropDown_textColor="@color/ft_black"
                 android:layoutDirection="ltr"
                 />
 

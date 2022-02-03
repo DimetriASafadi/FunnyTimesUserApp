@@ -89,6 +89,7 @@ class SignUpScreen : AppCompatActivity() {
                     val tempToken = data.getString("access_token")
                     val intent = Intent(this,PhoneConfirmScreen::class.java)
                     intent.putExtra(KeyUserToken,tempToken)
+                    intent.putExtra("comingFrom","signup")
                     startActivity(intent)
                     finish()
                     commonFuncs.hideLoadingDialog()
