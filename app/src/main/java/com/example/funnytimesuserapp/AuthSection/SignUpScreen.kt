@@ -88,7 +88,7 @@ class SignUpScreen : AppCompatActivity() {
                     val data = JSONObject(response.toString()).getJSONObject("data")
                     val tempToken = data.getString("access_token")
                     val intent = Intent(this,PhoneConfirmScreen::class.java)
-                    intent.putExtra(KeyUserToken,tempToken)
+                    intent.putExtra("TempToken",tempToken)
                     intent.putExtra("comingFrom","signup")
                     startActivity(intent)
                     finish()

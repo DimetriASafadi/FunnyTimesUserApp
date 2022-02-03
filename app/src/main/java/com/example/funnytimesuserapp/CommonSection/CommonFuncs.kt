@@ -164,8 +164,11 @@ class CommonFuncs {
         passwordDoneDialog?.setContentView(R.layout.ft_dialog_password_reset_done)
         val donebtn = passwordDoneDialog?.findViewById<TextView>(R.id.GoToSignIn)
         donebtn!!.setOnClickListener {
+            passwordDoneDialog!!.dismiss()
+            showLoadingDialog(activity)
             Timer().schedule(object : TimerTask() {
                 override fun run() {
+                    hideLoadingDialog()
                     val intent = Intent(activity, SignInScreen::class.java).apply {}
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     activity.startActivity(intent)
@@ -190,9 +193,11 @@ class CommonFuncs {
         codePhone?.setContentView(R.layout.ft_dialog_phone_added_successfully)
         val donebtn = codePhone?.findViewById<TextView>(R.id.GoToHome)
         donebtn?.setOnClickListener {
+            codePhone!!.dismiss()
+            showLoadingDialog(activity)
             Timer().schedule(object : TimerTask() {
                 override fun run() {
-                    codePhone!!.dismiss()
+                    hideLoadingDialog()
                     val intent = Intent(activity, MainMenu::class.java).apply {}
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     activity.startActivity(intent)

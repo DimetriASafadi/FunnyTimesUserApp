@@ -115,6 +115,7 @@
                 app:ccp_contentColor="@color/ft_black"
                 app:ccpDropDown_textColor="@color/ft_black"
                 android:layoutDirection="ltr"
+                app:ccp_defaultNameCode="@string/saudi_arabia_code"
                 />
 
 <!--            <Spinner-->

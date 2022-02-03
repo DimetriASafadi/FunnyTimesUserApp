@@ -65,9 +65,9 @@ class PhoneConfirmScreen : AppCompatActivity() {
                     Log.e("Response", response.toString())
 //                    val data = JSONObject(response.toString()).getJSONObject("data")
 //                    val tempToken = data.getString("access_token")
-                    val intent = Intent(this,PhoneConfirmScreen::class.java)
+                    val intent = Intent(this,CodeConfirmScreen::class.java)
                     intent.putExtra("comingFrom",comingFrom)
-                    intent.putExtra(Constants.KeyUserToken,temptoken)
+                    intent.putExtra("TempToken",temptoken)
                     startActivity(intent)
                     commonFuncs.hideLoadingDialog()
                 }, Response.ErrorListener { error ->
