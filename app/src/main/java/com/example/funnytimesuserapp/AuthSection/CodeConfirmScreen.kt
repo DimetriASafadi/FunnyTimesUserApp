@@ -15,6 +15,7 @@ import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserID
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtCodeConfirmScreenBinding
+import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
@@ -62,7 +63,9 @@ class CodeConfirmScreen : AppCompatActivity() {
                     commonFuncs.WriteOnSP(this,KeyUserToken,temptoken)
                     commonFuncs.WriteOnSP(this,KeyUserID,userid.toString())
                     commonFuncs.hideLoadingDialog()
-                    startActivity(Intent(this,MainMenu::class.java))
+                    val intent = Intent(this,MainMenu::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                     finish()
                 }, Response.ErrorListener { error ->
                     Log.e("Error", error.toString())
@@ -86,13 +89,13 @@ class CodeConfirmScreen : AppCompatActivity() {
                 }
                 override fun getHeaders(): MutableMap<String, String> {
                     val header = HashMap<String,String>()
-                    header["Authorization"] = temptoken
+                    header["Authorization"] = "Bearer $temptoken"
                     return header
                 }
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)
-        }catch (error: VolleyError){
+        }catch (error: JSONException){
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }

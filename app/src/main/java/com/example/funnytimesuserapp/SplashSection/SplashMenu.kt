@@ -9,6 +9,7 @@ import com.example.funnytimesuserapp.Adapters.SplashAdapter
 import com.example.funnytimesuserapp.AuthSection.SignInScreen
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyOpenBefore
 import com.example.funnytimesuserapp.databinding.FtSplashMenuBinding
 import java.util.*
@@ -20,8 +21,8 @@ class SplashMenu : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (commonFuncs.IsInSP(this, Constants.KeyAppLanguage)){
-            commonFuncs.setLocale2(this,commonFuncs.GetFromSP(this,"AppLang")!!)
+        if (commonFuncs.IsInSP(this, KeyAppLanguage)){
+            commonFuncs.setLocale2(this,commonFuncs.GetFromSP(this,KeyAppLanguage)!!)
         }else{
             commonFuncs.setLocale2(this,"ar")
         }

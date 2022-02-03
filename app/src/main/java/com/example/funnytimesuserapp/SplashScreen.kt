@@ -17,7 +17,7 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (commonFuncs.IsInSP(this,KeyAppLanguage)){
-            commonFuncs.setLocale2(this,commonFuncs.GetFromSP(this,"AppLang")!!)
+            commonFuncs.setLocale2(this,commonFuncs.GetFromSP(this,KeyAppLanguage)!!)
         }else{
             commonFuncs.setLocale2(this,"ar")
         }

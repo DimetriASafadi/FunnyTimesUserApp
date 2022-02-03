@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.databinding.FtPhoneConfirmScreenBinding
+import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
@@ -65,16 +66,17 @@ class PhoneConfirmScreen : AppCompatActivity() {
     }
 
     fun update_phone_Request(phonenum:String) {
+        Log.e("PhoneNumber",phonenum)
         commonFuncs.showLoadingDialog(this)
         val url = Constants.APIMain + "api/auth/add/phone"
         try {
             val stringRequest = object : StringRequest(
                 Request.Method.POST, url, Response.Listener<String> { response ->
                     Log.e("Response", response.toString())
-                    val data = JSONObject(response.toString()).getJSONObject("data")
-                    val tempToken = data.getString("access_token")
+//                    val data = JSONObject(response.toString()).getJSONObject("data")
+//                    val tempToken = data.getString("access_token")
                     val intent = Intent(this,PhoneConfirmScreen::class.java)
-                    intent.putExtra(Constants.KeyUserToken,tempToken)
+                    intent.putExtra(Constants.KeyUserToken,temptoken)
                     startActivity(intent)
                     commonFuncs.hideLoadingDialog()
                 }, Response.ErrorListener { error ->
@@ -99,13 +101,13 @@ class PhoneConfirmScreen : AppCompatActivity() {
                 }
             override fun getHeaders(): MutableMap<String, String> {
                 val header = HashMap<String,String>()
-                header["Authorization"] = temptoken
+                header["Authorization"] = "Bearer $temptoken"
                 return header
             }
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)
-        }catch (error: VolleyError){
+        }catch (error: JSONException){
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }

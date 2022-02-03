@@ -14,6 +14,7 @@ import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.CommonSection.Constants.APIMain
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
 import com.example.funnytimesuserapp.databinding.FtSignUpScreenBinding
+import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
@@ -42,6 +43,12 @@ class SignUpScreen : AppCompatActivity() {
             val suEmail = binding.SUEmail.text.toString()
             val suPassword = binding.SUPassword.text.toString()
             val suCPassword = binding.SUConfirmPassword.text.toString()
+
+            if (!binding.SUAcceptPolicies.isChecked){
+                commonFuncs.showDefaultDialog(this,"فشل التسجيل","يجب ان توافق على الشروط والسياسات")
+                return@setOnClickListener
+            }
+
             if (suEmail.isNullOrEmpty()){
                 binding.SUEmail.error = "لا يمكن ترك الحقل فارغ"
                 binding.SUEmail.requestFocus()
@@ -57,11 +64,12 @@ class SignUpScreen : AppCompatActivity() {
                 binding.SUConfirmPassword.requestFocus()
                 return@setOnClickListener
             }
-            if (commonFuncs.isValidEmail(suEmail)){
-                binding.SUConfirmPassword.error = "تأكد من صحة البريد الإلكتروني"
-                binding.SUConfirmPassword.requestFocus()
-                return@setOnClickListener
-            }
+//            if (commonFuncs.isValidEmail(suEmail)){
+//                binding.SUEmail.error = "تأكد من صحة البريد الإلكتروني"
+//                binding.SUEmail.requestFocus()
+//                return@setOnClickListener
+//            }
+
             if (suPassword != suCPassword ){
                 binding.SUConfirmPassword.error = "كلمات السر غير متطابقة"
                 binding.SUConfirmPassword.requestFocus()
@@ -113,7 +121,7 @@ class SignUpScreen : AppCompatActivity() {
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)
-        }catch (error: VolleyError){
+        }catch (error: JSONException){
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }

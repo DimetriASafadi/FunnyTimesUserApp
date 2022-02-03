@@ -15,6 +15,7 @@ import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserID
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtSignInScreenBinding
+import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
@@ -60,19 +61,31 @@ class SignInScreen : AppCompatActivity() {
                 val data = jsonobj.getJSONObject("data")
                 val token = data.getString("access_token")
                 val userid = data.getJSONObject("user").getInt("id")
+                val userphone = data.getJSONObject("user").getString("phone").toString()
                 val isactive = data.getJSONObject("user").getString("status")
                 if (isactive == "active"){
                     commonFuncs.WriteOnSP(this,KeyUserID,userid.toString())
                     commonFuncs.WriteOnSP(this,KeyUserToken,token)
                     commonFuncs.hideLoadingDialog()
-                    startActivity(Intent(this,MainMenu::class.java))
+                    val intent = Intent(this,MainMenu::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                     finish()
                 }else{
-                    val intent = Intent(this,PhoneConfirmScreen::class.java)
-                    intent.putExtra("TempToken",token)
-                    startActivity(intent)
-                    commonFuncs.hideLoadingDialog()
-                    finish()
+                    if (userphone == "null"){
+                        val intent = Intent(this,PhoneConfirmScreen::class.java)
+                        intent.putExtra("TempToken",token)
+                        startActivity(intent)
+                        commonFuncs.hideLoadingDialog()
+                        finish()
+                    }else{
+                        val intent = Intent(this,CodeConfirmScreen::class.java)
+                        intent.putExtra("TempToken",token)
+                        startActivity(intent)
+                        commonFuncs.hideLoadingDialog()
+                        finish()
+                    }
+
                 }
             }, Response.ErrorListener { error ->
                 if (error.networkResponse != null && error.networkResponse.data != null) {
@@ -101,7 +114,7 @@ class SignInScreen : AppCompatActivity() {
         }
         val requestQueue = Volley.newRequestQueue(this)
         requestQueue.add(stringRequest)
-        }catch (error:VolleyError){
+        }catch (error:JSONException){
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }
