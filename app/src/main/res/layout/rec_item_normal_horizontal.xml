@@ -29,25 +29,26 @@
             android:src="@drawable/ft_splash_logo"
             app:riv_corner_radius="@dimen/_10sdp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:background="@drawable/ft_radius_fill_light"
-                android:backgroundTint="@color/ft_trans_orange"
-                android:fontFamily="@font/montserrat_arabic"
-                android:maxLength="7"
-                android:maxLines="1"
-                android:paddingVertical="@dimen/_3sdp"
-                android:paddingHorizontal="@dimen/_5sdp"
-                android:text="40ر.س"
-                android:textColor="@color/ft_white"
-                android:textSize="@dimen/_11ssp" />
+        <TextView
+            android:id="@+id/NHPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/ft_radius_fill_light"
+            android:backgroundTint="@color/ft_trans_orange"
+            android:fontFamily="@font/montserrat_arabic"
+            android:maxLength="7"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:paddingVertical="@dimen/_3sdp"
+            android:text="40ر.س"
+            android:textColor="@color/ft_white"
+            android:textSize="@dimen/_11ssp" />
 
     </RelativeLayout>
 
@@ -145,6 +146,7 @@
             android:src="@color/ft_black" />
 
         <ImageView
+            android:id="@+id/NHFavoriteIcon"
             android:layout_width="@dimen/_14sdp"
             android:layout_height="@dimen/_14sdp"
             android:layout_centerInParent="true"

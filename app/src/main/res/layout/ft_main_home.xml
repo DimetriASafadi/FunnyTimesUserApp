@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/ft_bg_white"
     >
 
     <androidx.core.widget.NestedScrollView
@@ -32,7 +33,7 @@
         <me.relex.circleindicator.CircleIndicator2
             android:id="@+id/BannerIndicator"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_15sdp"
             app:ci_orientation="horizontal"
             app:ci_width="@dimen/_5sdp"
             app:ci_height="@dimen/_5sdp"
@@ -48,7 +49,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/HomeCategoriesRecycler"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +93,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/HomeServedRecycler"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
 
@@ -134,7 +135,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/HomePurchasedRecycler"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout4" />
 
@@ -175,7 +176,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/HomeDemandedRecycler"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout5" />
 

@@ -9,7 +9,7 @@
         android:gravity="end|center_vertical"
         >
         <bitmap
-            android:src="@drawable/ft_dropdown_arrow_icon"
+            android:src="@drawable/ft_spinner_arrow_bottom_icon"
             android:tint="@color/tk_weak_black"/>
     </item>
 </layer-list>

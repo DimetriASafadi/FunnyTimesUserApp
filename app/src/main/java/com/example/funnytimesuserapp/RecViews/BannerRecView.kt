@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.RecViews
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.Constants.APIMain
 import com.example.funnytimesuserapp.Models.FTBanner
 import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.SectionService.ChaletScreen
 import com.makeramen.roundedimageview.RoundedImageView
 
 class BannerRecView (val data : ArrayList<FTBanner>, val context: Context) : RecyclerView.Adapter<BannerViewHolder>() {
@@ -29,6 +31,9 @@ class BannerRecView (val data : ArrayList<FTBanner>, val context: Context) : Rec
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.BannerImage)
+        holder.BannerImage.setOnClickListener {
+            context.startActivity(Intent(context,ChaletScreen::class.java))
+        }
     }
 }
 class BannerViewHolder (view: View) : RecyclerView.ViewHolder(view) {

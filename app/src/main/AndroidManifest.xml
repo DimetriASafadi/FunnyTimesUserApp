@@ -14,30 +14,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FunnyTimesUserApp">
         <activity
+            android:name=".SectionService.ClinicScreen"
+            android:exported="false" />
+        <activity
             android:name=".AuthSection.PhonePasswordReset"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
-            android:name=".ServicesSection.ChaletScreen"
+            android:name=".SectionService.ChaletScreen"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".MainMenu"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.NewPasswordScreen"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.PassResetCodeConfirmScreen"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.CodeConfirmScreen"
             android:configChanges="locale|orientation"
@@ -47,17 +50,17 @@
             android:name=".AuthSection.PhoneConfirmScreen"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.SignInScreen"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".AuthSection.SignUpScreen"
             android:configChanges="locale|orientation"
             android:exported="true"
-            android:theme="@style/SplashTheme"  />
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".SplashSection.SplashMenu"
             android:configChanges="locale|orientation"

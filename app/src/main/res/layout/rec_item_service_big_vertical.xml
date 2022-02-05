@@ -5,6 +5,7 @@
     android:layout_width="@dimen/_170sdp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_margin="@dimen/_5sdp"
     >
 
     <RelativeLayout
@@ -34,6 +35,7 @@
             android:src="@color/ft_black" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/SBVFavIcon"
             android:layout_width="@dimen/_10sdp"
             android:layout_height="@dimen/_10sdp"
             android:layout_alignStart="@+id/SBVIsFavorite"
