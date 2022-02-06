@@ -11,6 +11,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.SectionCategories.ItemCategory
+import com.example.funnytimesuserapp.SectionCategories.ServiceCategory
+import com.example.funnytimesuserapp.SectionCategories.SubCategoryItem
+import com.example.funnytimesuserapp.SectionCategories.SubCategoryService
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
 
 class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context) : RecyclerView.Adapter<CatViewHolder>() {
@@ -26,10 +30,21 @@ class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context) 
 
 
 
-
-        holder.WholeCategory.setOnClickListener {
-            context.startActivity(Intent(context, ChaletScreen::class.java))
+        if (data[position].CategoryLevel == 1){
+            holder.WholeCategory.setOnClickListener {
+                val intent = Intent(context,ItemCategory::class.java)
+                intent.putExtra("CategoryObj",data[position])
+                context.startActivity(intent)
+            }
+        }else{
+            holder.WholeCategory.setOnClickListener {
+                val intent = Intent(context,SubCategoryItem::class.java)
+                intent.putExtra("CategoryObj",data[position])
+                context.startActivity(intent)
+            }
         }
+
+
         holder.CategoryImage.setImageResource(data[position].CategoryIcon)
         holder.CategoryName.text = data[position].CategoryName
     }

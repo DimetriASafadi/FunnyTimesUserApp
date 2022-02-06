@@ -1,5 +1,7 @@
 package com.example.funnytimesuserapp.Models
 
+import java.io.Serializable
+
 data class FTItem(
     var ItemId:Int,
     var ItemName:String,
@@ -11,4 +13,4 @@ data class FTItem(
     var ItemShop:String,
     var ItemPrice:Int
 
-)
+):Serializable

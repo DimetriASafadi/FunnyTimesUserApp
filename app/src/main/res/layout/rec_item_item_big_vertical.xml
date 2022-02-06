@@ -2,17 +2,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/_170sdp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
     android:orientation="vertical"
     >
 
     <RelativeLayout
-        android:layout_width="@dimen/_170sdp"
-        android:layout_height="@dimen/_170sdp">
+        android:layout_width="@dimen/_135sdp"
+        android:layout_height="@dimen/_135sdp">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/BVImage"
+            android:id="@+id/IIImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
@@ -21,26 +22,28 @@
             app:riv_corner_radius="@dimen/_10sdp" />
 
         <TextView
-            android:id="@+id/BVPrice"
+            android:id="@+id/IIPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_margin="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/ft_radius_fill_light"
             android:backgroundTint="@color/ft_trans_dark_blue"
             android:fontFamily="@font/montserrat_arabic"
             android:maxLength="7"
             android:maxLines="1"
-            android:paddingVertical="@dimen/_3sdp"
             android:paddingHorizontal="@dimen/_5sdp"
+            android:paddingVertical="@dimen/_3sdp"
             android:text="40ر.س"
             android:textColor="@color/ft_white"
             android:textSize="@dimen/_11ssp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/BVIsFavorite"
+            android:id="@+id/IIIsFavorite"
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_alignParentTop="true"
@@ -52,14 +55,14 @@
             android:alpha="0.2"
             android:src="@color/ft_black" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/BVFavoriteIcon"
+        <ImageView
+            android:id="@+id/IIFavIcon"
             android:layout_width="@dimen/_10sdp"
             android:layout_height="@dimen/_10sdp"
-            android:layout_alignStart="@+id/BVIsFavorite"
-            android:layout_alignTop="@+id/BVIsFavorite"
-            android:layout_alignEnd="@+id/BVIsFavorite"
-            android:layout_alignBottom="@+id/BVIsFavorite"
+            android:layout_alignStart="@+id/IIIsFavorite"
+            android:layout_alignTop="@+id/IIIsFavorite"
+            android:layout_alignEnd="@+id/IIIsFavorite"
+            android:layout_alignBottom="@+id/IIIsFavorite"
             android:layout_marginStart="@dimen/_6sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_6sdp"
@@ -70,17 +73,17 @@
 
 
     <TextView
-        android:id="@+id/BVTitle"
+        android:id="@+id/IITitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="شاليه أخضر مع ملعب طائرة"
-        android:textSize="@dimen/_11ssp"
+        android:textSize="@dimen/_10ssp"
         android:textColor="@color/ft_black"
         android:fontFamily="@font/montserrat_arabic"
         android:layout_marginTop="@dimen/_3sdp"
         />
     <TextView
-        android:id="@+id/BVLocation"
+        android:id="@+id/IILocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="حي الرياض,الرياض"
@@ -95,7 +98,7 @@
         android:layout_gravity="center_vertical"
         >
         <com.willy.ratingbar.BaseRatingBar
-            android:id="@+id/BVRating"
+            android:id="@+id/IIRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srb_starHeight="@dimen/_10sdp"
@@ -108,7 +111,7 @@
             app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
             />
         <TextView
-            android:id="@+id/BVRatingText"
+            android:id="@+id/IIRatingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(50)"

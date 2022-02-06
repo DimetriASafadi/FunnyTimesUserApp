@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_150sdp"
-    android:layout_height="@dimen/_120sdp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center_horizontal"
     android:layout_margin="@dimen/_5sdp">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/SIImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:src="@color/ft_orange"
-        app:riv_corner_radius="@dimen/_8sdp" />
+    <RelativeLayout
+        android:layout_width="@dimen/_135sdp"
+        android:layout_height="@dimen/_110sdp">
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/SIImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@color/ft_orange"
+            app:riv_corner_radius="@dimen/_8sdp" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:alpha="0.2"
+            android:scaleType="centerCrop"
+            android:src="@color/ft_black"
+            app:riv_corner_radius="@dimen/_8sdp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,8 +36,9 @@
         android:layout_gravity="center_vertical"
         android:layout_marginVertical="@dimen/_2sdp"
         android:layout_marginStart="@dimen/_4sdp"
-        android:layout_marginBottom="99dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
 
         <com.willy.ratingbar.BaseRatingBar
             android:id="@+id/SIRating"
@@ -50,21 +66,21 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/SITitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:fontFamily="@font/montserrat_arabic"
-        android:maxLines="2"
-        android:text="شاليه أخضر مع ملعب طائرة"
-        android:textColor="@color/ft_white"
-        android:textSize="@dimen/_10ssp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/SITitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_arabic"
+            android:maxLines="2"
+            android:text="شاليه أخضر مع ملعب طائرة"
+            android:textColor="@color/ft_white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold" />
 
     <RelativeLayout
         android:id="@+id/SIIsFavourite"
@@ -95,6 +111,7 @@
 
 
 
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

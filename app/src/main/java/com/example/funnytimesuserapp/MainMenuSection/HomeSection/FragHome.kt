@@ -40,11 +40,11 @@ class FragHome : Fragment() {
         _binding = FtMainHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        ftCategories.add(FTCategory(0,"الكل", R.drawable.ft_cat_all))
-        ftCategories.add(FTCategory(1,"أماكن ترفيهية", R.drawable.ft_cat_places))
-        ftCategories.add(FTCategory(2,"العيادات", R.drawable.ft_cat_clinic))
-        ftCategories.add(FTCategory(3,"الوجبات", R.drawable.ft_cat_food))
-        ftCategories.add(FTCategory(4,"التسوق", R.drawable.ft_cat_shop))
+        ftCategories.add(FTCategory(0,"الكل", R.drawable.ft_cat_all,1))
+        ftCategories.add(FTCategory(1,"أماكن ترفيهية", R.drawable.ft_cat_places,1))
+        ftCategories.add(FTCategory(2,"العيادات", R.drawable.ft_cat_clinic,1))
+        ftCategories.add(FTCategory(3,"الوجبات", R.drawable.ft_cat_food,1))
+        ftCategories.add(FTCategory(4,"التسوق", R.drawable.ft_cat_shop,1))
 
         ftBanners.add(FTBanner(0,"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg"))
         ftBanners.add(FTBanner(0,"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg"))
