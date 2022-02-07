@@ -106,6 +106,7 @@
             android:src="@color/ft_black" />
 
         <ImageView
+            android:id="@+id/SFHFavoriteIcon"
             android:layout_width="@dimen/_14sdp"
             android:layout_height="@dimen/_14sdp"
             android:layout_centerInParent="true"

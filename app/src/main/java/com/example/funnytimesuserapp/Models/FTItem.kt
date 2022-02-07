@@ -11,6 +11,7 @@ data class FTItem(
     var ItemRating:Double,
     var ItemRatingText:Int,
     var ItemShop:String,
-    var ItemPrice:Int
+    var ItemPrice:Int,
+
 
 ):Serializable
