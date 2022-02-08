@@ -21,10 +21,12 @@ import com.example.funnytimesuserapp.CommonSection.Constants.AppSPName
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.R
+import com.jaygoo.widget.RangeSeekBar
 import java.util.*
 
 class CommonFuncs {
     val SPName:String = AppSPName
+    var filterDialog: Dialog? = null
     var loadingDia: Dialog? = null
     var codePhone: Dialog? = null
     var passwordDoneDialog: Dialog? = null
@@ -156,6 +158,22 @@ class CommonFuncs {
 //        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 //        codePhone?.show()
 //    }
+
+    fun showFilterDialog(activity: Activity) {
+        filterDialog = Dialog(activity)
+        filterDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        filterDialog?.setCancelable(false)
+        filterDialog?.setContentView(R.layout.ft_dialog_main_filter)
+        val rangeseek = filterDialog?.findViewById<RangeSeekBar>(R.id.PriceRangeBar)
+        rangeseek
+        val window: Window = filterDialog?.window!!
+        window.setBackgroundDrawable(
+            ColorDrawable(activity.resources
+                .getColor(R.color.tk_dialog_bg, null))
+        )
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        filterDialog?.show()
+    }
 
     fun showPasswordDoneDialog(activity: Activity) {
         passwordDoneDialog = Dialog(activity)

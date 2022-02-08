@@ -89,7 +89,7 @@ class MainMenu : AppCompatActivity() {
         }
 
         binding.SearchFilter.setOnClickListener {
-            commonFuncs.showLoadingDialog(this)
+            commonFuncs.showFilterDialog(this)
         }
 
 
