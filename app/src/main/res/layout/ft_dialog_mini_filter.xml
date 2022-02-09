@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="اسم المدينة"
+        android:text="ترتيب حسب"
         android:gravity="start"
         android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/montserrat_arabic"
@@ -52,37 +52,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="اسم الحي"
-        android:gravity="start"
-        android:textSize="@dimen/_10ssp"
-        android:fontFamily="@font/montserrat_arabic"
-        android:textColor="@color/ft_dark_blue"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ft_radius_stroke"
-        android:paddingVertical="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        >
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
-            />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="اسم المكان"
+        android:text="اسم الصنف"
         android:gravity="start"
         android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/montserrat_arabic"
@@ -137,7 +107,7 @@
         app:thumbPrimaryColor="@color/ft_dark_blue"
         app:thumbSecondaryColor="@color/ft_dark_blue"
         />
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -172,70 +142,12 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="التصنيف"
-        android:gravity="start"
-        android:textSize="@dimen/_10ssp"
-        android:fontFamily="@font/montserrat_arabic"
-        android:textColor="@color/ft_dark_blue"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ft_radius_stroke"
-        android:paddingVertical="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        >
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
-            />
-
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="نوع التصنيف"
-        android:gravity="start"
-        android:textSize="@dimen/_10ssp"
-        android:fontFamily="@font/montserrat_arabic"
-        android:textColor="@color/ft_dark_blue"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ft_radius_stroke"
-        android:paddingVertical="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        >
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
-            />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         >
 

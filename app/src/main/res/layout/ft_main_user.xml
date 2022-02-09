@@ -99,6 +99,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@+id/UserPhone">
         <LinearLayout
+            android:id="@+id/BooksButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -107,16 +108,13 @@
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/ft_radius_fill"
             >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ft_property_building_icon"
-                />
             <TextView
+                android:id="@+id/BooksTextImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/ft_dark_blue"
                 android:text="حجوزاتي"
+                android:drawableStart="@drawable/ft_property_building_icon"
                 android:fontFamily="@font/montserrat_arabic"
                 android:gravity="center_horizontal"
                 />
@@ -124,6 +122,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/OrdersButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -132,16 +131,13 @@
             android:layout_margin="@dimen/_5sdp"
             android:background="@null"
             >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ft_bag_shoping_icon"
-                />
             <TextView
+                android:id="@+id/OrdersTextImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/ft_grey_1"
                 android:text="طلباتي"
+                android:drawableStart="@drawable/ft_bag_shoping_icon"
                 android:fontFamily="@font/montserrat_arabic"
                 android:gravity="center_horizontal"
                 />

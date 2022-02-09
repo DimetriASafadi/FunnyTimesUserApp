@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/NotiRecent"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:src="@color/ft_orange"
+            android:layout_marginEnd="@dimen/_5sdp"
+            />
+        <TextView
+            android:id="@+id/NotiTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لديك رسالة"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:fontFamily="@font/montserrat_arabic"
+            android:textColor="@color/ft_grey_1"
+            android:textSize="@dimen/_10ssp"
+            />
+        <TextView
+            android:id="@+id/NotiDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1h ago"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:fontFamily="@font/montserrat_arabic"
+            android:textColor="@color/ft_grey_1"
+            android:textSize="@dimen/_10ssp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/NotiMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textColor="@color/ft_black"
+        android:fontFamily="@font/montserrat_arabic"
+        android:textSize="@dimen/_9ssp"
+        android:textFontWeight="200"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="هنا اختبار نص فقط للاختبار هنا للاختبار نص فقط للاختبار"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/ft_black"
+        android:alpha="0.1"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        />
+</LinearLayout>

@@ -14,6 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FunnyTimesUserApp">
         <activity
+            android:name=".MainMenuSection.SettingSection.SettingActivities.ContactUsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".MainMenuSection.SettingSection.SettingActivities.PolicyPrivacyScreen"
+            android:exported="false" />
+        <activity
+            android:name=".SectionNotifications.NotificationScreen"
+            android:exported="false" />
+        <activity
             android:name=".SectionItems.ProductScreen"
             android:exported="false" />
         <activity

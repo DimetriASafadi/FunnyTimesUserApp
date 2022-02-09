@@ -20,6 +20,7 @@ class PhonePasswordReset : AppCompatActivity() {
 
     lateinit var binding: FtPhonePasswordResetBinding
     val  commonFuncs = CommonFuncs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtPhonePasswordResetBinding.inflate(layoutInflater)

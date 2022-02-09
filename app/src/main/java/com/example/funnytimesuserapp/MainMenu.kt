@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
+import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.MainMenuSection.CategorySection.FragCategory
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FragFavourite
 import com.example.funnytimesuserapp.MainMenuSection.HomeSection.FragHome
@@ -93,5 +94,14 @@ class MainMenu : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (commonFuncs.IsInSP(this, Constants.KeyAppLanguage)){
+            commonFuncs.setLocale2(this,commonFuncs.GetFromSP(this, Constants.KeyAppLanguage)!!)
+        }else{
+            commonFuncs.setLocale2(this,"ar")
+        }
     }
 }

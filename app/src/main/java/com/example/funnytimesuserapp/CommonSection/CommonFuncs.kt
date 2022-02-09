@@ -162,10 +162,15 @@ class CommonFuncs {
     fun showFilterDialog(activity: Activity) {
         filterDialog = Dialog(activity)
         filterDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        filterDialog?.setCancelable(false)
+        filterDialog?.setCancelable(true)
         filterDialog?.setContentView(R.layout.ft_dialog_main_filter)
         val rangeseek = filterDialog?.findViewById<RangeSeekBar>(R.id.PriceRangeBar)
-        rangeseek
+        val BarMax = filterDialog?.findViewById<TextView>(R.id.BarMax)
+        val BarMin = filterDialog?.findViewById<TextView>(R.id.BarMin)
+        rangeseek?.setOnRangeChangedListener { view, min, max, isFromUser ->
+            BarMax?.text = max.toInt().toString()+" ر.س"
+            BarMin?.text = min.toInt().toString()+" ر.س"
+        }
         val window: Window = filterDialog?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(activity.resources
@@ -187,7 +192,7 @@ class CommonFuncs {
             Timer().schedule(object : TimerTask() {
                 override fun run() {
                     hideLoadingDialog()
-                    val intent = Intent(activity, SignInScreen::class.java).apply {}
+                    val intent = Intent(activity, MainMenu::class.java).apply {}
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     activity.startActivity(intent)
                     activity.finish()

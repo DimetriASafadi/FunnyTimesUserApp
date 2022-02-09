@@ -60,4 +60,12 @@ class SplashScreen : AppCompatActivity() {
         }, 2000)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (commonFuncs.IsInSP(this,KeyAppLanguage)){
+            commonFuncs.setLocale2(this,commonFuncs.GetFromSP(this,KeyAppLanguage)!!)
+        }else{
+            commonFuncs.setLocale2(this,"ar")
+        }
+    }
 }

@@ -62,8 +62,12 @@ class NewPasswordScreen : AppCompatActivity() {
             val stringRequest = object : StringRequest(
                 Request.Method.POST, url, Response.Listener<String> { response ->
                     Log.e("Response", response.toString())
-                    val data = JSONObject(response.toString()).getJSONObject("status")
-                    val status = data.getString("status").toBoolean()
+                    val statusdata = JSONObject(response.toString()).getJSONObject("status")
+                    val data = JSONObject(response.toString()).getJSONObject("data")
+                    val status = statusdata.getString("status").toBoolean()
+                    val token = data.getString("access_token")
+                    commonFuncs.WriteOnSP(this, Constants.KeyUserToken,token)
+
                     if (status){
                         commonFuncs.hideLoadingDialog()
                         commonFuncs.showPasswordDoneDialog(this)
