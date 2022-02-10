@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
@@ -16,7 +17,6 @@ import android.util.Patterns
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
-import com.example.funnytimesuserapp.AuthSection.SignInScreen
 import com.example.funnytimesuserapp.CommonSection.Constants.AppSPName
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
 import com.example.funnytimesuserapp.MainMenu
@@ -43,8 +43,6 @@ class CommonFuncs {
         context.baseContext.resources.updateConfiguration(config,
             context.baseContext.resources.displayMetrics)
     }
-
-
     fun GetFromSP(context: Context, key: String):String?{
         val sharedPreferences: SharedPreferences = context.getSharedPreferences(SPName,
             Context.MODE_PRIVATE)
@@ -84,7 +82,6 @@ class CommonFuncs {
             Context.MODE_PRIVATE)
         return sharedPreferences.contains(key)
     }
-
     fun showLoadingDialog(activity: Activity) {
         loadingDia = Dialog(activity)
         loadingDia?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -98,7 +95,6 @@ class CommonFuncs {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         loadingDia?.show()
     }
-
     fun hideLoadingDialog(){
         if (loadingDia != null){
             if (loadingDia?.isShowing!!){
@@ -106,7 +102,6 @@ class CommonFuncs {
             }
         }
     }
-
     fun isOnline(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -128,11 +123,9 @@ class CommonFuncs {
         }
         return false
     }
-
     fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
-
     fun showDefaultDialog(context: Context, title: String, messsage: String){
         val builder = AlertDialog.Builder(context)
         if (!title.isNullOrEmpty()){
@@ -143,22 +136,6 @@ class CommonFuncs {
         }
         builder.show()
     }
-
-//    fun showPhoneDoneDialog(activity: Activity) {
-//        codePhone = Dialog(activity)
-//        codePhone?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        codePhone?.setCancelable(false)
-////        codePhone?.setContentView(R.layout.ft_phone_added_successfully_dialog)
-//        codePhone?.setContentView(R.layout.ft_dialog_main_filter)
-//        val window: Window = codePhone?.window!!
-//        window.setBackgroundDrawable(
-//            ColorDrawable(activity.resources
-//                .getColor(R.color.tk_dialog_bg, null))
-//        )
-//        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-//        codePhone?.show()
-//    }
-
     fun showFilterDialog(activity: Activity) {
         filterDialog = Dialog(activity)
         filterDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -208,7 +185,6 @@ class CommonFuncs {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         passwordDoneDialog?.show()
     }
-
     fun showCodeDoneDialog(activity: Activity) {
         codePhone = Dialog(activity)
         codePhone?.requestWindowFeature(Window.FEATURE_NO_TITLE)

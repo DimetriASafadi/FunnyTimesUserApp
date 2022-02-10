@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SectionCategories.ItemCategory
@@ -30,22 +32,27 @@ class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context) 
 
 
 
-        if (data[position].CategoryLevel == 1){
-            holder.WholeCategory.setOnClickListener {
-                val intent = Intent(context,ItemCategory::class.java)
-                intent.putExtra("CategoryObj",data[position])
-                context.startActivity(intent)
-            }
-        }else{
-            holder.WholeCategory.setOnClickListener {
-                val intent = Intent(context,SubCategoryItem::class.java)
-                intent.putExtra("CategoryObj",data[position])
-                context.startActivity(intent)
-            }
-        }
+//        if (data[position].CategoryLevel == 1){
+//            holder.WholeCategory.setOnClickListener {
+//                val intent = Intent(context,ItemCategory::class.java)
+//                intent.putExtra("CategoryObj",data[position])
+//                context.startActivity(intent)
+//            }
+//        }else{
+//            holder.WholeCategory.setOnClickListener {
+//                val intent = Intent(context,SubCategoryItem::class.java)
+//                intent.putExtra("CategoryObj",data[position])
+//                context.startActivity(intent)
+//            }
+//        }
 
+        Glide.with(context)
+            .load(data[position].CategoryIcon)
+            .centerCrop()
+            .placeholder(R.drawable.ft_broken_image)
+            .into(holder.CategoryImage)
 
-        holder.CategoryImage.setImageResource(data[position].CategoryIcon)
+//        holder.CategoryImage.setImageResource(data[position].CategoryIcon)
         holder.CategoryName.text = data[position].CategoryName
     }
 }

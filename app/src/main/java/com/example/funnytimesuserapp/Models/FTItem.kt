@@ -1,17 +1,27 @@
 package com.example.funnytimesuserapp.Models
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class FTItem(
-    var ItemId:Int,
-    var ItemName:String,
-    var ItemImage:String,
+    @SerializedName("id")
+    var ItemId:Int? = null,
+    @SerializedName("name")
+    var ItemName:String? = "",
+    @SerializedName("img")
+    var ItemImage:String? = "",
     var ItemIsFavorite:Boolean,
-    var ItemLocation:String,
-    var ItemRating:Double,
+    @SerializedName("address")
+    var ItemLocation:String? = "",
+    @SerializedName("star")
+    var ItemRating:Double? = 0.0,
     var ItemRatingText:Int,
-    var ItemShop:String,
-    var ItemPrice:Int,
+    @SerializedName("vendor_name")
+    var ItemShop:String? = "",
+    @SerializedName("price")
+    var ItemPrice:String? = "0.0",
+    @SerializedName("type")
+    var ItemType:String? = ""
 
 
 ):Serializable

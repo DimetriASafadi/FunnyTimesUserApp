@@ -94,5 +94,10 @@ dependencies {
     // countries codes
     implementation 'com.github.gbksoft:GBKCountryCodePicker:v1.0.0'
 
+    // Date Picker
+    implementation 'com.andrewjapar.rangedatepicker:rangedatepicker:0.3'
+    implementation 'com.savvi.datepicker:rangepicker:1.3.0'
+
+
 
 }

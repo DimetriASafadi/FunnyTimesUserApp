@@ -22,8 +22,13 @@ class FragCategory : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FtMainCategoryBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+
+        binding
+
+
+
+
+        return binding.root
     }
 
     override fun onDestroyView() {

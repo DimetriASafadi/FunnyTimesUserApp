@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SectionService.SectionPayment.ServiceDatingScreen">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/ft_radius_top_fill"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="اختر تاريخ وقت الحجز"
+            android:textColor="@color/ft_black"
+            android:fontFamily="@font/montserrat_arabic"
+            android:gravity="center"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_15sdp"
+            />
+        <com.andrewjapar.rangedatepicker.CalendarPicker
+            android:id="@+id/RangeDatePickerView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:scrollbarStyle="outsideOverlay"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            app:pickerType="range"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/HTVDatesHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/ft_radius_fill"
+                android:backgroundTint="@color/ft_white"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:text="وقت الدخول"
+                    android:textColor="@color/ft_grey_1"
+                    android:textSize="@dimen/_9ssp"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <LinearLayout
+                    android:id="@+id/PEditEnter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/ft_radius_fill"
+                    android:backgroundTint="@color/ft_grey"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_7sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/PEditEnterTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="08:00 صباحاً"
+                        android:fontFamily="@font/montserrat_arabic"
+                        android:gravity="center"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/ft_black"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/ft_radius_fill"
+                android:backgroundTint="@color/ft_white"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:text="وقت الخروج"
+                    android:textColor="@color/ft_grey_1"
+                    android:textSize="@dimen/_9ssp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/PEditLeave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/ft_radius_fill"
+                    android:backgroundTint="@color/ft_grey"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/_7sdp"
+                    >
+                    <TextView
+                        android:id="@+id/PEditLeaveTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="08:00 مساءاً"
+                        android:fontFamily="@font/montserrat_arabic"
+                        android:gravity="center"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/ft_black"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/ft_radius_fill"
+            android:backgroundTint="@color/ft_grey"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/UserPhone">
+            <LinearLayout
+                android:id="@+id/BooksButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingVertical="@dimen/_6sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/ft_radius_fill"
+                >
+                <TextView
+                    android:id="@+id/BooksTextImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ft_dark_blue"
+                    android:text="فترة صباحي"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:gravity="center_horizontal"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/OrdersButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingVertical="@dimen/_6sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@null"
+                >
+                <TextView
+                    android:id="@+id/OrdersTextImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ft_grey_1"
+                    android:text="فترة مسائي"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:gravity="center_horizontal"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="اكتب ملاحظتك"
+            android:textColor="@color/ft_black"
+            android:fontFamily="@font/montserrat_arabic"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/ft_radius_stroke"
+            android:fontFamily="@font/montserrat_arabic"
+            android:inputType="textPassword"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_8sdp"
+            android:textSize="@dimen/_12ssp" >
+
+            <EditText
+                android:id="@+id/LetterContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_arabic"
+                android:background="@color/white"
+                android:hint="اكتب ملاحظتك هنا..."
+                android:textColorHint="@color/ft_grey_2"
+                android:textColor="@color/ft_black"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:paddingVertical="@dimen/_3sdp"
+                android:textSize="@dimen/_10ssp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ConfirmDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="متابعة"
+            android:gravity="center"
+            android:background="@drawable/ft_radius_fill_light"
+            android:backgroundTint="@color/ft_orange"
+            android:textColor="@color/ft_white"
+            android:fontFamily="@font/montserrat_arabic"
+            android:layout_margin="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
+            android:paddingVertical="@dimen/_10sdp"
+            />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

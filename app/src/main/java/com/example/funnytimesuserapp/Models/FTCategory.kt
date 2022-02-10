@@ -1,10 +1,15 @@
 package com.example.funnytimesuserapp.Models
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class FTCategory(
-    var CategoryId:Int,
-    var CategoryName:String,
-    var CategoryIcon:Int,
-    var CategoryLevel:Int
+    @SerializedName("id")
+    var CategoryId:Int?,
+    @SerializedName("name")
+    var CategoryName:String?,
+    @SerializedName("icon")
+    var CategoryIcon:String?,
+    @SerializedName("image")
+    var CategoryImg:String?
 ):Serializable

@@ -32,29 +32,6 @@ class ItemCategory : AppCompatActivity() {
             finish()
         }
 
-        ftCategories.add(FTCategory(0,"الكل", R.drawable.ft_cat_all,2))
-        ftCategories.add(FTCategory(1,"أماكن ترفيهية", R.drawable.ft_cat_places,2))
-        ftCategories.add(FTCategory(2,"العيادات", R.drawable.ft_cat_clinic,2))
-        ftCategories.add(FTCategory(3,"الوجبات", R.drawable.ft_cat_food,2))
-        ftCategories.add(FTCategory(4,"التسوق", R.drawable.ft_cat_shop,2))
-
-
-        mostdemanded.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        mostdemanded.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-        mostdemanded.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        mostdemanded.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-
-
-        mostcommon.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        mostcommon.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-        mostcommon.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        mostcommon.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-
-
-        mostrecent.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        mostrecent.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-        mostrecent.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        mostrecent.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
 
 
 

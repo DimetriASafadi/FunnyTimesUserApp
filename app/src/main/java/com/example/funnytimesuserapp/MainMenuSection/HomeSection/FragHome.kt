@@ -1,19 +1,30 @@
 package com.example.funnytimesuserapp.MainMenuSection.HomeSection
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
+import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.Models.FTBanner
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
-import com.example.funnytimesuserapp.Models.FTService
-import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.*
 import com.example.funnytimesuserapp.databinding.FtMainHomeBinding
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import org.json.JSONException
+import org.json.JSONObject
+import java.nio.charset.Charset
 
 
 class FragHome : Fragment() {
@@ -21,9 +32,18 @@ class FragHome : Fragment() {
     private val binding get() = _binding!!
     val ftBanners = ArrayList<FTBanner>()
     val ftCategories = ArrayList<FTCategory>()
-    val ftMostRented = ArrayList<FTService>()
+    val ftMostRented = ArrayList<FTItem>()
     val ftMostShoped = ArrayList<FTItem>()
     val ftMostDemanded = ArrayList<FTItem>()
+
+    val commonFuncs = CommonFuncs()
+
+    lateinit var bannerRecView : BannerRecView
+    lateinit var categoriesRecView : CategoriesRecView
+    lateinit var servicesBigVerticalRecView : ServicesBigVerticalRecView
+    lateinit var itemNormalHorizontalRecView :ItemNormalHorizontalRecView
+    lateinit var itemInsiderRecView : ItemInsiderRecView
+    val pagerSnapHelper = PagerSnapHelper()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,51 +60,23 @@ class FragHome : Fragment() {
         _binding = FtMainHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        ftCategories.add(FTCategory(0,"الكل", R.drawable.ft_cat_all,1))
-        ftCategories.add(FTCategory(1,"أماكن ترفيهية", R.drawable.ft_cat_places,1))
-        ftCategories.add(FTCategory(2,"العيادات", R.drawable.ft_cat_clinic,1))
-        ftCategories.add(FTCategory(3,"الوجبات", R.drawable.ft_cat_food,1))
-        ftCategories.add(FTCategory(4,"التسوق", R.drawable.ft_cat_shop,1))
-
-        ftBanners.add(FTBanner(0,"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg"))
-        ftBanners.add(FTBanner(0,"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg"))
-        ftBanners.add(FTBanner(0,"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg"))
-        ftBanners.add(FTBanner(0,"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg"))
-        ftBanners.add(FTBanner(0,"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg"))
-
-        ftMostRented.add(FTService(0,"شاليه أخضر مع ملعب طائرة","https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg",true,"حي الرياض,الرياض",4.5,50))
-        ftMostRented.add(FTService(1,"عيادة الأسنان التخصصية","https://static.bookinghealth.com/uploads/clinics/gallery/m/4498-1408-otr_Depositphotos_316360964_xl-2015-1.jpg",true,"حي الرياض,الرياض",4.5,50))
-        ftMostRented.add(FTService(3,"شاليه أخضر مع ملعب طائرة","https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg",true,"حي الرياض,الرياض",4.5,50))
-        ftMostRented.add(FTService(1,"عيادة الأسنان التخصصية","https://static.bookinghealth.com/uploads/clinics/gallery/m/4498-1408-otr_Depositphotos_316360964_xl-2015-1.jpg",true,"حي الرياض,الرياض",4.5,50))
-
-        ftMostShoped.add(FTItem(1,"ساعة فاخرة نخب أول","https://cdn11.bigcommerce.com/s-pkla4xn3/images/stencil/1280x1280/products/25392/233013/2015-Curren-Men-Luxury-Brand-Sport-Watches-Water-Quartz-Hours-Date-Hand-Clock-Men-Full-Stainless__34395.1549603718.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",300))
-        ftMostShoped.add(FTItem(2,"بولو ماركة أصلية","https://cache.mrporter.com/variants/images/3633577411310822/in/w2000_q60.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",20))
 
 
-        ftMostDemanded.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        ftMostDemanded.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-        ftMostDemanded.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        ftMostDemanded.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-        ftMostDemanded.add(FTItem(1,"بيتزا مارجريتا بالجبنة","https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",30))
-        ftMostDemanded.add(FTItem(2,"برجر بيف حار جداً","https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg",true,"حي الرياض,الرياض",4.5,50,"متجر ماركة",15))
-
-        val bannerRecView = BannerRecView(ftBanners,requireContext())
+        bannerRecView = BannerRecView(ftBanners,requireContext())
         binding.HomeAdBannersRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
         binding.HomeAdBannersRecycler.adapter = bannerRecView
-        val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding.HomeAdBannersRecycler)
-        binding.BannerIndicator.attachToRecyclerView(binding.HomeAdBannersRecycler,pagerSnapHelper)
 
-        val categoriesRecView = CategoriesRecView(ftCategories,requireContext())
+
+        categoriesRecView = CategoriesRecView(ftCategories,requireContext())
         binding.HomeCategoriesRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
         binding.HomeCategoriesRecycler.adapter = categoriesRecView
 
-
-        val servicesBigVerticalRecView = ServicesBigVerticalRecView(ftMostRented,requireContext())
+        servicesBigVerticalRecView = ServicesBigVerticalRecView(ftMostRented,requireContext())
         binding.HomeServedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -93,14 +85,13 @@ class FragHome : Fragment() {
         pagerSnapHelper2.attachToRecyclerView(binding.HomeServedRecycler)
 
 
-        val itemNormalHorizontalRecView = ItemNormalHorizontalRecView(ftMostShoped,requireContext())
+        itemNormalHorizontalRecView = ItemNormalHorizontalRecView(ftMostShoped,requireContext())
         binding.HomePurchasedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,
             false)
         binding.HomePurchasedRecycler.adapter = itemNormalHorizontalRecView
 
-
-        val itemInsiderRecView = ItemInsiderRecView(ftMostDemanded,requireContext())
+        itemInsiderRecView = ItemInsiderRecView(ftMostDemanded,requireContext())
         binding.HomeDemandedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -109,7 +100,7 @@ class FragHome : Fragment() {
         pagerSnapHelper3.attachToRecyclerView(binding.HomeDemandedRecycler)
 
 
-
+        home_Request()
         return view
     }
 
@@ -117,4 +108,63 @@ class FragHome : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
+    fun home_Request(){
+        commonFuncs.showLoadingDialog(requireActivity())
+        val url = Constants.APIMain + "api/home"
+        try {
+            val stringRequest = object : StringRequest(
+                Request.Method.GET, url, Response.Listener<String> { response ->
+                    Log.e("Response", response.toString())
+                    val jsonobj = JSONObject(response.toString())
+                    val data = jsonobj.getJSONObject("data")
+                    val ads = data.getJSONArray("ads")
+                    val categories = data.getJSONArray("categories")
+                    val mostBooking = data.getJSONArray("mostBooking")
+                    val mostOrder = data.getJSONArray("mostOrder")
+                    val mostShopping = data.getJSONArray("mostShopping")
+
+
+                    val gson = GsonBuilder().create()
+                    ftBanners.addAll(gson.fromJson(ads.toString(),Array<FTBanner>::class.java).toList())
+                    ftCategories.addAll(gson.fromJson(categories.toString(),Array<FTCategory>::class.java).toList())
+                    ftMostRented.addAll(gson.fromJson(mostBooking.toString(),Array<FTItem>::class.java).toList())
+                    ftMostShoped.addAll(gson.fromJson(mostOrder.toString(),Array<FTItem>::class.java).toList())
+                    ftMostDemanded.addAll(gson.fromJson(mostShopping.toString(),Array<FTItem>::class.java).toList())
+
+                    bannerRecView.notifyDataSetChanged()
+                    categoriesRecView.notifyDataSetChanged()
+                    servicesBigVerticalRecView.notifyDataSetChanged()
+                    itemNormalHorizontalRecView.notifyDataSetChanged()
+                    itemInsiderRecView.notifyDataSetChanged()
+
+                    binding.BannerIndicator.attachToRecyclerView(binding.HomeAdBannersRecycler,pagerSnapHelper)
+
+                    commonFuncs.hideLoadingDialog()
+
+                }, Response.ErrorListener { error ->
+                    if (error.networkResponse != null && error.networkResponse.data != null) {
+                        val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
+                        val err = JSONObject(errorw)
+                        val errMessage = err.getJSONObject("status").getString("message")
+                        commonFuncs.showDefaultDialog(requireContext(),"فشل تسجيل الدخول",errMessage)
+                        Log.e("eResponser", errorw.toString())
+                    } else {
+                        commonFuncs.showDefaultDialog(requireContext(),"فشل تسجيل الدخول","حصل خطأ ما")
+                        Log.e("eResponsew", "RequestError:$error")
+                    }
+                    commonFuncs.hideLoadingDialog()
+
+                }) {
+            }
+            val requestQueue = Volley.newRequestQueue(requireContext())
+            requestQueue.add(stringRequest)
+        }catch (error: JSONException){
+            Log.e("Response", error.toString())
+            commonFuncs.hideLoadingDialog()
+        }
+    }
+
+
 }

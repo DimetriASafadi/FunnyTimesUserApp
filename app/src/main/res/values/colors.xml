@@ -31,6 +31,15 @@
     <color name="tk_weak_black">#32000000</color>
 
 
+    <color name="calendar_selected_day_bg">#F4D74B</color>
+    <color name="calendar_selected_range_bg">#F4D74B</color>
+
+    <color name="calendar_day_disabled_font">#D1D1D1</color>
+    <color name="calendar_day_selected_bg">#F4D74B</color>
+    <color name="calendar_day_range_selected_bg">#F9A236</color>
+    <color name="calendar_day_normal_font">#606060</color>
+
+
 
 
 </resources>

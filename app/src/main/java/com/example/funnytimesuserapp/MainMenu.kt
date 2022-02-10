@@ -1,5 +1,6 @@
 package com.example.funnytimesuserapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FragFavour
 import com.example.funnytimesuserapp.MainMenuSection.HomeSection.FragHome
 import com.example.funnytimesuserapp.MainMenuSection.SettingSection.FragSetting
 import com.example.funnytimesuserapp.MainMenuSection.UserSection.FragUser
+import com.example.funnytimesuserapp.SectionService.SectionPayment.ServiceDatingScreen
 import com.example.funnytimesuserapp.databinding.FtMainMenuBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -90,7 +92,7 @@ class MainMenu : AppCompatActivity() {
         }
 
         binding.SearchFilter.setOnClickListener {
-            commonFuncs.showFilterDialog(this)
+           startActivity(Intent(this,ServiceDatingScreen::class.java))
         }
 
 

@@ -27,7 +27,7 @@ class BannerRecView (val data : ArrayList<FTBanner>, val context: Context) : Rec
 //            Log.e("imagedata",data.get(position).PhotoName+"")
 //        }
         Glide.with(context)
-            .load(APIMain +"https://vcdn.bergfex.at/images/resized/f4/e91963ae84ef2af4_9c3f0a64cd4ad526@2x.jpg")
+            .load(data[position].BannerImage)
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.BannerImage)

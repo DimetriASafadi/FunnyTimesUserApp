@@ -11,13 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTService
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 
-class ServiceFullHorizontalRecView(val data : ArrayList<FTService>, val context: Context) : RecyclerView.Adapter<SFHViewHolder>() {
+class ServiceFullHorizontalRecView(val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<SFHViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SFHViewHolder {
         return SFHViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_service_full_horizontal, parent, false))    }
@@ -28,7 +29,7 @@ class ServiceFullHorizontalRecView(val data : ArrayList<FTService>, val context:
 
     override fun onBindViewHolder(holder: SFHViewHolder, position: Int) {
 
-        if (data[position].ServiceIsFavourite){
+        if (data[position].ItemIsFavorite!!){
             holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
         }else{
             holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
@@ -38,8 +39,8 @@ class ServiceFullHorizontalRecView(val data : ArrayList<FTService>, val context:
             context.startActivity(Intent(context, ChaletScreen::class.java))
         }
         holder.SFHIsFavourite.setOnClickListener {
-            data[position].ServiceIsFavourite = !data[position].ServiceIsFavourite
-            if (data[position].ServiceIsFavourite){
+            data[position].ItemIsFavorite = !data[position].ItemIsFavorite!!
+            if (data[position].ItemIsFavorite!!){
                 holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
             }else{
                 holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
@@ -47,13 +48,13 @@ class ServiceFullHorizontalRecView(val data : ArrayList<FTService>, val context:
         }
 
         Glide.with(context)
-            .load(Constants.APIMain +data[position].ServiceImage)
+            .load(data[position].ItemImage)
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.SFHImage)
-        holder.SFHTitle.text = data[position].ServiceName
-        holder.SFHRating.rating = data[position].ServiceRate.toFloat()
-        holder.SFHRatingText.text = data[position].ServiceReviews.toString()
+        holder.SFHTitle.text = data[position].ItemName
+        holder.SFHRating.rating = data[position].ItemRating!!.toFloat()
+        holder.SFHRatingText.text = data[position].ItemRatingText.toString()
 
     }
 }

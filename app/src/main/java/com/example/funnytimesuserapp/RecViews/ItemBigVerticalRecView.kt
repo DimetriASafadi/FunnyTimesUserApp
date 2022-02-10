@@ -46,13 +46,13 @@ class ItemBigVerticalRecView (val data : ArrayList<FTItem>, val context: Context
         }
 
         Glide.with(context)
-            .load(Constants.APIMain +data[position].ItemImage)
+            .load(data[position].ItemImage)
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.BVImage)
         holder.BVTitle.text = data[position].ItemName
         holder.BVLocation.text = data[position].ItemLocation
-        holder.BVRating.rating = data[position].ItemRating.toFloat()
+        holder.BVRating.rating = data[position].ItemRating!!.toFloat()
         holder.BVRatingText.text = data[position].ItemRatingText.toString()
 
     }

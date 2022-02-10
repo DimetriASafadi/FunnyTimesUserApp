@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTService
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
@@ -16,7 +17,7 @@ import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ServicesBigVerticalRecView (val data : ArrayList<FTService>, val context: Context) : RecyclerView.Adapter<SBViewHolder>() {
+class ServicesBigVerticalRecView (val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<SBViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SBViewHolder {
         return SBViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_service_big_vertical, parent, false))    }
@@ -27,7 +28,7 @@ class ServicesBigVerticalRecView (val data : ArrayList<FTService>, val context: 
 
     override fun onBindViewHolder(holder: SBViewHolder, position: Int) {
 
-        if (data[position].ServiceIsFavourite){
+        if (data[position].ItemIsFavorite!!){
             holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
         }else{
             holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
@@ -37,8 +38,8 @@ class ServicesBigVerticalRecView (val data : ArrayList<FTService>, val context: 
             context.startActivity(Intent(context,ChaletScreen::class.java))
         }
         holder.SBVIsFavorite.setOnClickListener {
-            data[position].ServiceIsFavourite = !data[position].ServiceIsFavourite
-            if (data[position].ServiceIsFavourite){
+            data[position].ItemIsFavorite = !data[position].ItemIsFavorite!!
+            if (data[position].ItemIsFavorite!!){
                 holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
             }else{
                 holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
@@ -46,14 +47,14 @@ class ServicesBigVerticalRecView (val data : ArrayList<FTService>, val context: 
         }
 
         Glide.with(context)
-            .load(Constants.APIMain +data[position].ServiceImage)
+            .load(data[position].ItemImage)
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.SBVImage)
-        holder.SBVTitle.text = data[position].ServiceName
-        holder.SBVLocation.text = data[position].ServiceLocation
-        holder.SBVRating.rating = data[position].ServiceRate.toFloat()
-        holder.SBVRatingText.text = data[position].ServiceReviews.toString()
+        holder.SBVTitle.text = data[position].ItemName
+        holder.SBVLocation.text = data[position].ItemLocation
+        holder.SBVRating.rating = data[position].ItemRating!!.toFloat()
+        holder.SBVRatingText.text = data[position].ItemRatingText.toString()
 
     }
 }

@@ -43,12 +43,12 @@ class ItemInsiderRecView (val data : ArrayList<FTItem>, val context: Context) : 
         }
 
         Glide.with(context)
-            .load(Constants.APIMain +data[position].ItemImage)
+            .load(data[position].ItemImage)
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.IImage)
         holder.ITitle.text = data[position].ItemName
-        holder.IRating.rating = data[position].ItemRating.toFloat()
+        holder.IRating.rating = data[position].ItemRating!!.toFloat()
         holder.IRatingText.text = data[position].ItemRatingText.toString()
         holder.IIPrice.text = data[position].ItemPrice.toString() + "ر.س"
 

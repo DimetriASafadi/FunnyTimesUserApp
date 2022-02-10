@@ -43,13 +43,13 @@ class ItemNormalHorizontalRecView (val data : ArrayList<FTItem>, val context: Co
         }
 
         Glide.with(context)
-            .load(Constants.APIMain +data[position].ItemImage)
+            .load(data[position].ItemImage)
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.NHImage)
         holder.NHTitle.text = data[position].ItemName
         holder.NHLocation.text = data[position].ItemLocation
-        holder.NHRating.rating = data[position].ItemRating.toFloat()
+        holder.NHRating.rating = data[position].ItemRating!!.toFloat()
         holder.NHRatingText.text = data[position].ItemRatingText.toString()
         holder.NHPrice.text = data[position].ItemPrice.toString() + "ر.س"
         holder.NHShopName.text = data[position].ItemShop.toString()

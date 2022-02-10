@@ -11,13 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTService
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 
-class ServiceInsider2RecView  (val data : ArrayList<FTService>, val context: Context) : RecyclerView.Adapter<SI2ViewHolder>() {
+class ServiceInsider2RecView  (val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<SI2ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SI2ViewHolder {
         return SI2ViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_service_insider_twice, parent, false))    }
@@ -27,8 +28,8 @@ class ServiceInsider2RecView  (val data : ArrayList<FTService>, val context: Con
     }
 
     override fun onBindViewHolder(holder: SI2ViewHolder, position: Int) {
-
-        if (data[position].ServiceIsFavourite){
+1
+        if (data[position].ItemIsFavorite!!){
             holder.SIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
         }else{
             holder.SIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
@@ -38,8 +39,8 @@ class ServiceInsider2RecView  (val data : ArrayList<FTService>, val context: Con
             context.startActivity(Intent(context, ChaletScreen::class.java))
         }
         holder.SIIsFavourite.setOnClickListener {
-            data[position].ServiceIsFavourite = !data[position].ServiceIsFavourite
-            if (data[position].ServiceIsFavourite){
+            data[position].ItemIsFavorite = !data[position].ItemIsFavorite!!
+            if (data[position].ItemIsFavorite!!){
                 holder.SIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
             }else{
                 holder.SIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
@@ -47,13 +48,13 @@ class ServiceInsider2RecView  (val data : ArrayList<FTService>, val context: Con
         }
 
         Glide.with(context)
-            .load(Constants.APIMain +data[position].ServiceImage)
+            .load(data[position].ItemImage)
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.SIImage)
-        holder.SITitle.text = data[position].ServiceName
-        holder.SIRating.rating = data[position].ServiceRate.toFloat()
-        holder.SIRatingText.text = data[position].ServiceReviews.toString()
+        holder.SITitle.text = data[position].ItemName
+        holder.SIRating.rating = data[position].ItemRating!!.toFloat()
+        holder.SIRatingText.text = data[position].ItemRatingText.toString()
 
     }
 }
