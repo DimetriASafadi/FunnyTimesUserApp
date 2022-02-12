@@ -53,6 +53,9 @@ class ItemBigVerticalRecView (val data : ArrayList<FTItem>, val context: Context
         holder.BVTitle.text = data[position].ItemName
         holder.BVLocation.text = data[position].ItemLocation
         holder.BVRating.rating = data[position].ItemRating!!.toFloat()
+        holder.BVRating.setOnTouchListener { v, event ->
+            return@setOnTouchListener true
+        }
         holder.BVRatingText.text = data[position].ItemRatingText.toString()
 
     }

@@ -19,7 +19,7 @@ import com.example.funnytimesuserapp.SectionCategories.SubCategoryItem
 import com.example.funnytimesuserapp.SectionCategories.SubCategoryService
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
 
-class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context) : RecyclerView.Adapter<CatViewHolder>() {
+class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context,val catType:String,val catLvl:Int) : RecyclerView.Adapter<CatViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatViewHolder {
         return CatViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_category, parent, false))    }
@@ -32,19 +32,39 @@ class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context) 
 
 
 
-//        if (data[position].CategoryLevel == 1){
-//            holder.WholeCategory.setOnClickListener {
-//                val intent = Intent(context,ItemCategory::class.java)
-//                intent.putExtra("CategoryObj",data[position])
-//                context.startActivity(intent)
-//            }
-//        }else{
-//            holder.WholeCategory.setOnClickListener {
-//                val intent = Intent(context,SubCategoryItem::class.java)
-//                intent.putExtra("CategoryObj",data[position])
-//                context.startActivity(intent)
-//            }
-//        }
+
+
+        if (data[position].CategoryType == "service"){
+            holder.WholeCategory.setOnClickListener {
+                val intent = Intent(context,ServiceCategory::class.java)
+                intent.putExtra("CategoryObj",data[position])
+                context.startActivity(intent)
+            }
+        } else if (data[position].CategoryType == "product"){
+            holder.WholeCategory.setOnClickListener {
+                val intent = Intent(context,ItemCategory::class.java)
+                intent.putExtra("CategoryObj",data[position])
+                context.startActivity(intent)
+            }
+        }
+
+        if (catLvl == 1){
+            if (catType == "service"){
+                holder.WholeCategory.setOnClickListener {
+                    val intent = Intent(context,SubCategoryService::class.java)
+                    intent.putExtra("subCat",data[position])
+                    context.startActivity(intent)
+                }
+            } else if (catType == "product"){
+                holder.WholeCategory.setOnClickListener {
+                    val intent = Intent(context,SubCategoryItem::class.java)
+                    intent.putExtra("subCat",data[position])
+                    context.startActivity(intent)
+                }
+            }
+        }
+
+
 
         Glide.with(context)
             .load(data[position].CategoryIcon)

@@ -67,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srb_clickable="false"
+            android:clickable="false"
             app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
             app:srb_drawableFilled="@drawable/ft_rate_star_fill_icon"
             app:srb_rating="5"

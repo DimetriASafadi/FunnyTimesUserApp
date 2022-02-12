@@ -2,19 +2,19 @@ package com.example.funnytimesuserapp.RecViews
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.Models.FTItem
-import com.example.funnytimesuserapp.Models.FTService
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
+import com.willy.ratingbar.BaseRatingBar.OnRatingChangeListener
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ServicesBigVerticalRecView (val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<SBViewHolder>() {
@@ -54,6 +54,10 @@ class ServicesBigVerticalRecView (val data : ArrayList<FTItem>, val context: Con
         holder.SBVTitle.text = data[position].ItemName
         holder.SBVLocation.text = data[position].ItemLocation
         holder.SBVRating.rating = data[position].ItemRating!!.toFloat()
+        holder.SBVRating.setOnTouchListener { v, event ->
+            return@setOnTouchListener true
+        }
+
         holder.SBVRatingText.text = data[position].ItemRatingText.toString()
 
     }

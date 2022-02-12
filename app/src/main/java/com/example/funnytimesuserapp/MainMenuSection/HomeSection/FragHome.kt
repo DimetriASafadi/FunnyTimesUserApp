@@ -70,7 +70,7 @@ class FragHome : Fragment() {
         pagerSnapHelper.attachToRecyclerView(binding.HomeAdBannersRecycler)
 
 
-        categoriesRecView = CategoriesRecView(ftCategories,requireContext())
+        categoriesRecView = CategoriesRecView(ftCategories,requireContext(),"",0)
         binding.HomeCategoriesRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)

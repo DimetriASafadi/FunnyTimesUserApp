@@ -53,7 +53,9 @@ class ServiceFullHorizontalRecView(val data : ArrayList<FTItem>, val context: Co
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.SFHImage)
         holder.SFHTitle.text = data[position].ItemName
-        holder.SFHRating.rating = data[position].ItemRating!!.toFloat()
+        holder.SFHRating.setOnTouchListener { v, event ->
+            return@setOnTouchListener true
+        }
         holder.SFHRatingText.text = data[position].ItemRatingText.toString()
 
     }

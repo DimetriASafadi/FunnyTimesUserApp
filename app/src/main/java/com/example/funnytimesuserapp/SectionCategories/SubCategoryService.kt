@@ -3,8 +3,15 @@ package com.example.funnytimesuserapp.SectionCategories
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
+import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTService
@@ -14,12 +21,19 @@ import com.example.funnytimesuserapp.RecViews.ServiceFullHorizontalRecView
 import com.example.funnytimesuserapp.RecViews.ServiceInsider2RecView
 import com.example.funnytimesuserapp.RecViews.SubCategoriesRecView
 import com.example.funnytimesuserapp.databinding.FtCategorySubServiceBinding
+import com.google.gson.GsonBuilder
+import org.json.JSONException
+import org.json.JSONObject
+import java.nio.charset.Charset
 
 class SubCategoryService : AppCompatActivity() {
 
     lateinit var binding: FtCategorySubServiceBinding
     val suncategories = ArrayList<FTSubCategory>()
     val servicesarr = ArrayList<FTItem>()
+    lateinit var serviceFullHorizontalRecView : ServiceFullHorizontalRecView
+    lateinit var serviceInsiderRecView : ServiceInsider2RecView
+    val commonFuncs = CommonFuncs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +41,7 @@ class SubCategoryService : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val selfCat = intent.getSerializableExtra("CategoryObj") as FTCategory
+        val selfCat = intent.getSerializableExtra("subCat") as FTCategory
 
 
         binding.SerSubCategoryName.text = selfCat.CategoryName
@@ -45,8 +59,8 @@ class SubCategoryService : AppCompatActivity() {
 
 
 
-        val serviceFullHorizontalRecView = ServiceFullHorizontalRecView(servicesarr,this)
-        val serviceInsiderRecView = ServiceInsider2RecView(servicesarr,this)
+        serviceFullHorizontalRecView = ServiceFullHorizontalRecView(servicesarr,this)
+        serviceInsiderRecView = ServiceInsider2RecView(servicesarr,this)
         binding.ServicesRecycler.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.VERTICAL,
             false)
@@ -69,10 +83,52 @@ class SubCategoryService : AppCompatActivity() {
                 viewmode = 1
 
                 binding.ShowingLargeSmall.setImageResource(R.drawable.ft_vertical_view_icon)
-
                 binding.ServicesRecycler.layoutManager = GridLayoutManager(this,2)
                 binding.ServicesRecycler.adapter = serviceInsiderRecView
             }
+            subcategory_Request(selfCat.CategoryId!!)
+        }
+    }fun subcategory_Request(subcatid:Int){
+        commonFuncs.showLoadingDialog(this)
+        val url = Constants.APIMain + "api/subcategory/"+subcatid
+        try {
+            val stringRequest = object : StringRequest(
+                Request.Method.GET, url, Response.Listener<String> { response ->
+                    Log.e("Response", response.toString())
+                    val jsonobj = JSONObject(response.toString())
+                    val data = jsonobj.getJSONObject("data")
+                    val categories = data.getJSONArray("subCategory")
+                    val items = data.getJSONArray("items")
+
+
+                    val gson = GsonBuilder().create()
+                    servicesarr.addAll(gson.fromJson(items.toString(),Array<FTItem>::class.java).toList())
+
+                    serviceFullHorizontalRecView.notifyDataSetChanged()
+                    serviceInsiderRecView.notifyDataSetChanged()
+
+                    commonFuncs.hideLoadingDialog()
+
+                }, Response.ErrorListener { error ->
+                    if (error.networkResponse != null && error.networkResponse.data != null) {
+                        val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
+                        val err = JSONObject(errorw)
+                        val errMessage = err.getJSONObject("status").getString("message")
+                        commonFuncs.showDefaultDialog(this,"خطأ في الإتصال",errMessage)
+                        Log.e("eResponser", errorw.toString())
+                    } else {
+                        commonFuncs.showDefaultDialog(this,"خطأ في الإتصال","حصل خطأ ما")
+                        Log.e("eResponsew", "RequestError:$error")
+                    }
+                    commonFuncs.hideLoadingDialog()
+
+                }) {
+            }
+            val requestQueue = Volley.newRequestQueue(this)
+            requestQueue.add(stringRequest)
+        }catch (error: JSONException){
+            Log.e("Response", error.toString())
+            commonFuncs.hideLoadingDialog()
         }
     }
 }

@@ -11,5 +11,7 @@ data class FTCategory(
     @SerializedName("icon")
     var CategoryIcon:String?,
     @SerializedName("image")
-    var CategoryImg:String?
+    var CategoryImg:String?,
+    @SerializedName("type")
+    var CategoryType:String?
 ):Serializable

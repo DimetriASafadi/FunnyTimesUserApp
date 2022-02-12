@@ -83,7 +83,6 @@
             app:srb_starPadding="@dimen/_3sdp"
             app:srb_rating="2.5"
             app:srb_stepSize="0.5"
-            app:srb_clickable="false"
             app:srb_drawableFilled="@drawable/ft_rate_star_fill_icon"
             app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
             />

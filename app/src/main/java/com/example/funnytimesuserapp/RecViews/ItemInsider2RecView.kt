@@ -49,6 +49,9 @@ class ItemInsider2RecView (val data : ArrayList<FTItem>, val context: Context) :
             .into(holder.IIImage)
         holder.IITitle.text = data[position].ItemName
         holder.IIRating.rating = data[position].ItemRating!!.toFloat()
+        holder.IIRating.setOnTouchListener { v, event ->
+            return@setOnTouchListener true
+        }
         holder.IIRatingText.text = data[position].ItemRatingText.toString()
         holder.IIPrice.text = data[position].ItemPrice.toString() + "ر.س"
 
