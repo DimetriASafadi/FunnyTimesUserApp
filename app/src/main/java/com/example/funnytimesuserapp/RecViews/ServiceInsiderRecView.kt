@@ -53,6 +53,7 @@ class ServiceInsiderRecView (val data : ArrayList<FTItem>, val context: Context)
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.SIImage)
         holder.SITitle.text = data[position].ItemName
+        holder.SIRating.rating = data[position].ItemRating!!.toFloat()
         holder.SIRating.setOnTouchListener { v, event ->
             return@setOnTouchListener true
         }

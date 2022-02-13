@@ -1,6 +1,5 @@
 package com.example.funnytimesuserapp.SectionCategories
 
-import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +11,9 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Interfaces.SubCategoryClickListener
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
-import com.example.funnytimesuserapp.Models.FTService
 import com.example.funnytimesuserapp.Models.FTSubCategory
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ServiceFullHorizontalRecView
@@ -26,7 +25,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class SubCategoryService : AppCompatActivity() {
+class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
 
     lateinit var binding: FtCategorySubServiceBinding
     val suncategories = ArrayList<FTSubCategory>()
@@ -41,14 +40,24 @@ class SubCategoryService : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
         val selfCat = intent.getSerializableExtra("subCat") as FTCategory
+        val catPos = intent.getIntExtra("subPos",0)
+        val selfCats = intent.getSerializableExtra("subCats") as ArrayList<FTCategory>
+        for (i in 0 until selfCats.size)
+        {
+            suncategories.add(FTSubCategory(selfCats[i].CategoryId,selfCats[i].CategoryName,selfCats[i].CategoryIcon))
+        }
 
 
         binding.SerSubCategoryName.text = selfCat.CategoryName
 
 
 
-        val subCategoriesRecView = SubCategoriesRecView(suncategories,this)
+        val subCategoriesRecView = SubCategoriesRecView(suncategories,this,this,catPos)
         binding.SerCategoryRecycler.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -71,24 +80,22 @@ class SubCategoryService : AppCompatActivity() {
         binding.ShowingLargeSmall.setOnClickListener {
             if (viewmode == 1){
                 viewmode = 0
-
                 binding.ShowingLargeSmall.setImageResource(R.drawable.ft_dual_duo_view_icon)
-
                 binding.ServicesRecycler.layoutManager = LinearLayoutManager(this,
                     LinearLayoutManager.VERTICAL,
                     false)
                 binding.ServicesRecycler.adapter = serviceFullHorizontalRecView
-
             }else{
                 viewmode = 1
-
                 binding.ShowingLargeSmall.setImageResource(R.drawable.ft_vertical_view_icon)
                 binding.ServicesRecycler.layoutManager = GridLayoutManager(this,2)
                 binding.ServicesRecycler.adapter = serviceInsiderRecView
             }
-            subcategory_Request(selfCat.CategoryId!!)
         }
-    }fun subcategory_Request(subcatid:Int){
+        subcategory_Request(selfCat.CategoryId!!)
+
+    }
+    fun subcategory_Request(subcatid:Int){
         commonFuncs.showLoadingDialog(this)
         val url = Constants.APIMain + "api/subcategory/"+subcatid
         try {
@@ -97,10 +104,9 @@ class SubCategoryService : AppCompatActivity() {
                     Log.e("Response", response.toString())
                     val jsonobj = JSONObject(response.toString())
                     val data = jsonobj.getJSONObject("data")
-                    val categories = data.getJSONArray("subCategory")
                     val items = data.getJSONArray("items")
 
-
+                    servicesarr.clear()
                     val gson = GsonBuilder().create()
                     servicesarr.addAll(gson.fromJson(items.toString(),Array<FTItem>::class.java).toList())
 
@@ -130,5 +136,8 @@ class SubCategoryService : AppCompatActivity() {
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }
+    }
+    override fun OnSubCategoryClickListener(subcategory: FTSubCategory) {
+        subcategory_Request(subcategory.SubCatId!!)
     }
 }

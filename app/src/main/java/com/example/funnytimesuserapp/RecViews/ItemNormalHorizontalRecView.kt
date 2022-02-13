@@ -49,6 +49,7 @@ class ItemNormalHorizontalRecView (val data : ArrayList<FTItem>, val context: Co
             .into(holder.NHImage)
         holder.NHTitle.text = data[position].ItemName
         holder.NHLocation.text = data[position].ItemLocation
+        holder.NHRating.rating = data[position].ItemRating!!.toFloat()
         holder.NHRating.setOnTouchListener { v, event ->
             return@setOnTouchListener true
         }

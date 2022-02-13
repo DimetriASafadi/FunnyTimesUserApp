@@ -48,9 +48,11 @@ class ItemInsiderRecView (val data : ArrayList<FTItem>, val context: Context) : 
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.IImage)
         holder.ITitle.text = data[position].ItemName
+        holder.IRating.rating = data[position].ItemRating!!.toFloat()
         holder.IRating.setOnTouchListener { v, event ->
             return@setOnTouchListener true
         }
+
         holder.IRatingText.text = data[position].ItemRatingText.toString()
         holder.IIPrice.text = data[position].ItemPrice.toString() + "ر.س"
 

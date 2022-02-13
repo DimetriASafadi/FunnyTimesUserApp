@@ -10,14 +10,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SectionCategories.ItemCategory
 import com.example.funnytimesuserapp.SectionCategories.ServiceCategory
 import com.example.funnytimesuserapp.SectionCategories.SubCategoryItem
 import com.example.funnytimesuserapp.SectionCategories.SubCategoryService
-import com.example.funnytimesuserapp.SectionService.ChaletScreen
 
 class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context,val catType:String,val catLvl:Int) : RecyclerView.Adapter<CatViewHolder>() {
 
@@ -29,8 +27,6 @@ class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context,v
     }
 
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
-
-
 
 
 
@@ -53,12 +49,16 @@ class CategoriesRecView(val data : ArrayList<FTCategory>, val context: Context,v
                 holder.WholeCategory.setOnClickListener {
                     val intent = Intent(context,SubCategoryService::class.java)
                     intent.putExtra("subCat",data[position])
+                    intent.putExtra("subPos",position)
+                    intent.putExtra("subCats",data)
                     context.startActivity(intent)
                 }
             } else if (catType == "product"){
                 holder.WholeCategory.setOnClickListener {
                     val intent = Intent(context,SubCategoryItem::class.java)
                     intent.putExtra("subCat",data[position])
+                    intent.putExtra("subPos",position)
+                    intent.putExtra("subCats",data)
                     context.startActivity(intent)
                 }
             }

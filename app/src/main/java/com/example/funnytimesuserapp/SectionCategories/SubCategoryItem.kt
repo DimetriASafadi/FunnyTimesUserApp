@@ -11,10 +11,10 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Interfaces.SubCategoryClickListener
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTSubCategory
-import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ItemInsider2RecView
 import com.example.funnytimesuserapp.RecViews.SubCategoriesRecView
 import com.example.funnytimesuserapp.databinding.FtCategorySubItemBinding
@@ -23,7 +23,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class SubCategoryItem : AppCompatActivity() {
+class SubCategoryItem : AppCompatActivity() ,SubCategoryClickListener{
 
     lateinit var binding: FtCategorySubItemBinding
     val suncategories = ArrayList<FTSubCategory>()
@@ -39,15 +39,24 @@ class SubCategoryItem : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
         val selfCat = intent.getSerializableExtra("subCat") as FTCategory
+        val catPos = intent.getIntExtra("subPos",0)
+        val selfCats = intent.getSerializableExtra("subCats") as ArrayList<FTCategory>
+        for (i in 0 until selfCats.size)
+        {
+            suncategories.add(FTSubCategory(selfCats[i].CategoryId,selfCats[i].CategoryName,selfCats[i].CategoryIcon))
+        }
 
 
 
 
 
 
-
-        val subCategoriesRecView = SubCategoriesRecView(suncategories,this)
+        val subCategoriesRecView = SubCategoriesRecView(suncategories,this,this,catPos)
         binding.ItemCategoryRecycler.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -72,13 +81,11 @@ class SubCategoryItem : AppCompatActivity() {
                     Log.e("Response", response.toString())
                     val jsonobj = JSONObject(response.toString())
                     val data = jsonobj.getJSONObject("data")
-                    val categories = data.getJSONArray("subCategory")
                     val items = data.getJSONArray("items")
 
-
+                    itemssarr.clear()
                     val gson = GsonBuilder().create()
                     itemssarr.addAll(gson.fromJson(items.toString(),Array<FTItem>::class.java).toList())
-
                     itemInsider2RecView.notifyDataSetChanged()
 
 
@@ -106,5 +113,9 @@ class SubCategoryItem : AppCompatActivity() {
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }
+    }
+
+    override fun OnSubCategoryClickListener(subcategory: FTSubCategory) {
+        subcategory_Request(subcategory.SubCatId!!)
     }
 }
