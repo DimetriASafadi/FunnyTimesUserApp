@@ -1,5 +1,6 @@
 package com.example.funnytimesuserapp.RecViews
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTService
 import com.example.funnytimesuserapp.R
@@ -18,7 +21,10 @@ import com.example.funnytimesuserapp.SectionService.ChaletScreen
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 
-class ServiceFullHorizontalRecView(val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<SFHViewHolder>() {
+class ServiceFullHorizontalRecView(val data : ArrayList<FTItem>, val context: Activity) : RecyclerView.Adapter<SFHViewHolder>() {
+
+    val commonFuncs = CommonFuncs()
+    val favoriteFuncs = FavoriteFuncs()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SFHViewHolder {
         return SFHViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_service_full_horizontal, parent, false))    }
@@ -38,12 +44,19 @@ class ServiceFullHorizontalRecView(val data : ArrayList<FTItem>, val context: Co
         holder.SFHImage.setOnClickListener {
             context.startActivity(Intent(context, ChaletScreen::class.java))
         }
+        
         holder.SFHIsFavourite.setOnClickListener {
-            data[position].ItemIsFavorite = !data[position].ItemIsFavorite!!
-            if (data[position].ItemIsFavorite!!){
-                holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+            if (commonFuncs.IsInSP(context, Constants.KeyUserToken)){
+                data[position].ItemIsFavorite = !data[position].ItemIsFavorite
+                if (data[position].ItemIsFavorite){
+                    holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+                    favoriteFuncs.add_favourite_Request(context,data[position].ItemId!!)
+                }else{
+                    holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                    favoriteFuncs.delete_favourite_Request(context,data[position].ItemId!!)
+                }
             }else{
-                holder.SFHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                commonFuncs.showLoginDialog(context)
             }
         }
 

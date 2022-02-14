@@ -1,5 +1,6 @@
 package com.example.funnytimesuserapp.RecViews
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +10,18 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.R
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 
-class ItemInsiderRecView (val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<IIViewHolder>() {
+class ItemInsiderRecView (val data : ArrayList<FTItem>, val context: Activity) : RecyclerView.Adapter<IIViewHolder>() {
+
+    val commonFuncs = CommonFuncs()
+    val favoriteFuncs = FavoriteFuncs()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IIViewHolder {
         return IIViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_insider_item, parent, false))    }
@@ -39,6 +45,21 @@ class ItemInsiderRecView (val data : ArrayList<FTItem>, val context: Context) : 
                 holder.IIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
             }else{
                 holder.IIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+            }
+        }
+
+        holder.IIsFavourite.setOnClickListener {
+            if (commonFuncs.IsInSP(context, Constants.KeyUserToken)){
+                data[position].ItemIsFavorite = !data[position].ItemIsFavorite
+                if (data[position].ItemIsFavorite){
+                    holder.IIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+                    favoriteFuncs.add_favourite_Request(context,data[position].ItemId!!)
+                }else{
+                    holder.IIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                    favoriteFuncs.delete_favourite_Request(context,data[position].ItemId!!)
+                }
+            }else{
+                commonFuncs.showLoginDialog(context)
             }
         }
 

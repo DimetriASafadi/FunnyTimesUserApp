@@ -10,6 +10,7 @@ data class FTItem(
     var ItemName:String? = "",
     @SerializedName("img")
     var ItemImage:String? = "",
+    @SerializedName("is_favourite")
     var ItemIsFavorite:Boolean,
     @SerializedName("address")
     var ItemLocation:String? = "",

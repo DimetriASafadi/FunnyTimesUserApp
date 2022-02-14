@@ -17,6 +17,7 @@ import android.util.Patterns
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
+import com.example.funnytimesuserapp.AuthSection.SignInScreen
 import com.example.funnytimesuserapp.CommonSection.Constants.AppSPName
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
 import com.example.funnytimesuserapp.MainMenu
@@ -212,6 +213,19 @@ class CommonFuncs {
         )
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         codePhone?.show()
+    }
+
+    fun showLoginDialog(context: Context){
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage("يتطلب تسجيل دخول")
+        builder.setNegativeButton("لاحقاً") { dialog, which ->
+            return@setNegativeButton
+        }
+        builder.setPositiveButton("تسجيل"){ dialog, which ->
+            val toLogin = Intent(context, SignInScreen::class.java)
+            context.startActivity(toLogin)
+        }
+        builder.show()
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.funnytimesuserapp.RecViews
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +10,21 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
+import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.R
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 
-class FavoritesRecView(val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<FFNHViewHolder>() {
+class FavoritesRecView(val data : ArrayList<FTItem>, val context: Activity) : RecyclerView.Adapter<FFNHViewHolder>() {
+
+    val commonFuncs = CommonFuncs()
+    val favoriteFuncs = FavoriteFuncs()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FFNHViewHolder {
-        return FFNHViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_normal_horizontal, parent, false))    }
+        return FFNHViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_favorite, parent, false))    }
 
     override fun getItemCount(): Int {
         return data?.size ?: 0
@@ -31,13 +38,19 @@ class FavoritesRecView(val data : ArrayList<FTItem>, val context: Context) : Rec
             holder.FNHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
         }
 
-
         holder.FNHIsFavorite.setOnClickListener {
-            data[position].ItemIsFavorite = !data[position].ItemIsFavorite
-            if (data[position].ItemIsFavorite){
-                holder.FNHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+            if (commonFuncs.IsInSP(context,KeyUserToken)){
+                data[position].ItemIsFavorite = !data[position].ItemIsFavorite
+                if (data[position].ItemIsFavorite){
+                    holder.FNHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+                    favoriteFuncs.add_favourite_Request(context,data[position].ItemId!!)
+                }else{
+                    holder.FNHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                    favoriteFuncs.delete_favourite_Request(context,data[position].ItemId!!)
+                    removeitem(position)
+                }
             }else{
-                holder.FNHFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                commonFuncs.showLoginDialog(context)
             }
         }
 
@@ -57,6 +70,16 @@ class FavoritesRecView(val data : ArrayList<FTItem>, val context: Context) : Rec
         holder.FNHShopName.text = data[position].ItemShop.toString()
 
     }
+
+
+
+    fun removeitem(position: Int) {
+        data.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+
+
 }
 
 class FFNHViewHolder (view: View) : RecyclerView.ViewHolder(view) {

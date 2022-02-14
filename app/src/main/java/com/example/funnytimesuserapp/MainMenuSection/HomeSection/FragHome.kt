@@ -76,7 +76,7 @@ class FragHome : Fragment() {
             false)
         binding.HomeCategoriesRecycler.adapter = categoriesRecView
 
-        servicesBigVerticalRecView = ServicesBigVerticalRecView(ftMostRented,requireContext())
+        servicesBigVerticalRecView = ServicesBigVerticalRecView(ftMostRented,requireActivity())
         binding.HomeServedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -85,13 +85,13 @@ class FragHome : Fragment() {
         pagerSnapHelper2.attachToRecyclerView(binding.HomeServedRecycler)
 
 
-        itemNormalHorizontalRecView = ItemNormalHorizontalRecView(ftMostShoped,requireContext())
+        itemNormalHorizontalRecView = ItemNormalHorizontalRecView(ftMostShoped,requireActivity())
         binding.HomePurchasedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,
             false)
         binding.HomePurchasedRecycler.adapter = itemNormalHorizontalRecView
 
-        itemInsiderRecView = ItemInsiderRecView(ftMostDemanded,requireContext())
+        itemInsiderRecView = ItemInsiderRecView(ftMostDemanded,requireActivity())
         binding.HomeDemandedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -157,6 +157,11 @@ class FragHome : Fragment() {
                     commonFuncs.hideLoadingDialog()
 
                 }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val map = HashMap<String,String>()
+                    map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(requireContext(), Constants.KeyUserToken)
+                    return map
+                }
             }
             val requestQueue = Volley.newRequestQueue(requireContext())
             requestQueue.add(stringRequest)

@@ -1,12 +1,14 @@
 package com.example.funnytimesuserapp
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
 import com.example.funnytimesuserapp.MainMenuSection.CategorySection.FragCategory
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FragFavourite
 import com.example.funnytimesuserapp.MainMenuSection.HomeSection.FragHome
@@ -66,6 +68,16 @@ class MainMenu : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.nav_favourite -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        supportFragmentManager.beginTransaction().detach(fragment3).commitNow()
+                        supportFragmentManager.beginTransaction().attach(fragment3).commitNow()
+                        supportFragmentManager.beginTransaction().hide(active).show(fragment3).commitNow()
+                    } else {
+                        supportFragmentManager.beginTransaction().hide(active).show(fragment3).detach(fragment3).attach(fragment3).commit()
+                    }
+//                    if (commonFuncs.GetFromSP(this,KeyUserToken)){
+//
+//                    }
                     supportFragmentManager.beginTransaction().hide(active).show(fragment3).detach(fragment3).attach(fragment3).commit()
                     active = fragment3
                     binding.TopSection.visibility = View.VISIBLE

@@ -1,5 +1,6 @@
 package com.example.funnytimesuserapp.RecViews
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -9,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
+import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
@@ -17,7 +21,10 @@ import com.willy.ratingbar.BaseRatingBar
 import com.willy.ratingbar.BaseRatingBar.OnRatingChangeListener
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ServicesBigVerticalRecView (val data : ArrayList<FTItem>, val context: Context) : RecyclerView.Adapter<SBViewHolder>() {
+class ServicesBigVerticalRecView (val data : ArrayList<FTItem>, val context: Activity) : RecyclerView.Adapter<SBViewHolder>() {
+
+    val commonFuncs = CommonFuncs()
+    val favoriteFuncs = FavoriteFuncs()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SBViewHolder {
         return SBViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_service_big_vertical, parent, false))    }
@@ -37,12 +44,20 @@ class ServicesBigVerticalRecView (val data : ArrayList<FTItem>, val context: Con
         holder.SBVImage.setOnClickListener {
             context.startActivity(Intent(context,ChaletScreen::class.java))
         }
+
         holder.SBVIsFavorite.setOnClickListener {
-            data[position].ItemIsFavorite = !data[position].ItemIsFavorite!!
-            if (data[position].ItemIsFavorite!!){
-                holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+            if (commonFuncs.IsInSP(context, Constants.KeyUserToken)){
+                data[position].ItemIsFavorite = !data[position].ItemIsFavorite
+                if (data[position].ItemIsFavorite){
+                    holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+                    favoriteFuncs.add_favourite_Request(context,data[position].ItemId!!)
+                }else{
+                    holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                    favoriteFuncs.delete_favourite_Request(context,data[position].ItemId!!)
+                }
+
             }else{
-                holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                commonFuncs.showLoginDialog(context)
             }
         }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -42,6 +43,7 @@
             android:layout_height="@dimen/_12sdp"
             android:src="@drawable/ft_android_back_arrow"
             android:layout_marginHorizontal="@dimen/_5sdp"
+            app:tint="@color/ft_black"
             />
     </LinearLayout>
     <LinearLayout
@@ -71,6 +73,7 @@
             android:layout_height="@dimen/_12sdp"
             android:src="@drawable/ft_android_back_arrow"
             android:layout_marginHorizontal="@dimen/_5sdp"
+            app:tint="@color/ft_black"
             />
     </LinearLayout>
     <LinearLayout
@@ -101,6 +104,7 @@
             android:layout_height="@dimen/_12sdp"
             android:src="@drawable/ft_android_back_arrow"
             android:layout_marginHorizontal="@dimen/_5sdp"
+            app:tint="@color/ft_black"
             />
     </LinearLayout>
     <LinearLayout
@@ -131,6 +135,7 @@
             android:layout_height="@dimen/_12sdp"
             android:src="@drawable/ft_android_back_arrow"
             android:layout_marginHorizontal="@dimen/_5sdp"
+            app:tint="@color/ft_black"
             />
     </LinearLayout>
     <LinearLayout
@@ -160,6 +165,7 @@
             android:layout_height="@dimen/_12sdp"
             android:src="@drawable/ft_android_back_arrow"
             android:layout_marginHorizontal="@dimen/_5sdp"
+            app:tint="@color/ft_black"
             />
     </LinearLayout>
     <LinearLayout
@@ -189,6 +195,7 @@
             android:layout_height="@dimen/_12sdp"
             android:src="@drawable/ft_android_back_arrow"
             android:layout_marginHorizontal="@dimen/_5sdp"
+            app:tint="@color/ft_black"
             />
     </LinearLayout>
 
