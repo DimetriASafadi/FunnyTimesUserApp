@@ -52,7 +52,7 @@ class FragFavourite: Fragment()  {
             false)
         binding.FavoriteItemsRecycler.adapter = favoritesRecView
 
-//        get_favourite_Request(requireActivity())
+        get_favourite_Request(requireActivity())
 
 
         return binding.root
@@ -108,9 +108,5 @@ class FragFavourite: Fragment()  {
 
 
 
-    override fun onResume() {
-        super.onResume()
-        get_favourite_Request(requireActivity())
-    }
 
 }

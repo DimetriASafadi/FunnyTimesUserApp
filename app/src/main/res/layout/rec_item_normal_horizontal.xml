@@ -7,6 +7,7 @@
     android:orientation="horizontal"
     android:background="@drawable/ft_radius_fill"
     android:layout_margin="@dimen/_5sdp"
+    android:id="@+id/WholeItem"
     >
 
     <LinearLayout

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/ft_radius_fill"
+    android:layout_margin="@dimen/_5sdp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_5sdp"
+        >
+
+
+
+        <RelativeLayout
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/OBImage"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:src="@drawable/ft_splash_logo"
+                app:riv_corner_radius="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/OBPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@drawable/ft_radius_fill_light"
+                android:backgroundTint="@color/ft_trans_orange"
+                android:fontFamily="@font/montserrat_arabic"
+                android:maxLength="7"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:paddingVertical="@dimen/_3sdp"
+                android:text="40ر.س"
+                android:textColor="@color/ft_white"
+                android:textSize="@dimen/_11ssp" />
+
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/OBTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه أخضر مع ملعب طائرة"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/ft_black"
+                android:fontFamily="@font/montserrat_arabic"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:maxLines="1"
+                />
+
+            <TextView
+                android:id="@+id/OBLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="حي الرياض,الرياض"
+                android:textSize="@dimen/_9ssp"
+                android:maxLines="1"
+                android:textColor="@color/ft_menu_unselected"
+                android:fontFamily="@font/montserrat_arabic"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                >
+                <com.willy.ratingbar.BaseRatingBar
+                    android:id="@+id/OBRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srb_starHeight="@dimen/_10sdp"
+                    app:srb_starWidth="@dimen/_10sdp"
+                    app:srb_starPadding="@dimen/_3sdp"
+                    app:srb_rating="5"
+                    app:srb_stepSize="0.5"
+                    app:srb_clickable="false"
+                    android:clickable="false"
+                    app:srb_drawableFilled="@drawable/ft_rate_star_fill_icon"
+                    app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
+                    />
+                <TextView
+                    android:id="@+id/OBRatingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(50)"
+                    android:textSize="@dimen/_9ssp"
+                    android:textColor="@color/ft_menu_unselected"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:layout_marginHorizontal="@dimen/_2sdp"
+                    />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/OBStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="تتبع الطلب"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_7sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textSize="@dimen/_9ssp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:textColor="@color/ft_white"
+                android:backgroundTint="@color/ft_dark_blue"
+                android:background="@drawable/ft_radius_fill_light"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -131,12 +131,12 @@
             android:id="@+id/BarMin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_arabic"
             android:gravity="start"
             android:text="0"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
             android:textColor="@color/ft_dark_blue"
             android:textSize="@dimen/_14ssp" />
 

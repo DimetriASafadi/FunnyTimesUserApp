@@ -2,10 +2,12 @@ package com.example.funnytimesuserapp.RecViews
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,10 @@ import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.SectionItems.FoodScreen
+import com.example.funnytimesuserapp.SectionItems.ProductScreen
+import com.example.funnytimesuserapp.SectionService.ChaletScreen
+import com.example.funnytimesuserapp.SectionService.ClinicScreen
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 
@@ -54,6 +60,26 @@ class ItemNormalHorizontalRecView (val data : ArrayList<FTItem>, val context: Ac
             }
         }
 
+        holder.WholeItem.setOnClickListener {
+            if (data[position].ItemType == "booking"){
+                val into = Intent(context, ChaletScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }else if (data[position].ItemType == "service"){
+                val into = Intent(context, ClinicScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }else if (data[position].ItemType == "food"){
+                val into = Intent(context, FoodScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }else if (data[position].ItemType == "shop"){
+                val into = Intent(context, ProductScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }
+        }
+
         Glide.with(context)
             .load(data[position].ItemImage)
             .centerCrop()
@@ -74,6 +100,7 @@ class ItemNormalHorizontalRecView (val data : ArrayList<FTItem>, val context: Ac
 
 class INHViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to
+    val WholeItem = view.findViewById<LinearLayout>(R.id.WholeItem)
     val NHPrice = view.findViewById<TextView>(R.id.NHPrice)
     val NHImage = view.findViewById<RoundedImageView>(R.id.NHImage)
     val NHTitle = view.findViewById<TextView>(R.id.NHTitle)

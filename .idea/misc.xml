@@ -57,6 +57,7 @@
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_screen_clinic.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_screen_food.xml" value="0.33" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_screen_product.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_screen_vendor.xml" value="0.2911500641299701" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_service_dating_screen.xml" value="0.33" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_setting_contact_us_screen.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_setting_policy_privacy_screen.xml" value="0.3546875" />
@@ -70,6 +71,7 @@
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_big_vertical.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_cart_item.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_category.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_delivery_orders.xml" value="0.2911500641299701" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_favorite.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_insider_item.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_insider_item_twice.xml" value="0.3546875" />
@@ -81,6 +83,7 @@
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_service_full_horizontal.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_service_insider.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_service_insider_twice.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_user_orders_books.xml" value="0.67" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/menu/tk_bottom_nav_menu.xml" value="0.3546875" />
       </map>
     </option>

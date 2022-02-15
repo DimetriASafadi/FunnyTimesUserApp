@@ -14,7 +14,10 @@ import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.SectionItems.FoodScreen
+import com.example.funnytimesuserapp.SectionItems.ProductScreen
 import com.example.funnytimesuserapp.SectionService.ChaletScreen
+import com.example.funnytimesuserapp.SectionService.ClinicScreen
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 import de.hdodenhof.circleimageview.CircleImageView
@@ -40,7 +43,23 @@ class ItemBigVerticalRecView (val data : ArrayList<FTItem>, val context: Activit
         }
 
         holder.BVImage.setOnClickListener {
-            context.startActivity(Intent(context, ChaletScreen::class.java))
+            if (data[position].ItemType == "booking"){
+                val into = Intent(context, ChaletScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }else if (data[position].ItemType == "service"){
+                val into = Intent(context, ClinicScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }else if (data[position].ItemType == "food"){
+                val into = Intent(context, FoodScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }else if (data[position].ItemType == "shop"){
+                val into = Intent(context, ProductScreen::class.java)
+                into.putExtra("ItemId",data[position].ItemId)
+                context.startActivity(into)
+            }
         }
 
         holder.BVIsFavorite.setOnClickListener {

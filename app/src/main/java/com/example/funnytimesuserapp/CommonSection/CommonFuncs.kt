@@ -157,7 +157,6 @@ class CommonFuncs {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         filterDialog?.show()
     }
-
     fun showPasswordDoneDialog(activity: Activity) {
         passwordDoneDialog = Dialog(activity)
         passwordDoneDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -214,7 +213,6 @@ class CommonFuncs {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         codePhone?.show()
     }
-
     fun showLoginDialog(context: Context){
         val builder = AlertDialog.Builder(context)
         builder.setMessage("يتطلب تسجيل دخول")
