@@ -10,6 +10,7 @@
 
 
     <ImageView
+        android:id="@+id/ChaletImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_190sdp"
         android:src="@color/ft_orange"
@@ -17,52 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/ChaletBack"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:alpha="0.1"
-            android:src="@color/ft_black" />
-
-        <ImageView
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ft_android_back_arrow"
-            app:tint="@color/ft_white" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/ChaletFavorite"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:alpha="0.1"
-            android:src="@color/ft_black" />
-
-        <ImageView
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ft_favorite_heart_unlike_icon" />
-    </RelativeLayout>
 
 
     <androidx.core.widget.NestedScrollView
@@ -75,10 +31,57 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-            <View
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
-                />
+                >
+                <RelativeLayout
+                    android:id="@+id/ChaletBack"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:alpha="0.1"
+                        android:src="@color/ft_black" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ft_android_back_arrow"
+                        app:tint="@color/ft_white" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/ChaletFavorite"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:alpha="0.1"
+                        android:src="@color/ft_black" />
+
+                    <ImageView
+                        android:id="@+id/ChaletFavoriteIcon"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ft_favorite_heart_unlike_icon" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,8 +148,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        app:srb_clickable="false"
                         android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:srb_clickable="false"
                         app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
                         app:srb_drawableFilled="@drawable/ft_rate_star_fill_icon"
                         app:srb_rating="5"
@@ -158,8 +161,9 @@
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ChaletAttRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     />
                 
@@ -175,6 +179,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/ChaletDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ةلاصو خبطمو مامح عم فرغ سمخ نم ةدحولا هذه نوكتت مدقلا ةركل بعلمو ةرئاطلا ةركل بعلمو"
@@ -197,8 +202,9 @@
                     />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ChaletGalleryRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_70sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     />
 
@@ -223,7 +229,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@color/ft_orange"
+                        android:src="@drawable/ft_placeholder_map"
                         app:riv_corner_radius="@dimen/_10sdp" />
                     
                     <ImageView
@@ -250,8 +256,9 @@
                     />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ChaletReviewRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -308,6 +315,7 @@
                 android:textSize="@dimen/_10ssp" />
 
             <TextView
+                android:id="@+id/ChaletDepositPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"

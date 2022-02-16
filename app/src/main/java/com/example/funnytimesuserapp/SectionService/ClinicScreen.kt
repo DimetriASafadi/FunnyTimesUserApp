@@ -4,13 +4,27 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
+import com.example.funnytimesuserapp.Models.FTCategory
+import com.example.funnytimesuserapp.Models.FTClinicService
+import com.example.funnytimesuserapp.Models.FTItemPhoto
+import com.example.funnytimesuserapp.Models.FTReview
+import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
+import com.example.funnytimesuserapp.RecViews.ReviewRecView
+import com.example.funnytimesuserapp.SpinnerAdapters.SClinicServiceAdapter
 import com.example.funnytimesuserapp.databinding.FtScreenClinicBinding
+import com.google.gson.GsonBuilder
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
@@ -19,13 +33,18 @@ class ClinicScreen : AppCompatActivity() {
 
     lateinit var binding: FtScreenClinicBinding
     val commonFuncs = CommonFuncs()
+    val favouriteFuncs = FavoriteFuncs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtScreenClinicBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
         val itemid = intent.getIntExtra("ItemId",0)
+        Log.e("ProId",itemid.toString())
+
+        binding.ClinicBack.setOnClickListener {
+            finish()
+        }
 
 
         item_Request(this,itemid)
@@ -38,6 +57,84 @@ class ClinicScreen : AppCompatActivity() {
                 Request.Method.GET, url, Response.Listener<String> { response ->
                     Log.e("Response", response.toString())
                     val jsonobj = JSONObject(response.toString())
+                    val data = jsonobj.getJSONObject("data")
+
+                    binding.ClinicName.text = data.getString("name").toString()
+                    var is_favourite = data.getBoolean("is_favourite")
+                    if (is_favourite){
+                        binding.ClinicFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+                    }else{
+                        binding.ClinicFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                    }
+                    binding.ClinicFavorite.setOnClickListener {
+                        if (commonFuncs.IsInSP(this, Constants.KeyUserToken)){
+                            is_favourite = !is_favourite
+                            if (is_favourite){
+                                binding.ClinicFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
+                                favouriteFuncs.add_favourite_Request(this,itemid)
+                            }else{
+                                binding.ClinicFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
+                                favouriteFuncs.delete_favourite_Request(this,itemid)
+                            }
+                        }else{
+                            commonFuncs.showLoginDialog(this)
+                        }
+                    }
+                    Glide.with(this)
+                        .load(data.getString("img").toString())
+                        .centerCrop()
+                        .placeholder(R.drawable.ft_broken_image)
+                        .into(binding.ClinicImage)
+                    binding.ClinicCity.text = data.getString("address")
+                    binding.ClinicDesc.text = data.getString("description")
+                    binding.ClinicRating.rating = data.getString("star").toFloat()
+                    binding.ClinicRating.setOnTouchListener { _, _ ->
+                        return@setOnTouchListener true
+                    }
+                    val gson = GsonBuilder().create()
+                    val ftPhotos = ArrayList<FTItemPhoto>()
+                    val ftReviews = ArrayList<FTReview>()
+                    val ftServices = ArrayList<FTClinicService>()
+                    ftPhotos.addAll(gson.fromJson(data.getJSONArray("gallery").toString(),Array<FTItemPhoto>::class.java).toList())
+                    ftReviews.addAll(gson.fromJson(data.getJSONArray("reviews").toString(),Array<FTReview>::class.java).toList())
+                    ftServices.addAll(gson.fromJson(data.getJSONArray("services").toString(),Array<FTClinicService>::class.java).toList())
+
+
+
+                    val itemGalleryRecView = ItemGalleryRecView(ftPhotos,this)
+                    binding.ClinicGalleryRecycler.layoutManager = LinearLayoutManager(this,
+                        LinearLayoutManager.HORIZONTAL,
+                        false)
+                    binding.ClinicGalleryRecycler.adapter = itemGalleryRecView
+                    val reviewRecView = ReviewRecView(ftReviews,this)
+                    binding.ClinicReviewsRecycler.layoutManager = LinearLayoutManager(this,
+                        LinearLayoutManager.VERTICAL,
+                        false)
+                    binding.ClinicReviewsRecycler.adapter = reviewRecView
+
+                    val sClinicServiceAdapter = SClinicServiceAdapter(this,ftServices)
+                    binding.ClinicServices.adapter = sClinicServiceAdapter
+                    binding.ClinicServices.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(parent: AdapterView<*>?) {
+                        }
+                        override fun onItemSelected(
+                            parent: AdapterView<*>?,
+                            view: View?,
+                            position: Int,
+                            id: Long
+                        ) {
+                            Log.e("SelectedService", sClinicServiceAdapter.getItem(position).toString())
+                            binding.ClinicDynamicPrice.text = sClinicServiceAdapter.getItem(position)!!.ServicePrice
+                            binding.ClinicPrice.text = sClinicServiceAdapter.getItem(position)!!.ServicePrice
+                        }
+                    }
+//                    ClinicMapLocation
+//                    ClinicTerms
+//                    BookNow
+
+
+
+
 
                     commonFuncs.hideLoadingDialog()
                 }, Response.ErrorListener { error ->

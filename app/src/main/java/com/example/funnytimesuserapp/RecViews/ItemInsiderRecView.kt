@@ -45,15 +45,6 @@ class ItemInsiderRecView (val data : ArrayList<FTItem>, val context: Activity) :
 
 
         holder.IIsFavourite.setOnClickListener {
-            data[position].ItemIsFavorite = !data[position].ItemIsFavorite
-            if (data[position].ItemIsFavorite){
-                holder.IIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_like_icon)
-            }else{
-                holder.IIFavoriteIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
-            }
-        }
-
-        holder.IIsFavourite.setOnClickListener {
             if (commonFuncs.IsInSP(context, Constants.KeyUserToken)){
                 data[position].ItemIsFavorite = !data[position].ItemIsFavorite
                 if (data[position].ItemIsFavorite){

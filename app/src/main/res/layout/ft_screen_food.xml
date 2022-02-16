@@ -7,6 +7,7 @@
     tools:context=".SectionItems.FoodScreen">
 
     <ImageView
+        android:id="@+id/FoodImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_190sdp"
         android:src="@color/ft_orange"
@@ -14,52 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/ChaletBack"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:alpha="0.1"
-            android:src="@color/ft_black" />
 
-        <ImageView
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ft_android_back_arrow"
-            app:tint="@color/ft_white" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/ChaletFavorite"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:alpha="0.1"
-            android:src="@color/ft_black" />
-
-        <ImageView
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ft_favorite_heart_unlike_icon" />
-    </RelativeLayout>
 
 
     <androidx.core.widget.NestedScrollView
@@ -67,15 +24,67 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-            <View
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
-                />
+                android:layout_height="@dimen/_150sdp">
+
+                <RelativeLayout
+                    android:id="@+id/FoodBack"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:alpha="0.1"
+                        android:src="@color/ft_black" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ft_android_back_arrow"
+                        app:tint="@color/ft_white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/FoodFavorite"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:alpha="0.1"
+                        android:src="@color/ft_black" />
+
+                    <ImageView
+                        android:id="@+id/FoodFavoriteIcon"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ft_favorite_heart_unlike_icon" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,13 +99,13 @@
                     >
 
                     <TextView
-                        android:id="@+id/ChaletName"
+                        android:id="@+id/FoodName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_toStartOf="@+id/ChaletPrice"
+                        android:layout_toStartOf="@+id/FoodPrice"
                         android:fontFamily="@font/montserrat_arabic"
                         android:maxLines="2"
                         android:text="شاليه السعودية مع مسبح"
@@ -105,7 +114,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/ChaletPrice"
+                        android:id="@+id/FoodPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -123,13 +132,13 @@
                     >
 
                     <TextView
-                        android:id="@+id/ChaletCity"
+                        android:id="@+id/FoodCity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_toStartOf="@+id/ChaletRating"
+                        android:layout_toStartOf="@+id/FoodRating"
                         android:fontFamily="@font/montserrat_arabic"
                         android:maxLines="2"
                         android:text="حي الرياض,الرياض"
@@ -137,13 +146,13 @@
                         android:textSize="@dimen/_11ssp" />
 
                     <com.willy.ratingbar.BaseRatingBar
-                        android:id="@+id/ChaletRating"
+                        android:id="@+id/FoodRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        app:srb_clickable="false"
                         android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:srb_clickable="false"
                         app:srb_drawableEmpty="@drawable/ft_rate_star_empty_icon"
                         app:srb_drawableFilled="@drawable/ft_rate_star_fill_icon"
                         app:srb_rating="5"
@@ -182,7 +191,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/VendorName"
+                        android:id="@+id/FoodVendorName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -190,9 +199,10 @@
                         android:layout_toStartOf="@+id/VendorFacebook"
                         android:layout_toEndOf="@+id/VendorImage"
                         android:fontFamily="@font/montserrat_arabic"
-                        android:text="مطعم برجر كنج"
                         android:maxLines="1"
+                        android:text="مطعم برجر كنج"
                         android:textColor="@color/ft_orange"
+                        android:textDirection="rtl"
                         android:textSize="@dimen/_10ssp" />
 
                     <ImageView
@@ -225,6 +235,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/FoodDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ةلاصو خبطمو مامح عم فرغ سمخ نم ةدحولا هذه نوكتت مدقلا ةركل بعلمو ةرئاطلا ةركل بعلمو"
@@ -247,9 +258,11 @@
                     />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/FoodGalleryRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_70sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
                     />
 
                 <TextView
@@ -300,6 +313,7 @@
                     />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/FoodReviewsRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"/>
 
@@ -341,48 +355,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_arabic"
-                android:text="العربون"
-                android:textColor="@color/ft_menu_unselected"
-                android:textSize="@dimen/_10ssp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_arabic"
-                android:text="100 ر.س"
-                android:textStyle="bold"
-                android:textColor="@color/ft_dark_blue"
-                android:textSize="@dimen/_12ssp" />
-        </LinearLayout>
 
 
         <TextView
-            android:id="@+id/BookNow"
-            android:layout_width="0dp"
+            android:id="@+id/InCartNow"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_weight="1"
             android:background="@drawable/ft_radius_fill_light"
             android:backgroundTint="@color/ft_dark_blue"
             android:fontFamily="@font/montserrat_arabic"
             android:gravity="center"
-            android:text="احجز الآن"
+            android:text="أضف للعربة"
             android:paddingVertical="@dimen/_10sdp"
             android:textColor="@color/ft_white"
             android:textSize="@dimen/_10ssp" />
 
     </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
