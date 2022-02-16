@@ -49,6 +49,12 @@ class SignInScreen : AppCompatActivity() {
             startActivity(Intent(this,SignUpScreen::class.java))
             finish()
         }
+        binding.ContAsGuest.setOnClickListener {
+            val intent = Intent(this,MainMenu::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
     }
     fun login_Request(username:String,password:String) {
         commonFuncs.showLoadingDialog(this)

@@ -68,21 +68,23 @@ class MainMenu : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.nav_favourite -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        supportFragmentManager.beginTransaction().detach(fragment3).commitNow()
-                        supportFragmentManager.beginTransaction().attach(fragment3).commitNow()
-                        supportFragmentManager.beginTransaction().hide(active).show(fragment3).commitNow()
-                    } else {
+                    if (commonFuncs.IsInSP(this, Constants.KeyUserToken)){
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            supportFragmentManager.beginTransaction().detach(fragment3).commitNow()
+                            supportFragmentManager.beginTransaction().attach(fragment3).commitNow()
+                            supportFragmentManager.beginTransaction().hide(active).show(fragment3).commitNow()
+                        } else {
+                            supportFragmentManager.beginTransaction().hide(active).show(fragment3).detach(fragment3).attach(fragment3).commit()
+                        }
                         supportFragmentManager.beginTransaction().hide(active).show(fragment3).detach(fragment3).attach(fragment3).commit()
+                        active = fragment3
+                        binding.TopSection.visibility = View.VISIBLE
+                        binding.SearchSection.visibility = View.VISIBLE
+                        return@setOnItemSelectedListener true
+                    }else{
+                        commonFuncs.showLoginDialog(this)
+                        return@setOnItemSelectedListener false
                     }
-//                    if (commonFuncs.GetFromSP(this,KeyUserToken)){
-//
-//                    }
-                    supportFragmentManager.beginTransaction().hide(active).show(fragment3).detach(fragment3).attach(fragment3).commit()
-                    active = fragment3
-                    binding.TopSection.visibility = View.VISIBLE
-                    binding.SearchSection.visibility = View.VISIBLE
-                    return@setOnItemSelectedListener true
                 }
                 R.id.nav_user -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment4).commit()

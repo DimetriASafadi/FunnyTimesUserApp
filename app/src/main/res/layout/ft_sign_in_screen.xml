@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AuthSection.SignUpScreen">
+    tools:context=".AuthSection.SignInScreen">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -262,6 +262,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/ContAsGuest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

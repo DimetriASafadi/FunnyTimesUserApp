@@ -13,6 +13,7 @@ import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.CommonSection.Constants.APIMain
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
+import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtSignUpScreenBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -76,6 +77,13 @@ class SignUpScreen : AppCompatActivity() {
                 return@setOnClickListener
             }
             sign_up_Request(suEmail,suPassword)
+        }
+
+        binding.ContAsGuest.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
     fun sign_up_Request(username:String,password:String) {

@@ -134,7 +134,9 @@ class ChaletScreen : AppCompatActivity() {
                 }) {
                 override fun getHeaders(): MutableMap<String, String> {
                     val map = HashMap<String,String>()
-                    map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(activity, Constants.KeyUserToken)
+                    if (commonFuncs.IsInSP(this@ChaletScreen, Constants.KeyUserToken)){
+                        map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(activity, Constants.KeyUserToken)
+                    }
                     return map
                 }
             }

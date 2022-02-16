@@ -159,7 +159,9 @@ class FragHome : Fragment() {
                 }) {
                 override fun getHeaders(): MutableMap<String, String> {
                     val map = HashMap<String,String>()
-                    map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(requireContext(), Constants.KeyUserToken)
+                    if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)){
+                        map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(requireContext(), Constants.KeyUserToken)
+                    }
                     return map
                 }
             }

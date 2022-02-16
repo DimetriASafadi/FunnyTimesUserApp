@@ -18,6 +18,7 @@ import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.Models.FTBanner
 import com.example.funnytimesuserapp.Models.FTItem
+import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.FavoritesRecView
 import com.example.funnytimesuserapp.databinding.FtMainFavouriteBinding
 import com.google.gson.GsonBuilder
@@ -52,7 +53,9 @@ class FragFavourite: Fragment()  {
             false)
         binding.FavoriteItemsRecycler.adapter = favoritesRecView
 
-        get_favourite_Request(requireActivity())
+        if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)){
+            get_favourite_Request(requireActivity())
+        }
 
 
         return binding.root
@@ -94,7 +97,9 @@ class FragFavourite: Fragment()  {
                 }) {
                 override fun getHeaders(): MutableMap<String, String> {
                     val map = HashMap<String,String>()
+                    if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)){
                     map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(activity, Constants.KeyUserToken)
+                    }
                     return map
                 }
             }

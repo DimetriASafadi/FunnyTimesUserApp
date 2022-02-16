@@ -82,6 +82,7 @@
                 android:fontFamily="@font/montserrat_arabic"
                 android:layout_marginVertical="@dimen/_2sdp"
                 android:maxLines="1"
+                android:textDirection="rtl"
                 android:layout_marginHorizontal="@dimen/_4sdp"
                 app:drawableTint="@color/ft_orange"
                 app:drawableStartCompat="@drawable/ft_bag_shoping_icon" />
