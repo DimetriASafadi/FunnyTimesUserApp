@@ -1,9 +1,9 @@
 package com.example.funnytimesuserapp.SectionItems
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -13,10 +13,10 @@ import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
-import com.example.funnytimesuserapp.Models.FTItemPhoto
-import com.example.funnytimesuserapp.Models.FTReview
+import com.example.funnytimesuserapp.Models.*
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
+import com.example.funnytimesuserapp.RecViews.ProAttrContainerRecView
 import com.example.funnytimesuserapp.RecViews.ReviewRecView
 import com.example.funnytimesuserapp.databinding.FtScreenProductBinding
 import com.google.gson.GsonBuilder
@@ -41,6 +41,8 @@ class ProductScreen : AppCompatActivity() {
         binding.ProductBack.setOnClickListener {
             finish()
         }
+
+
 
 
         item_Request(this,itemid)
@@ -90,12 +92,29 @@ class ProductScreen : AppCompatActivity() {
                     }
                     binding.ProductPrice.text = data.getString("price")
                     val gson = GsonBuilder().create()
+                    val ftProAttrContainer = ArrayList<FTProAttrContainer>()
+                    val attributes = data.getJSONArray("attributes")
                     val ftPhotos = ArrayList<FTItemPhoto>()
                     val ftReviews = ArrayList<FTReview>()
+                    for (a in 0 until attributes.length())
+                    {
+                        val ftproAttributes = ArrayList<FTProAttribute>()
+                        ftproAttributes.addAll(gson.fromJson(attributes.getJSONObject(a).getJSONArray("data").toString(),Array<FTProAttribute>::class.java).toList())
+                        ftProAttrContainer.add(FTProAttrContainer(attributes.getJSONObject(a).getString("name").toString(),ftproAttributes))
+                    }
+
+
+
+
                     ftPhotos.addAll(gson.fromJson(data.getJSONArray("gallery").toString(),Array<FTItemPhoto>::class.java).toList())
                     ftReviews.addAll(gson.fromJson(data.getJSONArray("reviews").toString(),Array<FTReview>::class.java).toList())
 
 
+                    val proAttrContainerRecView = ProAttrContainerRecView(ftProAttrContainer,this)
+                    binding.ProAttrsRecycler.layoutManager = LinearLayoutManager(this,
+                        LinearLayoutManager.VERTICAL,
+                        false)
+                    binding.ProAttrsRecycler.adapter = proAttrContainerRecView
 
                     val itemGalleryRecView = ItemGalleryRecView(ftPhotos,this)
                     binding.ProductGalleryRecycler.layoutManager = LinearLayoutManager(this,

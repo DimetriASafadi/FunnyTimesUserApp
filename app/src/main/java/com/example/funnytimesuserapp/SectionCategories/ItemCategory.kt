@@ -105,6 +105,7 @@ class ItemCategory : AppCompatActivity() {
 
 
                     val gson = GsonBuilder().create()
+                    ftCategory.add(FTCategory(0,"الكل","","",""))
                     ftCategory.addAll(gson.fromJson(categories.toString(),Array<FTCategory>::class.java).toList())
                     MostOrder.addAll(gson.fromJson(mostBooking.toString(),Array<FTItem>::class.java).toList())
                     MostFamouse.addAll(gson.fromJson(mostOrder.toString(),Array<FTItem>::class.java).toList())

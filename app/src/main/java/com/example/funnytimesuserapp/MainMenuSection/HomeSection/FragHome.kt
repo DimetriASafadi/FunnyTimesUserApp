@@ -128,6 +128,7 @@ class FragHome : Fragment() {
 
                     val gson = GsonBuilder().create()
                     ftBanners.addAll(gson.fromJson(ads.toString(),Array<FTBanner>::class.java).toList())
+                    ftCategories.add(FTCategory(0,"الكل","","",""))
                     ftCategories.addAll(gson.fromJson(categories.toString(),Array<FTCategory>::class.java).toList())
                     ftMostRented.addAll(gson.fromJson(mostBooking.toString(),Array<FTItem>::class.java).toList())
                     ftMostShoped.addAll(gson.fromJson(mostOrder.toString(),Array<FTItem>::class.java).toList())

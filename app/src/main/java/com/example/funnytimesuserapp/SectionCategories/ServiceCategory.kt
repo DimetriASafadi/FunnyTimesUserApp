@@ -111,6 +111,7 @@ class ServiceCategory : AppCompatActivity() {
 
 
                     val gson = GsonBuilder().create()
+                    ftCategory.add(FTCategory(0,"الكل","","",""))
                     ftCategory.addAll(gson.fromJson(categories.toString(),Array<FTCategory>::class.java).toList())
                     mostView.addAll(gson.fromJson(mostBooking.toString(),Array<FTItem>::class.java).toList())
                     mostClose.addAll(gson.fromJson(mostOrder.toString(),Array<FTItem>::class.java).toList())

@@ -31,9 +31,7 @@ class BannerRecView (val data : ArrayList<FTBanner>, val context: Context) : Rec
             .centerCrop()
             .placeholder(R.drawable.ft_broken_image)
             .into(holder.BannerImage)
-        holder.BannerImage.setOnClickListener {
-            context.startActivity(Intent(context,ChaletScreen::class.java))
-        }
+
     }
 }
 class BannerViewHolder (view: View) : RecyclerView.ViewHolder(view) {

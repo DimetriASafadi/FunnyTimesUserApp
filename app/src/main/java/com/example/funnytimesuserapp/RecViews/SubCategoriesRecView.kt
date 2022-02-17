@@ -1,5 +1,6 @@
 package com.example.funnytimesuserapp.RecViews
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
@@ -14,7 +15,7 @@ import com.example.funnytimesuserapp.Interfaces.SubCategoryClickListener
 import com.example.funnytimesuserapp.Models.FTSubCategory
 import com.example.funnytimesuserapp.R
 
-class SubCategoriesRecView (val data : ArrayList<FTSubCategory>, val context: Context,val subCategoryClickListener: SubCategoryClickListener,selectedone:Int) : RecyclerView.Adapter<SubCatViewHolder>() {
+class SubCategoriesRecView (val data : ArrayList<FTSubCategory>, val context: Activity,val subCategoryClickListener: SubCategoryClickListener,selectedone:Int) : RecyclerView.Adapter<SubCatViewHolder>() {
 
     var selectedItem = selectedone
 
@@ -39,18 +40,26 @@ class SubCategoriesRecView (val data : ArrayList<FTSubCategory>, val context: Co
                 holder.CategoryName.setTextColor(context.getColor(R.color.ft_black))
             }
             holder.WholeCategory.setOnClickListener {
-                selectedItem = position
-                subCategoryClickListener.OnSubCategoryClickListener(data[position])
-                notifyDataSetChanged()
+                if (position == 0){
+                    context.finish()
+                }else{
+                    selectedItem = position
+                    subCategoryClickListener.OnSubCategoryClickListener(data[position])
+                    notifyDataSetChanged()
+                }
             }
 
 
+        if (position == 0){
+            holder.CategoryImage.setImageResource(R.drawable.ft_cat_all)
+        }else{
+            Glide.with(context)
+                .load(data[position].SubCatIcon)
+                .centerCrop()
+                .placeholder(R.drawable.ft_broken_image)
+                .into(holder.CategoryImage)
+        }
 
-        Glide.with(context)
-            .load(data[position].SubCatIcon)
-            .centerCrop()
-            .placeholder(R.drawable.ft_broken_image)
-            .into(holder.CategoryImage)
         holder.CategoryName.text = data[position].SubCatName
 
     }
