@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.funnytimesuserapp.Interfaces.OnProAttributesClick
 import com.example.funnytimesuserapp.Models.FTProAttribute
 import com.example.funnytimesuserapp.R
 
-class ProAttributesRecView (val data : ArrayList<FTProAttribute>, val context: Context) : RecyclerView.Adapter<ProAttrViewHolder>() {
+class ProAttributesRecView (val data : ArrayList<FTProAttribute>, val context: Context,val onProAttributesClick: OnProAttributesClick) : RecyclerView.Adapter<ProAttrViewHolder>() {
 
     var selectedItem = 0
 
@@ -26,12 +27,18 @@ class ProAttributesRecView (val data : ArrayList<FTProAttribute>, val context: C
 
         holder.ProAttName.text = data[position].AttrName
         if (selectedItem == position){
+            data[position].AttributeIsSelected = true
             holder.ProAttName.backgroundTintList = ColorStateList.valueOf(context.getColor(R.color.ft_dark_blue))
             holder.ProAttName.setTextColor(context.getColor(R.color.ft_white))
         }else{
+            data[position].AttributeIsSelected = false
             holder.ProAttName.backgroundTintList = ColorStateList.valueOf(context.getColor(R.color.ft_grey_6))
             holder.ProAttName.setTextColor(context.getColor(R.color.ft_grey_7))
         }
+        if (position == (data.size-1)){
+            onProAttributesClick.OnProAttributesClickListener(position)
+        }
+
         holder.ProAttName.setOnClickListener {
             selectedItem = position
             notifyDataSetChanged()

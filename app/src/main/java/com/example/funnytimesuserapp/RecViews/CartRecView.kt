@@ -12,6 +12,7 @@ import com.example.funnytimesuserapp.Interfaces.OnInCartIncrease
 import com.example.funnytimesuserapp.Interfaces.OnInCartMinos
 import com.example.funnytimesuserapp.Models.FTInCart
 import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.SectionItems.ItemsFuncs
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 import de.hdodenhof.circleimageview.CircleImageView
@@ -21,6 +22,7 @@ class CartRecView(val data : ArrayList<FTInCart>, val context: Context
 ,val onInCartMinos: OnInCartMinos
 ,val onInCartIncrease: OnInCartIncrease) : RecyclerView.Adapter<CartViewHolder>() {
 
+    val itemsFuncs = ItemsFuncs()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         return CartViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_cart_item, parent, false))    }
 
@@ -42,9 +44,25 @@ class CartRecView(val data : ArrayList<FTInCart>, val context: Context
         holder.ProductRating.setOnTouchListener { v, event ->
             return@setOnTouchListener true
         }
+        if (itemsFuncs.GetProAttributesNames(data[position].ItemAttributes).isNullOrEmpty()){
+            holder.ProductAttributes.visibility = View.GONE
+        }else{
+            holder.ProductAttributes.visibility = View.VISIBLE
+            holder.ProductAttributes.text = itemsFuncs.GetProAttributesNames(data[position].ItemAttributes)
+        }
         holder.ProductRatingText.text = data[position].ItemRateText.toString()
         holder.ProductPrice.text = data[position].ItemPrice.toString() + "ر.س"
+        holder.ProductQuantity.text = data[position].ItemQuantity.toString()
 
+        holder.ProductDelete.setOnClickListener {
+            onInCartDelete.OnInCartDeleteClick(position)
+        }
+        holder.ProductMinos.setOnClickListener {
+            onInCartMinos.OnInCartMinosClick(position)
+        }
+        holder.ProductIncrease.setOnClickListener {
+            onInCartIncrease.OnInCartIncreaseClick(position)
+        }
     }
 }
 
@@ -52,6 +70,7 @@ class CartViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to
     val ProductImage = view.findViewById<RoundedImageView>(R.id.ProductImage)
     val ProductTitle = view.findViewById<TextView>(R.id.ProductTitle)
+    val ProductAttributes = view.findViewById<TextView>(R.id.ProductAttributes)
     val ProductVendorLocation = view.findViewById<TextView>(R.id.ProductVendorLocation)
     val ProductPrice = view.findViewById<TextView>(R.id.ProductPrice)
     val ProductRating = view.findViewById<BaseRatingBar>(R.id.ProductRating)

@@ -14,6 +14,7 @@ import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FragFavour
 import com.example.funnytimesuserapp.MainMenuSection.HomeSection.FragHome
 import com.example.funnytimesuserapp.MainMenuSection.SettingSection.FragSetting
 import com.example.funnytimesuserapp.MainMenuSection.UserSection.FragUser
+import com.example.funnytimesuserapp.SectionCart.CartScreen
 import com.example.funnytimesuserapp.SectionService.SectionPayment.ServiceDatingScreen
 import com.example.funnytimesuserapp.databinding.FtMainMenuBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -107,6 +108,10 @@ class MainMenu : AppCompatActivity() {
 
         binding.SearchFilter.setOnClickListener {
            startActivity(Intent(this,ServiceDatingScreen::class.java))
+        }
+
+        binding.OpenCart.setOnClickListener {
+            startActivity(Intent(this,CartScreen::class.java))
         }
 
 

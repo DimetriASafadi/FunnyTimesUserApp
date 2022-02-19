@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.SectionItems
 
 import android.app.Activity
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +14,9 @@ import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
+import com.example.funnytimesuserapp.Models.FTInCart
 import com.example.funnytimesuserapp.Models.FTItemPhoto
+import com.example.funnytimesuserapp.Models.FTProAttribute
 import com.example.funnytimesuserapp.Models.FTReview
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
@@ -29,6 +32,8 @@ class FoodScreen : AppCompatActivity() {
     lateinit var binding: FtScreenFoodBinding
     val commonFuncs = CommonFuncs()
     val favouriteFuncs = FavoriteFuncs()
+    val itemFuncs = ItemsFuncs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtScreenFoodBinding.inflate(layoutInflater)
@@ -54,6 +59,7 @@ class FoodScreen : AppCompatActivity() {
                     Log.e("Response", response.toString())
                     val jsonobj = JSONObject(response.toString())
                     val data = jsonobj.getJSONObject("data")
+                    val vendor = data.getJSONObject("vendor")
 
                     binding.FoodName.text = data.getString("name").toString()
                     var is_favourite = data.getBoolean("is_favourite")
@@ -82,7 +88,7 @@ class FoodScreen : AppCompatActivity() {
                         .placeholder(R.drawable.ft_broken_image)
                         .into(binding.FoodImage)
                     binding.FoodCity.text = data.getString("address")
-                    binding.FoodVendorName.text = data.getString("vendor_name")
+                    binding.FoodVendorName.text = vendor.getString("name")
                     binding.FoodDesc.text = data.getString("description")
                     binding.FoodRating.rating = data.getString("star").toFloat()
                     binding.FoodRating.setOnTouchListener { _, _ ->
@@ -107,6 +113,40 @@ class FoodScreen : AppCompatActivity() {
                         LinearLayoutManager.VERTICAL,
                         false)
                     binding.FoodReviewsRecycler.adapter = reviewRecView
+
+
+                    var isinCart = itemFuncs.CheckProduct(itemid,this)
+                    if (isinCart){
+                        binding.InCartNow.text = "موجود في العربة"
+                        binding.InCartNow.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.ft_orange,null))
+                    }else{
+                        binding.InCartNow.setOnClickListener {
+                            if (isinCart){
+                                binding.InCartNow.text = "موجود في العربة"
+                                binding.InCartNow.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.ft_orange,null))
+                            }else{
+                                itemFuncs.AddToCart(this,
+                                    FTInCart(
+                                        itemid,
+                                        "",
+                                        data.getString("name").toString(),
+                                        data.getString("img").toString(),
+                                        vendor.getString("name"),
+                                        data.getString("address"),
+                                        data.getString("price").toDouble(),
+                                        data.getString("star"),
+                                        0,
+                                        1))
+                                isinCart = itemFuncs.CheckProduct(itemid,this)
+                                binding.InCartNow.text = "موجود في العربة"
+                                binding.InCartNow.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.ft_orange,null))
+                            }
+                        }
+
+                    }
+
+
+
 
 
 

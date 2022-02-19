@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.SectionItems
 
 import android.app.Activity
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Interfaces.OnProAttributeContainerClick
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.*
 import com.example.funnytimesuserapp.R
@@ -24,27 +26,27 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class ProductScreen : AppCompatActivity() {
+class ProductScreen : AppCompatActivity(), OnProAttributeContainerClick {
 
     lateinit var binding: FtScreenProductBinding
     val commonFuncs = CommonFuncs()
     val favouriteFuncs = FavoriteFuncs()
+    val itemFuncs = ItemsFuncs()
+    var itemid = 0
+
+    lateinit var proAttrContainerRecView :ProAttrContainerRecView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtScreenProductBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        val itemid = intent.getIntExtra("ItemId",0)
+        itemid = intent.getIntExtra("ItemId",0)
         Log.e("ProId",itemid.toString())
 
         binding.ProductBack.setOnClickListener {
             finish()
         }
-
-
-
-
         item_Request(this,itemid)
     }
     fun item_Request(activity: Activity, itemid :Int){
@@ -56,6 +58,7 @@ class ProductScreen : AppCompatActivity() {
                     Log.e("Response", response.toString())
                     val jsonobj = JSONObject(response.toString())
                     val data = jsonobj.getJSONObject("data")
+                    val vendor = data.getJSONObject("vendor")
 
                     binding.ProductName.text = data.getString("name").toString()
                     var is_favourite = data.getBoolean("is_favourite")
@@ -84,7 +87,7 @@ class ProductScreen : AppCompatActivity() {
                         .placeholder(R.drawable.ft_broken_image)
                         .into(binding.ProductImage)
                     binding.ProductCity.text = data.getString("address")
-                    binding.ProductVendorName.text = data.getString("vendor_name")
+                    binding.ProductVendorName.text = vendor.getString("name")
                     binding.ProductDesc.text = data.getString("description")
                     binding.ProductRating.rating = data.getString("star").toFloat()
                     binding.ProductRating.setOnTouchListener { _, _ ->
@@ -103,14 +106,11 @@ class ProductScreen : AppCompatActivity() {
                         ftProAttrContainer.add(FTProAttrContainer(attributes.getJSONObject(a).getString("name").toString(),ftproAttributes))
                     }
 
-
-
-
                     ftPhotos.addAll(gson.fromJson(data.getJSONArray("gallery").toString(),Array<FTItemPhoto>::class.java).toList())
                     ftReviews.addAll(gson.fromJson(data.getJSONArray("reviews").toString(),Array<FTReview>::class.java).toList())
 
 
-                    val proAttrContainerRecView = ProAttrContainerRecView(ftProAttrContainer,this)
+                    proAttrContainerRecView = ProAttrContainerRecView(ftProAttrContainer,this,this)
                     binding.ProAttrsRecycler.layoutManager = LinearLayoutManager(this,
                         LinearLayoutManager.VERTICAL,
                         false)
@@ -126,6 +126,29 @@ class ProductScreen : AppCompatActivity() {
                         LinearLayoutManager.VERTICAL,
                         false)
                     binding.ProductReviewsRecycler.adapter = reviewRecView
+
+
+
+                    binding.InCartNow.setOnClickListener {
+                        itemFuncs.AddToCart(this,
+                            FTInCart(
+                                itemid,
+                                itemFuncs.GetProIdString(itemid,proAttrContainerRecView.getAllData()),
+                                data.getString("name").toString(),
+                                data.getString("img").toString(),
+                                vendor.getString("name"),
+                                data.getString("address"),
+                                data.getString("price").toDouble(),
+                                data.getString("star"),
+                                0,
+                                1,
+                                itemFuncs.GetSelectedAttributes(proAttrContainerRecView.getAllData())
+                            )
+                        )
+                        binding.InCartNow.text = "موجود في العربة"
+                        binding.InCartNow.isClickable = false
+                        binding.InCartNow.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.ft_orange,null))
+                    }
 
 
 
@@ -159,6 +182,19 @@ class ProductScreen : AppCompatActivity() {
         }catch (error: JSONException){
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
+        }
+    }
+
+    override fun OnProAttributeContainerClickListener(data: ArrayList<FTProAttrContainer>) {
+        if (itemFuncs.CheckProductAttributes(itemFuncs.GetProIdString(itemid,proAttrContainerRecView.getAllData()), this,itemFuncs.GetSelectedAttributesString(proAttrContainerRecView.getAllData()))){
+            binding.InCartNow.text = "موجود في العربة"
+            binding.InCartNow.isClickable = false
+            binding.InCartNow.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.ft_orange,null))
+        }else{
+            binding.InCartNow.text = "أضف للعربة"
+            binding.InCartNow.isClickable = true
+            binding.InCartNow.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.ft_dark_blue,null))
+
         }
     }
 }

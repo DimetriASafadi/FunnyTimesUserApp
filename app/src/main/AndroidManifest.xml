@@ -15,10 +15,14 @@
         android:theme="@style/Theme.FunnyTimesUserApp">
         <activity
             android:name=".SectionVendor.VendorScreen"
-            android:exported="false" />
+            android:configChanges="locale|orientation"
+            android:exported="true"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".SectionCart.CartScreen"
-            android:exported="false" />
+            android:configChanges="locale|orientation"
+            android:exported="true"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".SectionService.SectionPayment.ServiceDatingScreen"
             android:configChanges="locale|orientation"

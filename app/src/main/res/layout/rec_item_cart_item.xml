@@ -66,8 +66,22 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginHorizontal="@dimen/_4sdp"
                 android:maxLines="1"
+                android:textDirection="rtl"
                 />
 
+            <TextView
+                android:id="@+id/ProductAttributes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="حي الرياض,الرياض"
+                android:textSize="@dimen/_9ssp"
+                android:maxLines="1"
+                android:textDirection="rtl"
+                android:textColor="@color/ft_dark_blue"
+                android:fontFamily="@font/montserrat_arabic"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                />
             <TextView
                 android:id="@+id/ProductVendorLocation"
                 android:layout_width="match_parent"
@@ -75,6 +89,7 @@
                 android:text="حي الرياض,الرياض"
                 android:textSize="@dimen/_9ssp"
                 android:maxLines="1"
+                android:textDirection="rtl"
                 android:textColor="@color/ft_menu_unselected"
                 android:fontFamily="@font/montserrat_arabic"
                 android:layout_marginVertical="@dimen/_2sdp"
@@ -144,6 +159,7 @@
                 android:background="@drawable/ft_radius_fill_light"
                 android:backgroundTint="@color/ft_grey"
                 android:textSize="@dimen/_12ssp"
+                android:textColor="@color/ft_dark_blue"
                 android:layout_marginHorizontal="@dimen/_2sdp"
                 />
             <TextView
@@ -155,6 +171,7 @@
                 android:padding="@dimen/_5sdp"
                 android:background="@drawable/ft_radius_fill_light"
                 android:backgroundTint="@color/ft_grey"
+                android:textColor="@color/ft_black"
                 android:layout_marginHorizontal="@dimen/_2sdp"
                 />
             <TextView
@@ -168,6 +185,7 @@
                 android:background="@drawable/ft_radius_fill_light"
                 android:backgroundTint="@color/ft_grey"
                 android:textSize="@dimen/_12ssp"
+                android:textColor="@color/ft_dark_blue"
                 android:layout_marginHorizontal="@dimen/_2sdp"
                 />
 

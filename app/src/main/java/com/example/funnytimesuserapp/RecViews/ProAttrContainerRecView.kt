@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
+import com.example.funnytimesuserapp.Interfaces.OnProAttributeContainerClick
+import com.example.funnytimesuserapp.Interfaces.OnProAttributesClick
 import com.example.funnytimesuserapp.Models.FTProAttrContainer
 import com.example.funnytimesuserapp.R
 
 
-class ProAttrContainerRecView(val data : ArrayList<FTProAttrContainer>, val context: Context) : RecyclerView.Adapter<AttrContainerViewHolder>() {
+class ProAttrContainerRecView(val data : ArrayList<FTProAttrContainer>, val context: Context,val onProAttributeContainerClick: OnProAttributeContainerClick) : RecyclerView.Adapter<AttrContainerViewHolder>(),
+    OnProAttributesClick {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttrContainerViewHolder {
         return AttrContainerViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_attributes_container, parent, false))    }
@@ -32,10 +35,19 @@ class ProAttrContainerRecView(val data : ArrayList<FTProAttrContainer>, val cont
             .build()
 
         holder.AttContainerName.text = data[position].ContainerName
-        val adapter = ProAttributesRecView(data[position].ContainerAttributes,context)
+        val adapter = ProAttributesRecView(data[position].ContainerAttributes,context,this)
         holder.AttContainerRecycler.layoutManager = chipsLayoutManager
         holder.AttContainerRecycler.adapter = adapter
     }
+
+    fun getAllData():ArrayList<FTProAttrContainer>{
+        return data
+    }
+
+    override fun OnProAttributesClickListener(position: Int) {
+        onProAttributeContainerClick.OnProAttributeContainerClickListener(data)
+    }
+
 }
 class AttrContainerViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to

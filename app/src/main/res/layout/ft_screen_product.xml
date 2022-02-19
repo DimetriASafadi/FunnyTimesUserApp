@@ -365,7 +365,7 @@
             android:backgroundTint="@color/ft_dark_blue"
             android:fontFamily="@font/montserrat_arabic"
             android:gravity="center"
-            android:text="احجز الآن"
+            android:text="أضف للعربة"
             android:paddingVertical="@dimen/_10sdp"
             android:textColor="@color/ft_white"
             android:textSize="@dimen/_10ssp" />

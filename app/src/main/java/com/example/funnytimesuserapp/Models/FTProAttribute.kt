@@ -5,9 +5,10 @@ import java.io.Serializable
 
 data class FTProAttribute(
     @SerializedName("name")
-    val AttrName:String? = "",
+    var AttrName:String? = "",
     @SerializedName("id")
     val AttrId:Int? = null,
     @SerializedName("attribute_id")
-    val AttrTypeId:Int? = null
+    val AttrTypeId:Int? = null,
+    var AttributeIsSelected:Boolean = false
 ):Serializable
