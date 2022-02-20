@@ -175,13 +175,14 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     >
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/VendorImage"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
-                        android:src="@drawable/ft_placeholder_map"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:src="@color/ft_orange"
                         />
 
                     <TextView

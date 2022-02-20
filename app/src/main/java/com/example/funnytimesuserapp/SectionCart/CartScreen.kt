@@ -39,10 +39,6 @@ class CartScreen : AppCompatActivity(), OnInCartDelete, OnInCartMinos, OnInCartI
 
 
 
-
-
-
-
     }
 
     override fun OnInCartDeleteClick(position: Int) {

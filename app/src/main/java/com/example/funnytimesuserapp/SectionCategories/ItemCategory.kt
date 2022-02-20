@@ -124,10 +124,10 @@ class ItemCategory : AppCompatActivity() {
                         val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
                         val err = JSONObject(errorw)
                         val errMessage = err.getJSONObject("status").getString("message")
-                        commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول",errMessage)
+                        commonFuncs.showDefaultDialog(this,"خطأ في الاتصال",errMessage)
                         Log.e("eResponser", errorw.toString())
                     } else {
-                        commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول","حصل خطأ ما")
+                        commonFuncs.showDefaultDialog(this,"خطأ في الاتصال","حصل خطأ ما")
                         Log.e("eResponsew", "RequestError:$error")
                     }
                     commonFuncs.hideLoadingDialog()

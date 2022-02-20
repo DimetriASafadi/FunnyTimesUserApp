@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.SectionItems
 
 import android.app.Activity
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
 import com.example.funnytimesuserapp.RecViews.ProAttrContainerRecView
 import com.example.funnytimesuserapp.RecViews.ReviewRecView
+import com.example.funnytimesuserapp.SectionVendor.VendorScreen
 import com.example.funnytimesuserapp.databinding.FtScreenProductBinding
 import com.google.gson.GsonBuilder
 import org.json.JSONException
@@ -86,8 +88,27 @@ class ProductScreen : AppCompatActivity(), OnProAttributeContainerClick {
                         .centerCrop()
                         .placeholder(R.drawable.ft_broken_image)
                         .into(binding.ProductImage)
+                    Glide.with(this)
+                        .load(vendor.getString("img").toString())
+                        .centerCrop()
+                        .placeholder(R.drawable.ft_broken_image)
+                        .into(binding.VendorImage)
                     binding.ProductCity.text = data.getString("address")
                     binding.ProductVendorName.text = vendor.getString("name")
+                    val vendortype = data.getString("type")
+                    val vendorid = vendor.getInt("id")
+                    binding.ProductVendorName.setOnClickListener {
+                        val intent = Intent(this, VendorScreen::class.java)
+                        intent.putExtra("vendorid",vendorid)
+                        intent.putExtra("vendortype",vendortype)
+                        startActivity(intent)
+                    }
+                    binding.VendorImage.setOnClickListener {
+                        val intent = Intent(this, VendorScreen::class.java)
+                        intent.putExtra("vendorid",vendorid)
+                        intent.putExtra("vendortype",vendortype)
+                        startActivity(intent)
+                    }
                     binding.ProductDesc.text = data.getString("description")
                     binding.ProductRating.rating = data.getString("star").toFloat()
                     binding.ProductRating.setOnTouchListener { _, _ ->

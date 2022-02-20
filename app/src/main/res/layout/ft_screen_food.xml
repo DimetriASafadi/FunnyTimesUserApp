@@ -16,9 +16,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -188,7 +185,8 @@
                         android:layout_height="@dimen/_25sdp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ft_placeholder_map" />
+                        android:src="@color/ft_orange"
+                        />
 
                     <TextView
                         android:id="@+id/FoodVendorName"

@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.SectionItems
 
 import android.app.Activity
+import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.example.funnytimesuserapp.Models.FTReview
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
 import com.example.funnytimesuserapp.RecViews.ReviewRecView
+import com.example.funnytimesuserapp.SectionVendor.VendorScreen
 import com.example.funnytimesuserapp.databinding.FtScreenFoodBinding
 import com.google.gson.GsonBuilder
 import org.json.JSONException
@@ -87,8 +89,28 @@ class FoodScreen : AppCompatActivity() {
                         .centerCrop()
                         .placeholder(R.drawable.ft_broken_image)
                         .into(binding.FoodImage)
+                    Glide.with(this)
+                        .load(vendor.getString("img").toString())
+                        .centerCrop()
+                        .placeholder(R.drawable.ft_broken_image)
+                        .into(binding.VendorImage)
                     binding.FoodCity.text = data.getString("address")
                     binding.FoodVendorName.text = vendor.getString("name")
+                    val vendortype = data.getString("type")
+                    val vendorid = vendor.getInt("id")
+                    binding.FoodVendorName.setOnClickListener {
+                        val intent = Intent(this,VendorScreen::class.java)
+                        intent.putExtra("vendorid",vendorid)
+                        intent.putExtra("vendortype",vendortype)
+                        startActivity(intent)
+                    }
+                    binding.VendorImage.setOnClickListener {
+                        val intent = Intent(this,VendorScreen::class.java)
+                        intent.putExtra("vendorid",vendorid)
+                        intent.putExtra("vendortype",vendortype)
+                        startActivity(intent)
+                    }
+
                     binding.FoodDesc.text = data.getString("description")
                     binding.FoodRating.rating = data.getString("star").toFloat()
                     binding.FoodRating.setOnTouchListener { _, _ ->
@@ -101,8 +123,6 @@ class FoodScreen : AppCompatActivity() {
                     ftPhotos.addAll(gson.fromJson(data.getJSONArray("gallery").toString(),Array<FTItemPhoto>::class.java).toList())
                     ftReviews.addAll(gson.fromJson(data.getJSONArray("reviews").toString(),Array<FTReview>::class.java).toList())
 
-
-
                     val itemGalleryRecView = ItemGalleryRecView(ftPhotos,this)
                     binding.FoodGalleryRecycler.layoutManager = LinearLayoutManager(this,
                         LinearLayoutManager.HORIZONTAL,
@@ -113,7 +133,6 @@ class FoodScreen : AppCompatActivity() {
                         LinearLayoutManager.VERTICAL,
                         false)
                     binding.FoodReviewsRecycler.adapter = reviewRecView
-
 
                     var isinCart = itemFuncs.CheckProduct(itemid,this)
                     if (isinCart){
@@ -142,15 +161,7 @@ class FoodScreen : AppCompatActivity() {
                                 binding.InCartNow.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.ft_orange,null))
                             }
                         }
-
                     }
-
-
-
-
-
-
-
                     commonFuncs.hideLoadingDialog()
                 }, Response.ErrorListener { error ->
                     if (error.networkResponse != null && error.networkResponse.data != null) {
