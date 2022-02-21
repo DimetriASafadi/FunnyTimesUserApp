@@ -1,8 +1,11 @@
 package com.example.funnytimesuserapp.SectionCategories
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -19,6 +22,8 @@ import com.example.funnytimesuserapp.RecViews.CategoriesRecView
 import com.example.funnytimesuserapp.RecViews.ServiceInsiderRecView
 import com.example.funnytimesuserapp.RecViews.ServicesBigVerticalRecView
 import com.example.funnytimesuserapp.RecViews.SubCategoriesRecView
+import com.example.funnytimesuserapp.SectionSearch.SearchFuncs
+import com.example.funnytimesuserapp.SectionSearch.SearchScreen
 import com.example.funnytimesuserapp.databinding.FtCategoryServiceBinding
 import com.google.gson.GsonBuilder
 import org.json.JSONException
@@ -34,6 +39,7 @@ class ServiceCategory : AppCompatActivity() {
     val Recent = ArrayList<FTItem>()
 
     val commonFuncs = CommonFuncs()
+    val searchFuncs = SearchFuncs()
 
     lateinit var categoriesRecView: CategoriesRecView
     lateinit var servicesBigVerticalRecView : ServicesBigVerticalRecView
@@ -89,6 +95,25 @@ class ServiceCategory : AppCompatActivity() {
             false)
         binding.MostRecent.adapter = serviceInsiderRecView2
 
+
+        binding.SearchFilter.setOnClickListener {
+            searchFuncs.showFilterDialog(this)
+        }
+        binding.CategorySearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val intent = Intent(this, SearchScreen::class.java)
+                intent.putExtra("city_id","")
+                intent.putExtra("address","")
+                intent.putExtra("name",binding.CategorySearch.text.toString())
+                intent.putExtra("price[from]","")
+                intent.putExtra("price[to]","")
+                intent.putExtra("category_id","")
+                intent.putExtra("sub_category_id","")
+                startActivity(intent)
+                return@OnEditorActionListener true
+            }
+            false
+        })
 
         category_Request()
     }

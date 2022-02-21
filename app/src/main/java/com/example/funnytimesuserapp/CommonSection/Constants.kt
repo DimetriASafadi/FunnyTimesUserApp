@@ -9,4 +9,5 @@ object Constants {
     val KeyUserToken = "UserToken"
     val KeyUserID = "UserID"
     val KeyAppLanguage = "AppLanguage"
+    val FilterTools = "FilterTools"
 }

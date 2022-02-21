@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/ft_radius_top_fill"
-    android:backgroundTint="@color/ft_white"
     android:layout_gravity="bottom"
+    android:backgroundTint="@color/ft_white"
+    android:background="@drawable/ft_radius_top_fill"
     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+
+        >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,11 +48,10 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         >
         <Spinner
+            android:id="@+id/FilterCitySpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
             />
 
     </LinearLayout>
@@ -69,12 +76,22 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         >
-        <Spinner
+        <EditText
+            android:id="@+id/FilterDistricName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
+            android:textColor="@color/ft_black"
+            android:alpha="0.7"
+            android:paddingVertical="@dimen/_1sdp"
+            android:textSize="@dimen/_11ssp"
+            android:hint="اسم الحي"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:textColorHint="@color/ft_grey_3"
+            android:fontFamily="@font/montserrat_arabic"
+            android:background="@color/ft_white"
+            android:maxLines="1"
             />
 
     </LinearLayout>
@@ -99,12 +116,22 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         >
-        <Spinner
+        <EditText
+            android:id="@+id/FilterPlaceName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
+            android:textColor="@color/ft_black"
+            android:alpha="0.7"
+            android:paddingVertical="@dimen/_1sdp"
+            android:textSize="@dimen/_11ssp"
+            android:hint="اسم المكان"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:textColorHint="@color/ft_grey_3"
+            android:fontFamily="@font/montserrat_arabic"
+            android:background="@color/ft_white"
+            android:maxLines="1"
             />
 
     </LinearLayout>
@@ -193,11 +220,10 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         >
         <Spinner
+            android:id="@+id/FilterCategorySpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
             />
 
     </LinearLayout>
@@ -222,11 +248,10 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         >
         <Spinner
+            android:id="@+id/FilterSubCategorySpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:theme="@style/SpinnerTheme"
-            style="@style/SpinnerTheme"
             />
 
     </LinearLayout>
@@ -240,6 +265,7 @@
         >
 
         <TextView
+            android:id="@+id/FilterResults"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -254,6 +280,7 @@
             android:layout_marginEnd="@dimen/_2sdp"
             />
         <TextView
+            android:id="@+id/FilterClear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -275,7 +302,7 @@
 
 
 
+    </LinearLayout>
 
 
-
-</LinearLayout>
+</ScrollView>

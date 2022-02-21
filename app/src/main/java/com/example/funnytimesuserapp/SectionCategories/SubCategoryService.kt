@@ -1,8 +1,11 @@
 package com.example.funnytimesuserapp.SectionCategories
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
@@ -19,6 +22,8 @@ import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ServiceFullHorizontalRecView
 import com.example.funnytimesuserapp.RecViews.ServiceInsider2RecView
 import com.example.funnytimesuserapp.RecViews.SubCategoriesRecView
+import com.example.funnytimesuserapp.SectionSearch.SearchFuncs
+import com.example.funnytimesuserapp.SectionSearch.SearchScreen
 import com.example.funnytimesuserapp.databinding.FtCategorySubServiceBinding
 import com.google.gson.GsonBuilder
 import org.json.JSONException
@@ -33,6 +38,7 @@ class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
     lateinit var serviceFullHorizontalRecView : ServiceFullHorizontalRecView
     lateinit var serviceInsiderRecView : ServiceInsider2RecView
     val commonFuncs = CommonFuncs()
+    val searchFuncs = SearchFuncs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +98,24 @@ class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
                 binding.ServicesRecycler.adapter = serviceInsiderRecView
             }
         }
+        binding.SearchFilter.setOnClickListener {
+            searchFuncs.showFilterDialog(this)
+        }
+        binding.CategorySearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val intent = Intent(this, SearchScreen::class.java)
+                intent.putExtra("city_id","")
+                intent.putExtra("address","")
+                intent.putExtra("name",binding.CategorySearch.text.toString())
+                intent.putExtra("price[from]","")
+                intent.putExtra("price[to]","")
+                intent.putExtra("category_id","")
+                intent.putExtra("sub_category_id","")
+                startActivity(intent)
+                return@OnEditorActionListener true
+            }
+            false
+        })
         subcategory_Request(selfCat.CategoryId!!)
 
     }

@@ -5,6 +5,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
@@ -15,6 +17,8 @@ import com.example.funnytimesuserapp.MainMenuSection.HomeSection.FragHome
 import com.example.funnytimesuserapp.MainMenuSection.SettingSection.FragSetting
 import com.example.funnytimesuserapp.MainMenuSection.UserSection.FragUser
 import com.example.funnytimesuserapp.SectionCart.CartScreen
+import com.example.funnytimesuserapp.SectionSearch.SearchFuncs
+import com.example.funnytimesuserapp.SectionSearch.SearchScreen
 import com.example.funnytimesuserapp.SectionService.SectionPayment.ServiceDatingScreen
 import com.example.funnytimesuserapp.databinding.FtMainMenuBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,6 +27,7 @@ class MainMenu : AppCompatActivity() {
 
     lateinit var binding: FtMainMenuBinding
     val commonFuncs = CommonFuncs()
+    val searchFuncs = SearchFuncs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,8 +112,24 @@ class MainMenu : AppCompatActivity() {
         }
 
         binding.SearchFilter.setOnClickListener {
-           startActivity(Intent(this,ServiceDatingScreen::class.java))
+            searchFuncs.showFilterDialog(this)
         }
+
+        binding.HomeSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val intent = Intent(this, SearchScreen::class.java)
+                intent.putExtra("city_id","")
+                intent.putExtra("address","")
+                intent.putExtra("name",binding.HomeSearch.text.toString())
+                intent.putExtra("price[from]","")
+                intent.putExtra("price[to]","")
+                intent.putExtra("category_id","")
+                intent.putExtra("sub_category_id","")
+                startActivity(intent)
+                return@OnEditorActionListener true
+            }
+            false
+        })
 
         binding.OpenCart.setOnClickListener {
             startActivity(Intent(this,CartScreen::class.java))

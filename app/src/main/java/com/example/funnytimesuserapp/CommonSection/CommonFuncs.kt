@@ -27,7 +27,6 @@ import java.util.*
 
 class CommonFuncs {
     val SPName:String = AppSPName
-    var filterDialog: Dialog? = null
     var loadingDia: Dialog? = null
     var codePhone: Dialog? = null
     var passwordDoneDialog: Dialog? = null
@@ -137,26 +136,7 @@ class CommonFuncs {
         }
         builder.show()
     }
-    fun showFilterDialog(activity: Activity) {
-        filterDialog = Dialog(activity)
-        filterDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        filterDialog?.setCancelable(true)
-        filterDialog?.setContentView(R.layout.ft_dialog_main_filter)
-        val rangeseek = filterDialog?.findViewById<RangeSeekBar>(R.id.PriceRangeBar)
-        val BarMax = filterDialog?.findViewById<TextView>(R.id.BarMax)
-        val BarMin = filterDialog?.findViewById<TextView>(R.id.BarMin)
-        rangeseek?.setOnRangeChangedListener { view, min, max, isFromUser ->
-            BarMax?.text = max.toInt().toString()+" ر.س"
-            BarMin?.text = min.toInt().toString()+" ر.س"
-        }
-        val window: Window = filterDialog?.window!!
-        window.setBackgroundDrawable(
-            ColorDrawable(activity.resources
-                .getColor(R.color.tk_dialog_bg, null))
-        )
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        filterDialog?.show()
-    }
+
     fun showPasswordDoneDialog(activity: Activity) {
         passwordDoneDialog = Dialog(activity)
         passwordDoneDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
