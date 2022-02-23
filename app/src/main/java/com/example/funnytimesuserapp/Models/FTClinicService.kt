@@ -10,4 +10,5 @@ data class FTClinicService(
     val ServiceName:String? = "",
     @SerializedName("price")
     val ServicePrice:String? = "0.0",
+    var ServiceIsSelected:Boolean = false
 ):Serializable

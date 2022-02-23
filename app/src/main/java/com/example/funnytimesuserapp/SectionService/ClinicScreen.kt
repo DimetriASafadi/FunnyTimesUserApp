@@ -14,12 +14,14 @@ import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Interfaces.OnClinicServiceClick
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTClinicService
 import com.example.funnytimesuserapp.Models.FTItemPhoto
 import com.example.funnytimesuserapp.Models.FTReview
 import com.example.funnytimesuserapp.R
+import com.example.funnytimesuserapp.RecViews.ClinicServicesRecView
 import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
 import com.example.funnytimesuserapp.RecViews.ReviewRecView
 import com.example.funnytimesuserapp.SpinnerAdapters.SClinicServiceAdapter
@@ -29,7 +31,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class ClinicScreen : AppCompatActivity() {
+class ClinicScreen : AppCompatActivity(), OnClinicServiceClick {
 
     lateinit var binding: FtScreenClinicBinding
     val commonFuncs = CommonFuncs()
@@ -112,22 +114,12 @@ class ClinicScreen : AppCompatActivity() {
                         false)
                     binding.ClinicReviewsRecycler.adapter = reviewRecView
 
-                    val sClinicServiceAdapter = SClinicServiceAdapter(this,ftServices)
-                    binding.ClinicServices.adapter = sClinicServiceAdapter
-                    binding.ClinicServices.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(parent: AdapterView<*>?) {
-                        }
-                        override fun onItemSelected(
-                            parent: AdapterView<*>?,
-                            view: View?,
-                            position: Int,
-                            id: Long
-                        ) {
-                            Log.e("SelectedService", sClinicServiceAdapter.getItem(position).toString())
-                            binding.ClinicDynamicPrice.text = sClinicServiceAdapter.getItem(position)!!.ServicePrice
-                            binding.ClinicPrice.text = sClinicServiceAdapter.getItem(position)!!.ServicePrice
-                        }
-                    }
+                    val clinicServicesRecView = ClinicServicesRecView(ftServices,this,this)
+                    binding.ClinicServices.layoutManager = LinearLayoutManager(this,
+                        LinearLayoutManager.VERTICAL,
+                        false)
+                    binding.ClinicServices.adapter = clinicServicesRecView
+
 //                    ClinicMapLocation
 //                    ClinicTerms
 //                    BookNow
@@ -165,5 +157,9 @@ class ClinicScreen : AppCompatActivity() {
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }
+    }
+
+    override fun OnClinicServiceClickListener(total: Double) {
+        binding.ClinicDynamicPrice.text = total.toString()
     }
 }
