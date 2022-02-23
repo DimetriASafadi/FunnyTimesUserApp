@@ -286,21 +286,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:id="@+id/ClinicTerms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="اطلع على سياسة المالك"
-                    android:fontFamily="@font/montserrat_arabic"
-                    android:textColor="@color/ft_orange"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:textSize="@dimen/_10ssp"
-                    />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_70sdp"/>

@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.SectionService
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,7 @@ import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.AttributesRecView
 import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
 import com.example.funnytimesuserapp.RecViews.ReviewRecView
+import com.example.funnytimesuserapp.SectionService.SectionPayment.ServiceDatingScreen
 import com.example.funnytimesuserapp.databinding.FtScreenChaletBinding
 import com.google.gson.GsonBuilder
 import org.json.JSONException
@@ -32,6 +34,8 @@ class ChaletScreen : AppCompatActivity() {
     lateinit var binding: FtScreenChaletBinding
     val commonFuncs = CommonFuncs()
     val favouriteFuncs = FavoriteFuncs()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtScreenChaletBinding.inflate(layoutInflater)
@@ -88,6 +92,9 @@ class ChaletScreen : AppCompatActivity() {
                     binding.ChaletDesc.text = data.getString("description")
                     binding.ChaletPrice.text = data.getString("price")
                     binding.ChaletDepositPrice.text = data.getString("deposit")
+                    binding.VendorPolicies.setOnClickListener {
+                        commonFuncs.showDefaultDialog(activity,"الشروط والأحكام",data.getString("policy").toString())
+                    }
                     binding.ChaletRating.rating = data.getString("star").toFloat()
                     binding.ChaletRating.setOnTouchListener { _, _ ->
                         return@setOnTouchListener true
@@ -116,6 +123,14 @@ class ChaletScreen : AppCompatActivity() {
                         LinearLayoutManager.VERTICAL,
                         false)
                     binding.ChaletReviewRecycler.adapter = reviewRecView
+
+                    val bookingType = data.getInt("bookingType")
+                    binding.BookNow.setOnClickListener {
+                        val intent = Intent(this,ServiceDatingScreen::class.java)
+                        intent.putExtra("itemid",itemid)
+                        intent.putExtra("bookingType",bookingType)
+                        startActivity(intent)
+                    }
 
                     commonFuncs.hideLoadingDialog()
                 }, Response.ErrorListener { error ->

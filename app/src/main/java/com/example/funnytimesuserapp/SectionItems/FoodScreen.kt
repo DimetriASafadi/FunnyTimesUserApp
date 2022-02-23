@@ -134,6 +134,9 @@ class FoodScreen : AppCompatActivity() {
                         false)
                     binding.FoodReviewsRecycler.adapter = reviewRecView
 
+
+
+
                     var isinCart = itemFuncs.CheckProduct(itemid,this)
                     if (isinCart){
                         binding.InCartNow.text = "موجود في العربة"

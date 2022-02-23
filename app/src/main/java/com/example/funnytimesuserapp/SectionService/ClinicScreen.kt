@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.SectionService
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.ClinicServicesRecView
 import com.example.funnytimesuserapp.RecViews.ItemGalleryRecView
 import com.example.funnytimesuserapp.RecViews.ReviewRecView
+import com.example.funnytimesuserapp.SectionService.SectionPayment.ServiceDatingScreen
 import com.example.funnytimesuserapp.SpinnerAdapters.SClinicServiceAdapter
 import com.example.funnytimesuserapp.databinding.FtScreenClinicBinding
 import com.google.gson.GsonBuilder
@@ -120,9 +122,15 @@ class ClinicScreen : AppCompatActivity(), OnClinicServiceClick {
                         false)
                     binding.ClinicServices.adapter = clinicServicesRecView
 
+                    binding.BookNow.setOnClickListener {
+                        val intent = Intent(this, ServiceDatingScreen::class.java)
+                        intent.putExtra("itemid",itemid)
+                        intent.putExtra("bookingType",2)
+                        startActivity(intent)
+                    }
+
+
 //                    ClinicMapLocation
-//                    ClinicTerms
-//                    BookNow
 
 
 
