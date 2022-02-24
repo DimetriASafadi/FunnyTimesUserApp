@@ -102,7 +102,6 @@
                         android:layout_toStartOf="@+id/ProductPrice"
                         android:fontFamily="@font/montserrat_arabic"
                         android:maxLines="2"
-                        android:text="شاليه السعودية مع مسبح"
                         android:textColor="@color/ft_dark_blue"
                         android:textSize="@dimen/_14ssp"
                         android:textStyle="bold" />
@@ -115,7 +114,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_arabic"
-                        android:text="800 ر.س|ليلة"
                         android:textColor="@color/ft_black"
                         android:textSize="@dimen/_11ssp" />
 
@@ -135,7 +133,6 @@
                         android:layout_toStartOf="@+id/ProductRating"
                         android:fontFamily="@font/montserrat_arabic"
                         android:maxLines="2"
-                        android:text="حي الرياض,الرياض"
                         android:textColor="@color/ft_menu_unselected"
                         android:textSize="@dimen/_11ssp" />
 
@@ -195,9 +192,8 @@
                         android:layout_toEndOf="@+id/VendorImage"
                         android:fontFamily="@font/montserrat_arabic"
                         android:maxLines="1"
-                        android:textDirection="rtl"
-                        android:text="مطعم برجر كنج"
                         android:textColor="@color/ft_orange"
+                        android:textDirection="rtl"
                         android:textSize="@dimen/_10ssp" />
 
                     <ImageView
@@ -233,7 +229,6 @@
                     android:id="@+id/ProductDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ةلاصو خبطمو مامح عم فرغ سمخ نم ةدحولا هذه نوكتت مدقلا ةركل بعلمو ةرئاطلا ةركل بعلمو"
                     android:fontFamily="@font/montserrat_arabic"
                     android:textColor="@color/ft_grey_3"
                     android:layout_marginTop="@dimen/_5sdp"

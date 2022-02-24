@@ -105,10 +105,9 @@
                         android:layout_toStartOf="@+id/ChaletPrice"
                         android:fontFamily="@font/montserrat_arabic"
                         android:maxLines="2"
-                        android:textStyle="bold"
-                        android:text="شاليه السعودية مع مسبح"
                         android:textColor="@color/ft_dark_blue"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/ChaletPrice"
@@ -118,7 +117,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_arabic"
-                        android:text="800 ر.س|ليلة"
                         android:textColor="@color/ft_black"
                         android:textSize="@dimen/_11ssp" />
 
@@ -138,7 +136,6 @@
                         android:layout_toStartOf="@+id/ChaletRating"
                         android:fontFamily="@font/montserrat_arabic"
                         android:maxLines="2"
-                        android:text="حي الرياض,الرياض"
                         android:textColor="@color/ft_menu_unselected"
                         android:textSize="@dimen/_11ssp" />
 
@@ -182,7 +179,6 @@
                     android:id="@+id/ChaletDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ةلاصو خبطمو مامح عم فرغ سمخ نم ةدحولا هذه نوكتت مدقلا ةركل بعلمو ةرئاطلا ةركل بعلمو"
                     android:fontFamily="@font/montserrat_arabic"
                     android:textColor="@color/ft_grey_3"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -321,7 +317,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_arabic"
-                android:text="100 ر.س"
                 android:textStyle="bold"
                 android:textColor="@color/ft_dark_blue"
                 android:textSize="@dimen/_12ssp" />

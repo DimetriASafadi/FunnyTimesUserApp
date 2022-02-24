@@ -17,12 +17,28 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
     var defaultEnterTime: Calendar = Calendar.getInstance()
     var defaultLeaveHour: Calendar = Calendar.getInstance()
     var chosable = "NoOne"
+    var booking_type = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtServiceDatingScreenBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        booking_type = intent.getIntExtra("bookingType",0).toString().toInt()
+        Log.e("booking_type",booking_type.toString())
+
+//        1 range selection only
+//        2 single selection with time
+//        3 single selection with am or pm
+
+        if (booking_type == 1){
+
+        }else if (booking_type == 2){
+
+        }else if (booking_type == 3){
+
+        }
 
 
         binding.BooksButton.setOnClickListener {
