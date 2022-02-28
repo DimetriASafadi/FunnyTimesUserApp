@@ -23,6 +23,7 @@ import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.R
 import com.jaygoo.widget.RangeSeekBar
+import java.text.SimpleDateFormat
 import java.util.*
 
 class CommonFuncs {
@@ -204,6 +205,11 @@ class CommonFuncs {
             context.startActivity(toLogin)
         }
         builder.show()
+    }
+
+    fun convertMilliToDate(dateInMillis:Long):String{
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        return formatter.format(Date(dateInMillis))
     }
 
 }

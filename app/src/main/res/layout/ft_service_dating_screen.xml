@@ -36,6 +36,22 @@
             app:pickerType="range"
             />
 
+        <TextView
+            android:id="@+id/NightsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_arabic"
+            android:text="عدد الليالي : 0 ليلة"
+            android:backgroundTint="@color/ft_grey_4"
+            android:paddingVertical="@dimen/_5sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:background="@drawable/ft_radius_fill_light"
+            android:textColor="@color/ft_black"
+            android:textSize="@dimen/_10ssp"
+            android:layout_gravity="center_horizontal"
+            />
+
 
         <LinearLayout
             android:id="@+id/HTVDatesHolder"
@@ -91,6 +107,7 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/LeavingSection"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -140,6 +157,7 @@
 
 
         <LinearLayout
+            android:id="@+id/HTVPeriodsHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -149,7 +167,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintTop_toBottomOf="@+id/UserPhone">
             <LinearLayout
-                android:id="@+id/BooksButton"
+                android:id="@+id/MorningPerButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -171,7 +189,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/OrdersButton"
+                android:id="@+id/EveningPerButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

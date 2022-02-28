@@ -2,6 +2,7 @@ package com.example.funnytimesuserapp.SectionService
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -122,12 +123,19 @@ class ClinicScreen : AppCompatActivity(), OnClinicServiceClick {
                         false)
                     binding.ClinicServices.adapter = clinicServicesRecView
 
+
                     binding.BookNow.setOnClickListener {
-                        val intent = Intent(this, ServiceDatingScreen::class.java)
-                        intent.putExtra("itemid",itemid)
-                        intent.putExtra("bookingType",2)
-                        startActivity(intent)
+                        if (commonFuncs.IsInSP(this, Constants.KeyUserToken)){
+                            val intent = Intent(this, ServiceDatingScreen::class.java)
+                            intent.putExtra("itemid",itemid)
+                            intent.putExtra("bookingType",4)
+                            startActivity(intent)
+                        }else{
+                            commonFuncs.showLoginDialog(this)
+                        }
                     }
+
+
 
 
 //                    ClinicMapLocation

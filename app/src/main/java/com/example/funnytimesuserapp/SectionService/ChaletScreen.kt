@@ -126,10 +126,14 @@ class ChaletScreen : AppCompatActivity() {
 
                     val bookingType = data.getInt("bookingType")
                     binding.BookNow.setOnClickListener {
-                        val intent = Intent(this,ServiceDatingScreen::class.java)
-                        intent.putExtra("itemid",itemid)
-                        intent.putExtra("bookingType",bookingType)
-                        startActivity(intent)
+                        if (commonFuncs.IsInSP(this, Constants.KeyUserToken)){
+                            val intent = Intent(this,ServiceDatingScreen::class.java)
+                            intent.putExtra("itemid",itemid)
+                            intent.putExtra("bookingType",bookingType)
+                            startActivity(intent)
+                        }else{
+                            commonFuncs.showLoginDialog(this)
+                        }
                     }
 
                     commonFuncs.hideLoadingDialog()
