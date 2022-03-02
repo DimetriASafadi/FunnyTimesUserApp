@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/ft_radius_stroke"
+    android:paddingVertical="@dimen/_10sdp"
+    android:layout_margin="@dimen/_10sdp"
+    android:id="@+id/WholeBank"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:id="@+id/BankName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="بنك الراجحي"
+            android:fontFamily="@font/montserrat_arabic"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/ft_black"
+            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/_3sdp"
+            />
+        <ImageView
+            android:id="@+id/BankSelected"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ft_check_circle_icon"
+            app:tint="@color/ft_green"
+            android:layout_marginHorizontal="@dimen/_3sdp"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/ft_black"
+        android:alpha="0.1"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IBAN Number"
+        android:layout_gravity="left"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/montserrat_arabic"
+        android:textSize="@dimen/_11ssp"
+        android:textColor="@color/ft_dark_blue"
+        android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/BankIban"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4564 48648 4687 6846981864648"
+        android:layout_gravity="left"
+        android:textDirection="ltr"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/montserrat_arabic"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/ft_grey_1"
+        android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Number"
+        android:layout_gravity="left"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/montserrat_arabic"
+        android:textSize="@dimen/_11ssp"
+        android:textColor="@color/ft_dark_blue"
+        android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/BankNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4564 48648 4687 6846981864648"
+        android:layout_gravity="left"
+        android:textDirection="ltr"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/montserrat_arabic"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/ft_grey_1"
+        android:gravity="center_horizontal"
+        />
+
+
+
+</LinearLayout>

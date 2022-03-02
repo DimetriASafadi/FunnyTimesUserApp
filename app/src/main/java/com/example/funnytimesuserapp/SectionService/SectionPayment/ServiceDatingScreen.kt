@@ -1,6 +1,7 @@
 package com.example.funnytimesuserapp.SectionService.SectionPayment
 
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -176,6 +177,33 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                     val jsonobj = JSONObject(response.toString())
                     val status = jsonobj.getJSONObject("status")
                     if (status.getBoolean("status")){
+                        val intent = Intent(this,PaymentScreen::class.java)
+                        if (booking_type == 1){
+                            intent.putExtra("itemid",itemid)
+                            intent.putExtra("booking_type",booking_type)
+                            intent.putExtra("start_date",start_date)
+                            intent.putExtra("end_date",end_date)
+                            startActivity(intent)
+                        }else if (booking_type == 2){
+                            intent.putExtra("itemid",itemid)
+                            intent.putExtra("booking_type",booking_type)
+                            intent.putExtra("start_date",start_date)
+                            intent.putExtra("start_hour",start_hour)
+                            intent.putExtra("end_hour",end_hour)
+                            startActivity(intent)
+                        }else if (booking_type == 3){
+                            intent.putExtra("itemid",itemid)
+                            intent.putExtra("booking_type",booking_type)
+                            intent.putExtra("start_date",start_date)
+                            intent.putExtra("period",period)
+                            startActivity(intent)
+                        }else if (booking_type == 4){
+                            intent.putExtra("itemid",itemid)
+                            intent.putExtra("booking_type",booking_type)
+                            intent.putExtra("start_date",start_date)
+                            intent.putExtra("start_hour",start_hour)
+                            startActivity(intent)
+                        }
 
                     }else{
                         commonFuncs.showDefaultDialog(this,"خطأ في الاتصال","حصل خطأ ما")
