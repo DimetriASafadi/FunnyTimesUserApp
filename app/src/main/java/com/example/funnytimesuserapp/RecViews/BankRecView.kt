@@ -37,12 +37,18 @@ class BankRecView(val data : ArrayList<FTBank>, val context: Context) : Recycler
         holder.BankNumber.text = data[position].BankNumber
 
         holder.WholeBank.setOnClickListener {
+            if (!data[position].BankSelected == false){
+                selectedone = 999
+            }
             data[position].BankSelected = !data[position].BankSelected
             notifyDataSetChanged()
         }
 
 
 
+    }
+    fun getSelectedBank():Int{
+        return selectedone
     }
 }
 class BankViewHolder (view: View) : RecyclerView.ViewHolder(view) {

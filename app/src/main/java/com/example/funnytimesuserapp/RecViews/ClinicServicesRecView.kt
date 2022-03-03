@@ -49,6 +49,16 @@ class ClinicServicesRecView(val data : ArrayList<FTClinicService>, val context: 
         }
         return total
     }
+
+    fun getselectedServices():ArrayList<FTClinicService>{
+        val result = ArrayList<FTClinicService>()
+        for (i in 0 until data.size) {
+            if (data[i].ServiceIsSelected){
+                result.add(data[i])
+            }
+        }
+        return result
+    }
 }
 class serviceViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to

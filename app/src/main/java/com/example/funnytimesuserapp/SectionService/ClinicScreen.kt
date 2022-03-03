@@ -39,6 +39,7 @@ class ClinicScreen : AppCompatActivity(), OnClinicServiceClick {
     lateinit var binding: FtScreenClinicBinding
     val commonFuncs = CommonFuncs()
     val favouriteFuncs = FavoriteFuncs()
+    var price = "0.0"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtScreenClinicBinding.inflate(layoutInflater)
@@ -126,10 +127,17 @@ class ClinicScreen : AppCompatActivity(), OnClinicServiceClick {
 
                     binding.BookNow.setOnClickListener {
                         if (commonFuncs.IsInSP(this, Constants.KeyUserToken)){
-                            val intent = Intent(this, ServiceDatingScreen::class.java)
-                            intent.putExtra("itemid",itemid)
-                            intent.putExtra("bookingType",4)
-                            startActivity(intent)
+                            if (clinicServicesRecView.getselectedServices().size != 0) {
+                                val intent = Intent(this, ServiceDatingScreen::class.java)
+                                intent.putExtra("itemid", itemid)
+                                intent.putExtra("bookingType", 4)
+                                intent.putExtra("price", price)
+                                intent.putExtra("selectedServices", clinicServicesRecView.getselectedServices())
+                                startActivity(intent)
+                            }else{
+                                commonFuncs.showDefaultDialog(activity,"اختر خدمة","يجب عليك إختيار خدمة على الأقل للمتابعة")
+
+                            }
                         }else{
                             commonFuncs.showLoginDialog(this)
                         }
@@ -177,5 +185,6 @@ class ClinicScreen : AppCompatActivity(), OnClinicServiceClick {
 
     override fun OnClinicServiceClickListener(total: Double) {
         binding.ClinicDynamicPrice.text = total.toString()
+        price = total.toString()
     }
 }

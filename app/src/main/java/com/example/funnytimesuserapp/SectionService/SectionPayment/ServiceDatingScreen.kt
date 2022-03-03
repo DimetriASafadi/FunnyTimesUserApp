@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Models.FTClinicService
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.databinding.FtServiceDatingScreenBinding
 import com.jaygoo.widget.RangeSeekBar
@@ -23,6 +24,7 @@ import org.json.JSONObject
 import java.nio.charset.Charset
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
@@ -36,11 +38,13 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
     var itemid = 0
     var booking_type = 0
     var period = "1"
+    var price = "1"
+    var total = ""
     var start_hour = ""
     var end_hour = ""
     var start_date = ""
     var end_date = ""
-
+    val clinicServices = ArrayList<FTClinicService>()
     val commonFuncs = CommonFuncs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +55,13 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
 
         itemid = intent.getIntExtra("itemid",0).toString().toInt()
         booking_type = intent.getIntExtra("bookingType",0).toString().toInt()
+        price = intent.getStringExtra("price").toString()
+        total = price
+        if (booking_type == 4){
+            val selectedServs = intent.getSerializableExtra("selectedServices") as ArrayList<FTClinicService>
+            clinicServices.addAll(selectedServs)
+        }
+
         Log.e("itemid",booking_type.toString())
         Log.e("booking_type",booking_type.toString())
 
@@ -71,6 +82,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                 end_date = commonFuncs.convertMilliToDate(endDate.time)
                 val result = temp2.timeInMillis - temp1.timeInMillis
                 var ncounts1 = TimeUnit.MILLISECONDS.toDays(result).toString()
+                total = (total.toDouble() * ncounts1.toDouble()).toString()
                 binding.NightsCount.text = "عدد الليالي : $ncounts1 ليلة"
             }
         }else if (booking_type == 2){
@@ -183,6 +195,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                             intent.putExtra("booking_type",booking_type)
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("end_date",end_date)
+                            intent.putExtra("total",total)
                             startActivity(intent)
                         }else if (booking_type == 2){
                             intent.putExtra("itemid",itemid)
@@ -190,18 +203,22 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("start_hour",start_hour)
                             intent.putExtra("end_hour",end_hour)
+                            intent.putExtra("price",price)
                             startActivity(intent)
                         }else if (booking_type == 3){
                             intent.putExtra("itemid",itemid)
                             intent.putExtra("booking_type",booking_type)
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("period",period)
+                            intent.putExtra("price",price)
                             startActivity(intent)
                         }else if (booking_type == 4){
                             intent.putExtra("itemid",itemid)
                             intent.putExtra("booking_type",booking_type)
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("start_hour",start_hour)
+                            intent.putExtra("price",price)
+                            intent.putExtra("services",clinicServices)
                             startActivity(intent)
                         }
 
@@ -214,7 +231,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                         val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
                         val err = JSONObject(errorw)
                         val errMessage = err.getJSONObject("status").getString("message")
-                        commonFuncs.showDefaultDialog(this,"خطأ في الاتصال",errMessage)
+                        commonFuncs.showDefaultDialog(this,"عذراً",errMessage)
                         Log.e("eResponser", errorw.toString())
                     } else {
                         commonFuncs.showDefaultDialog(this,"خطأ في الاتصال","حصل خطأ ما")

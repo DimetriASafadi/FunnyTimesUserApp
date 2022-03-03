@@ -130,6 +130,7 @@ class ChaletScreen : AppCompatActivity() {
                             val intent = Intent(this,ServiceDatingScreen::class.java)
                             intent.putExtra("itemid",itemid)
                             intent.putExtra("bookingType",bookingType)
+                            intent.putExtra("price",data.getString("deposit").toDouble().toString())
                             startActivity(intent)
                         }else{
                             commonFuncs.showLoginDialog(this)

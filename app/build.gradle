@@ -107,6 +107,16 @@ dependencies {
     //    Image Picker Library
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
+    // Image picker 2
+    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
+    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
+
+    // OkHttp
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+
+
+
 
 
 
