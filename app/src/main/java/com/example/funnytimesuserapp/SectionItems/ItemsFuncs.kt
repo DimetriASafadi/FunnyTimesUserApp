@@ -137,6 +137,15 @@ class ItemsFuncs {
         return result
     }
 
+    fun CheckItems(items:ArrayList<FTInCart>):Boolean{
+        for (i in 0 until items.size) {
+            if (items[0].ItemVendorId != items[i].ItemVendorId){
+                return true
+            }
+        }
+        return false
+    }
+
 
 
 }

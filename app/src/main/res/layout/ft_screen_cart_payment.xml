@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SectionCart.SectionPayment.CartPayment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/TopSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            >
+
+            <TextView
+                android:id="@+id/SerSubCategoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/montserrat_arabic"
+                android:text="اختر طريقة الدفع"
+                android:textColor="@color/ft_black"
+                android:textSize="@dimen/_12ssp" />
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ft_android_back_arrow"
+                app:tint="@color/ft_black" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@drawable/ft_radius_stroke_blue"
+                android:paddingVertical="@dimen/_7sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="تحويل بنكي"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:textColor="@color/ft_dark_blue"
+                    android:drawablePadding="@dimen/_3sdp"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableEndCompat="@drawable/ft_payment_bank"
+                    app:drawableTint="@color/ft_dark_blue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_7sdp"
+                android:background="@drawable/ft_radius_stroke"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/FilterResults"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="البطاقة الائتمانية"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:textColor="@color/ft_black"
+                    android:textSize="@dimen/_10ssp"
+                    android:drawablePadding="@dimen/_3sdp"
+                    app:drawableEndCompat="@drawable/ft_payment_credit_card"
+                    app:drawableTint="@color/ft_black"
+                    android:alpha="0.5"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ارسل الحوالة على رقم الايبان المرفق ثم أرفق صورة الفاتورة حسب البنوك الموجودة"
+            android:gravity="start"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_arabic"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/ft_grey_1"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/BanksRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            />
+
+        <LinearLayout
+            android:id="@+id/PickImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ft_radius_stroke"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_15sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="تحميل فاتورة الموافقة"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_grey_1"
+                android:drawablePadding="@dimen/_3sdp"
+                android:textSize="@dimen/_12ssp"
+                app:drawableEndCompat="@drawable/ft_payment_transaction_photo_upload_icon"
+                app:drawableTint="@color/ft_grey_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(PNG OR JPEG)"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_grey_1"
+                android:drawablePadding="@dimen/_3sdp"
+                android:textSize="@dimen/_10ssp"
+                />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/BankTransPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            />
+
+
+        <TextView
+            android:id="@+id/ConfirmPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ادفع ر.س"
+            android:textColor="@color/ft_white"
+            android:background="@drawable/ft_radius_fill_light"
+            android:backgroundTint="@color/ft_orange"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:paddingVertical="@dimen/_9sdp"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/montserrat_arabic"
+            android:layout_marginBottom="@dimen/_20sdp"
+            />
+    </LinearLayout>
+
+</ScrollView>

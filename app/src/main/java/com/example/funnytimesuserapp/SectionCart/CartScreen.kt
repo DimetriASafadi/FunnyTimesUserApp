@@ -1,14 +1,18 @@
 package com.example.funnytimesuserapp.SectionCart
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.Interfaces.OnInCartDelete
 import com.example.funnytimesuserapp.Interfaces.OnInCartIncrease
 import com.example.funnytimesuserapp.Interfaces.OnInCartMinos
 import com.example.funnytimesuserapp.Models.FTInCart
 import com.example.funnytimesuserapp.RecViews.CartRecView
+import com.example.funnytimesuserapp.SectionCart.SectionPayment.CartPayment
 import com.example.funnytimesuserapp.SectionItems.ItemsFuncs
 import com.example.funnytimesuserapp.databinding.FtCartScreenBinding
 
@@ -18,6 +22,7 @@ class CartScreen : AppCompatActivity(), OnInCartDelete, OnInCartMinos, OnInCartI
     val ftIncartItems = ArrayList<FTInCart>()
     lateinit var cartRecView:CartRecView
     val itemFuncs = ItemsFuncs()
+    val commonFuncs = CommonFuncs()
 
     lateinit var binding: FtCartScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +43,21 @@ class CartScreen : AppCompatActivity(), OnInCartDelete, OnInCartMinos, OnInCartI
 
 
 
+        binding.PayNow.setOnClickListener {
+            if (cartRecView.getSelectedItems().size != 0){
+                if (itemFuncs.CheckItems(cartRecView.getSelectedItems())){
+                    commonFuncs.showDefaultDialog(this,"ملاحظة !","يجب عليك إختيار منتجات من نفس البائع لمتابعة الشراء")
+                    return@setOnClickListener
+                }else{
+                    val intent = Intent(this,CartPayment::class.java)
+                    intent.putExtra("SelectCartItems",cartRecView.getSelectedItems())
+                    startActivity(intent)
+                }
+            }else{
+                Toast.makeText(this,"يجب عليك إختيار منتج على الأقل",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+        }
 
     }
 

@@ -17,12 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FunnyTimesUserApp">
-
+        <activity
+            android:name=".SectionCart.SectionPayment.CartPayment"
+            android:exported="false" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"
-            />
-
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".SectionService.SectionPayment.PaymentScreen"
             android:configChanges="locale|orientation"

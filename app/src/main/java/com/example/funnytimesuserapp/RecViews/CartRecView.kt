@@ -1,9 +1,11 @@
 package com.example.funnytimesuserapp.RecViews
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -33,6 +35,13 @@ class CartRecView(val data : ArrayList<FTInCart>, val context: Context
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
 
 
+
+        if (data[position].ItemIsSelected){
+            holder.ProductSelected.imageTintList = ColorStateList.valueOf(context.resources.getColor(R.color.ft_green,null))
+        }else{
+            holder.ProductSelected.imageTintList = ColorStateList.valueOf(context.resources.getColor(R.color.ft_grey_1,null))
+        }
+
         Glide.with(context)
             .load(data[position].ItemImage)
             .centerCrop()
@@ -53,7 +62,10 @@ class CartRecView(val data : ArrayList<FTInCart>, val context: Context
         holder.ProductRatingText.text = data[position].ItemRateText.toString()
         holder.ProductPrice.text = data[position].ItemPrice.toString() + "ر.س"
         holder.ProductQuantity.text = data[position].ItemQuantity.toString()
-
+        holder.ProductSelected.setOnClickListener {
+            data[position].ItemIsSelected = !data[position].ItemIsSelected
+            notifyDataSetChanged()
+        }
         holder.ProductDelete.setOnClickListener {
             onInCartDelete.OnInCartDeleteClick(position)
         }
@@ -63,6 +75,16 @@ class CartRecView(val data : ArrayList<FTInCart>, val context: Context
         holder.ProductIncrease.setOnClickListener {
             onInCartIncrease.OnInCartIncreaseClick(position)
         }
+    }
+
+    fun getSelectedItems():ArrayList<FTInCart>{
+        val result = ArrayList<FTInCart>()
+        for (i in 0 until data.size) {
+            if (data[i].ItemIsSelected){
+                result.add(data[i])
+            }
+        }
+        return result
     }
 }
 
@@ -76,6 +98,7 @@ class CartViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val ProductRating = view.findViewById<BaseRatingBar>(R.id.ProductRating)
     val ProductRatingText = view.findViewById<TextView>(R.id.ProductRatingText)
 
+    val ProductSelected = view.findViewById<ImageView>(R.id.ProductSelected)
     val ProductDelete = view.findViewById<CircleImageView>(R.id.ProductDelete)
     val ProductMinos = view.findViewById<TextView>(R.id.ProductMinos)
     val ProductQuantity = view.findViewById<TextView>(R.id.ProductQuantity)

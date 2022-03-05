@@ -33,6 +33,7 @@ class SplashScreen : AppCompatActivity() {
         }else{
             commonFuncs.setLocale2(this,"ar")
         }
+        commonFuncs.DeleteFromSP(this,"FavoriteChanged")
         setContentView(R.layout.ft_splash_screen)
         filterTools_Request()
 

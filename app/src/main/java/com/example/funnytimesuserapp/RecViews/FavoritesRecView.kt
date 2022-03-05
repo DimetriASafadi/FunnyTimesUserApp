@@ -54,6 +54,7 @@ class FavoritesRecView(val data : ArrayList<FTItem>, val context: Activity) : Re
                     favoriteFuncs.delete_favourite_Request(context,data[position].ItemId!!)
                     removeitem(position)
                 }
+                commonFuncs.WriteOnSP(context,"FavoriteChanged","Yes")
             }else{
                 commonFuncs.showLoginDialog(context)
             }
@@ -100,7 +101,7 @@ class FavoritesRecView(val data : ArrayList<FTItem>, val context: Activity) : Re
 
     fun removeitem(position: Int) {
         data.removeAt(position)
-        notifyItemRemoved(position)
+        notifyDataSetChanged()
     }
 
 

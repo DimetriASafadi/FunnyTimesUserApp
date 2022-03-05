@@ -60,11 +60,26 @@ class MainMenu : AppCompatActivity() {
         binding.navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    supportFragmentManager.beginTransaction().hide(active).show(fragment1).commit()
-                    active = fragment1
-                    binding.TopSection.visibility = View.VISIBLE
-                    binding.SearchSection.visibility = View.VISIBLE
-                    return@setOnItemSelectedListener true
+                    if (commonFuncs.GetFromSP(this,"FavoriteChanged") == "Yes"){
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            supportFragmentManager.beginTransaction().detach(fragment1).commitNow()
+                            supportFragmentManager.beginTransaction().attach(fragment1).commitNow()
+                            supportFragmentManager.beginTransaction().hide(active).show(fragment1).commitNow()
+                        } else {
+                            supportFragmentManager.beginTransaction().hide(active).show(fragment1).detach(fragment1).attach(fragment1).commit()
+                        }
+                        binding.TopSection.visibility = View.VISIBLE
+                        binding.SearchSection.visibility = View.VISIBLE
+                        active = fragment1
+                        commonFuncs.DeleteFromSP(this,"FavoriteChanged")
+                        return@setOnItemSelectedListener true
+                    }else{
+                        supportFragmentManager.beginTransaction().hide(active).show(fragment1).commit()
+                        active = fragment1
+                        binding.TopSection.visibility = View.VISIBLE
+                        binding.SearchSection.visibility = View.VISIBLE
+                        return@setOnItemSelectedListener true
+                    }
                 }
                 R.id.nav_category -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment2).commit()

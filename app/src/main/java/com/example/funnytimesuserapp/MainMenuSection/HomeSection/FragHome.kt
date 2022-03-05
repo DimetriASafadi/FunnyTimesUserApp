@@ -100,7 +100,7 @@ class FragHome : Fragment() {
         pagerSnapHelper3.attachToRecyclerView(binding.HomeDemandedRecycler)
 
 
-        home_Request()
+//        home_Request()
         return view
     }
 
@@ -125,6 +125,11 @@ class FragHome : Fragment() {
                     val mostOrder = data.getJSONArray("mostOrder")
                     val mostShopping = data.getJSONArray("mostShopping")
 
+                    ftBanners.clear()
+                    ftCategories.clear()
+                    ftMostRented.clear()
+                    ftMostShoped.clear()
+                    ftMostDemanded.clear()
 
                     val gson = GsonBuilder().create()
                     ftBanners.addAll(gson.fromJson(ads.toString(),Array<FTBanner>::class.java).toList())
@@ -162,6 +167,7 @@ class FragHome : Fragment() {
                     val map = HashMap<String,String>()
                     if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)){
                         map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(requireContext(), Constants.KeyUserToken)
+                        Log.e("HomeToken",commonFuncs.GetFromSP(requireContext(), Constants.KeyUserToken).toString())
                     }
                     return map
                 }
@@ -174,5 +180,10 @@ class FragHome : Fragment() {
         }
     }
 
+
+    override fun onResume() {
+        super.onResume()
+            home_Request()
+    }
 
 }

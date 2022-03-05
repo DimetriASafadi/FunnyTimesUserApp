@@ -74,7 +74,7 @@ class ServicesBigVerticalRecView (val data : ArrayList<FTItem>, val context: Act
                     holder.SBVFavIcon.setImageResource(R.drawable.ft_favorite_heart_unlike_icon)
                     favoriteFuncs.delete_favourite_Request(context,data[position].ItemId!!)
                 }
-
+                commonFuncs.WriteOnSP(context,"FavoriteChanged","Yes")
             }else{
                 commonFuncs.showLoginDialog(context)
             }

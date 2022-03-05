@@ -158,6 +158,7 @@ class ProductScreen : AppCompatActivity(), OnProAttributeContainerClick {
                                 data.getString("name").toString(),
                                 data.getString("img").toString(),
                                 vendor.getString("name"),
+                                vendor.getInt("id"),
                                 data.getString("address"),
                                 data.getString("price").toDouble(),
                                 data.getString("star"),
