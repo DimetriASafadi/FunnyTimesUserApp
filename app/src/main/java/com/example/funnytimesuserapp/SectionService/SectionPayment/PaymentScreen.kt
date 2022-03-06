@@ -16,13 +16,13 @@ import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
 import com.example.funnytimesuserapp.CommonSection.Constants.APIMain
+import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.Models.FTBank
 import com.example.funnytimesuserapp.Models.FTClinicService
 import com.example.funnytimesuserapp.RecViews.BankRecView
 import com.example.funnytimesuserapp.databinding.FtScreenPaymentBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.gson.GsonBuilder
-import com.theartofdev.edmodo.cropper.CropImage
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -193,10 +193,15 @@ class PaymentScreen : AppCompatActivity() {
                 @Throws(IOException::class)
                 override fun onResponse(call: Call, response: okhttp3.Response) {
                     runOnUiThread {
-                        Log.e("onResponse",response.message.toString()+"A7a")
-                        Log.e("onResponse",response.toString())
+                        Log.e("onResponse",response.message.toString())
                         commonFuncs.hideLoadingDialog()
-                        commonFuncs.showDefaultDialog(this@PaymentScreen,"نجاح العملية","تم إرسال طلبك بنجاح")
+//                        commonFuncs.showDefaultDialog(this@PaymentScreen,"نجاح العملية","تم إرسال طلبك بنجاح")
+                        commonFuncs.WriteOnSP(this@PaymentScreen,"PurchasedFrom","Service")
+                        val intent = Intent(this@PaymentScreen, MainMenu::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+
                     }
                 }
             })

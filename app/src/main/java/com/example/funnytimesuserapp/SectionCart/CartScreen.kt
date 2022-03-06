@@ -51,6 +51,7 @@ class CartScreen : AppCompatActivity(), OnInCartDelete, OnInCartMinos, OnInCartI
                 }else{
                     val intent = Intent(this,CartPayment::class.java)
                     intent.putExtra("SelectCartItems",cartRecView.getSelectedItems())
+                    intent.putExtra("SelectCartItemsTotal",cartRecView.getCartTotal())
                     startActivity(intent)
                 }
             }else{

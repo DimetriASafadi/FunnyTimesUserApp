@@ -116,10 +116,10 @@ class ProductScreen : AppCompatActivity(), OnProAttributeContainerClick {
                     }
                     binding.ProductPrice.text = data.getString("price")
                     val gson = GsonBuilder().create()
-                    val ftProAttrContainer = ArrayList<FTProAttrContainer>()
-                    val attributes = data.getJSONArray("attributes")
                     val ftPhotos = ArrayList<FTItemPhoto>()
                     val ftReviews = ArrayList<FTReview>()
+                    val ftProAttrContainer = ArrayList<FTProAttrContainer>()
+                    val attributes = data.getJSONArray("attributes")
                     for (a in 0 until attributes.length())
                     {
                         val ftproAttributes = ArrayList<FTProAttribute>()

@@ -86,6 +86,16 @@ class CartRecView(val data : ArrayList<FTInCart>, val context: Context
         }
         return result
     }
+
+    fun getCartTotal():Double{
+        var result = 0.0
+        for (i in 0 until data.size) {
+            if (data[i].ItemIsSelected){
+                result += (data[i].ItemPrice * data[i].ItemQuantity!!)
+            }
+        }
+        return result
+    }
 }
 
 class CartViewHolder (view: View) : RecyclerView.ViewHolder(view) {

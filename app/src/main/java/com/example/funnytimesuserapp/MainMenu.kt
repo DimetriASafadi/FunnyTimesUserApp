@@ -41,7 +41,6 @@ class MainMenu : AppCompatActivity() {
         val fragment4: Fragment = FragUser()
         val fragment5: Fragment = FragSetting()
         var active = fragment1
-        binding.navView
 
         supportFragmentManager.beginTransaction().add(R.id.main_menu_host_frag, fragment5, "5").hide(
             fragment5
@@ -124,6 +123,11 @@ class MainMenu : AppCompatActivity() {
                 }
             }
             false
+        }
+        if (commonFuncs.GetFromSP(this,"PurchasedFrom") == "Service"){
+            binding.navView.selectedItemId = R.id.nav_user
+        }else if (commonFuncs.GetFromSP(this,"PurchasedFrom") == "Order"){
+            binding.navView.selectedItemId = R.id.nav_user
         }
 
         binding.SearchFilter.setOnClickListener {
