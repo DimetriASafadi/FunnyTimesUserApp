@@ -1,7 +1,6 @@
 package com.example.funnytimesuserapp.RecViews
 
 import android.app.Activity
-import android.content.Context
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +10,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.funnytimesuserapp.Interfaces.SubCategoryClickListener
+import com.example.funnytimesuserapp.Interfaces.OnSubCategoryClick
 import com.example.funnytimesuserapp.Models.FTSubCategory
 import com.example.funnytimesuserapp.R
 
-class SubCategoriesRecView (val data : ArrayList<FTSubCategory>, val context: Activity,val subCategoryClickListener: SubCategoryClickListener,selectedone:Int) : RecyclerView.Adapter<SubCatViewHolder>() {
+class SubCategoriesRecView (val data : ArrayList<FTSubCategory>, val context: Activity, val subCategoryClickListener: OnSubCategoryClick, selectedone:Int) : RecyclerView.Adapter<SubCatViewHolder>() {
 
     var selectedItem = selectedone
 

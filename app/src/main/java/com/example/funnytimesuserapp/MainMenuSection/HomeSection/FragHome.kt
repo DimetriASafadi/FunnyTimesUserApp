@@ -14,6 +14,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Interfaces.OnFavoriteClick
 import com.example.funnytimesuserapp.Models.FTBanner
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
@@ -27,7 +28,7 @@ import org.json.JSONObject
 import java.nio.charset.Charset
 
 
-class FragHome : Fragment() {
+class FragHome : Fragment(), OnFavoriteClick {
     private var _binding: FtMainHomeBinding? = null
     private val binding get() = _binding!!
     val ftBanners = ArrayList<FTBanner>()
@@ -76,7 +77,7 @@ class FragHome : Fragment() {
             false)
         binding.HomeCategoriesRecycler.adapter = categoriesRecView
 
-        servicesBigVerticalRecView = ServicesBigVerticalRecView(ftMostRented,requireActivity())
+        servicesBigVerticalRecView = ServicesBigVerticalRecView(ftMostRented,requireActivity(),this)
         binding.HomeServedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -85,13 +86,13 @@ class FragHome : Fragment() {
         pagerSnapHelper2.attachToRecyclerView(binding.HomeServedRecycler)
 
 
-        itemNormalHorizontalRecView = ItemNormalHorizontalRecView(ftMostShoped,requireActivity())
+        itemNormalHorizontalRecView = ItemNormalHorizontalRecView(ftMostShoped,requireActivity(),this)
         binding.HomePurchasedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,
             false)
         binding.HomePurchasedRecycler.adapter = itemNormalHorizontalRecView
 
-        itemInsiderRecView = ItemInsiderRecView(ftMostDemanded,requireActivity())
+        itemInsiderRecView = ItemInsiderRecView(ftMostDemanded,requireActivity(),this)
         binding.HomeDemandedRecycler.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -154,10 +155,10 @@ class FragHome : Fragment() {
                         val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
                         val err = JSONObject(errorw)
                         val errMessage = err.getJSONObject("status").getString("message")
-                        commonFuncs.showDefaultDialog(requireContext(),"فشل تسجيل الدخول",errMessage)
+                        commonFuncs.showDefaultDialog(requireContext(),"خطأ في الإتصال",errMessage)
                         Log.e("eResponser", errorw.toString())
                     } else {
-                        commonFuncs.showDefaultDialog(requireContext(),"فشل تسجيل الدخول","حصل خطأ ما")
+                        commonFuncs.showDefaultDialog(requireContext(),"خطأ في الإتصال","حصل خطأ ما")
                         Log.e("eResponsew", "RequestError:$error")
                     }
                     commonFuncs.hideLoadingDialog()
@@ -184,6 +185,30 @@ class FragHome : Fragment() {
     override fun onResume() {
         super.onResume()
             home_Request()
+    }
+
+
+
+    override fun OnFavoriteClickListener(item: FTItem) {
+        for (i in 0 until ftMostRented.size) {
+            if (ftMostRented[i].ItemId == item.ItemId){
+                ftMostRented[i].ItemIsFavorite = item.ItemIsFavorite
+            }
+        }
+        for (i in 0 until ftMostShoped.size) {
+            if (ftMostShoped[i].ItemId == item.ItemId){
+                ftMostShoped[i].ItemIsFavorite = item.ItemIsFavorite
+            }
+        }
+
+        for (i in 0 until ftMostDemanded.size) {
+            if (ftMostDemanded[i].ItemId == item.ItemId){
+                ftMostDemanded[i].ItemIsFavorite = item.ItemIsFavorite
+            }
+        }
+        servicesBigVerticalRecView.notifyDataSetChanged()
+        itemNormalHorizontalRecView.notifyDataSetChanged()
+        itemInsiderRecView.notifyDataSetChanged()
     }
 
 }

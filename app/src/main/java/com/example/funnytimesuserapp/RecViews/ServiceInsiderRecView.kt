@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Interfaces.OnFavoriteClick
 import com.example.funnytimesuserapp.MainMenuSection.FavouriteSection.FavoriteFuncs
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTService
@@ -24,7 +25,7 @@ import com.example.funnytimesuserapp.SectionService.ClinicScreen
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.BaseRatingBar
 
-class ServiceInsiderRecView (val data : ArrayList<FTItem>, val context: Activity) : RecyclerView.Adapter<SIViewHolder>() {
+class ServiceInsiderRecView (val data : ArrayList<FTItem>, val context: Activity,val onFavoriteClick: OnFavoriteClick) : RecyclerView.Adapter<SIViewHolder>() {
 
     val commonFuncs = CommonFuncs()
     val favoriteFuncs = FavoriteFuncs()
@@ -75,6 +76,7 @@ class ServiceInsiderRecView (val data : ArrayList<FTItem>, val context: Activity
                     favoriteFuncs.delete_favourite_Request(context,data[position].ItemId!!)
                 }
                 commonFuncs.WriteOnSP(context,"FavoriteChanged","Yes")
+                onFavoriteClick.OnFavoriteClickListener(data[position])
             }else{
                 commonFuncs.showLoginDialog(context)
             }

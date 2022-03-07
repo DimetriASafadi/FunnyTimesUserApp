@@ -51,7 +51,7 @@
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_main_home.xml" value="0.471606648199446" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_main_menu.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_main_setting.xml" value="0.25" />
-        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_main_user.xml" value="0.5" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_main_user.xml" value="0.33" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_new_password_screen.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_notification_screen.xml" value="0.3546875" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/ft_pass_reset_code_confirm_screen.xml" value="0.3546875" />
@@ -94,6 +94,8 @@
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_most_served.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_normal_horizontal.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_notification.xml" value="0.3546875" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_ob_books.xml" value="0.2911500641299701" />
+        <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_ob_orders.xml" value="0.2911500641299701" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_pro_attribute.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_review.xml" value="0.5" />
         <entry key="..\:/Android/Testing/FunnyTimesUserApp/app/src/main/res/layout/rec_item_service_big_vertical.xml" value="0.3546875" />

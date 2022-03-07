@@ -14,7 +14,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
-import com.example.funnytimesuserapp.Interfaces.SubCategoryClickListener
+import com.example.funnytimesuserapp.Interfaces.OnSubCategoryClick
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTSubCategory
@@ -28,7 +28,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class SubCategoryItem : AppCompatActivity() ,SubCategoryClickListener{
+class SubCategoryItem : AppCompatActivity() ,OnSubCategoryClick{
 
     lateinit var binding: FtCategorySubItemBinding
     val suncategories = ArrayList<FTSubCategory>()
@@ -39,6 +39,7 @@ class SubCategoryItem : AppCompatActivity() ,SubCategoryClickListener{
 
     lateinit var itemInsider2RecView : ItemInsider2RecView
 
+    lateinit var selfCat:FTCategory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtCategorySubItemBinding.inflate(layoutInflater)
@@ -49,7 +50,7 @@ class SubCategoryItem : AppCompatActivity() ,SubCategoryClickListener{
             finish()
         }
 
-        val selfCat = intent.getSerializableExtra("subCat") as FTCategory
+        selfCat = intent.getSerializableExtra("subCat") as FTCategory
         val catPos = intent.getIntExtra("subPos",0)
         val selfCats = intent.getSerializableExtra("subCats") as ArrayList<FTCategory>
         for (i in 0 until selfCats.size)
@@ -93,6 +94,11 @@ class SubCategoryItem : AppCompatActivity() ,SubCategoryClickListener{
             false
         })
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         subcategory_Request(selfCat.CategoryId!!)
 
     }
@@ -131,6 +137,14 @@ class SubCategoryItem : AppCompatActivity() ,SubCategoryClickListener{
                     commonFuncs.hideLoadingDialog()
 
                 }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val map = HashMap<String,String>()
+                    if (commonFuncs.IsInSP(this@SubCategoryItem, Constants.KeyUserToken)){
+                        map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(this@SubCategoryItem, Constants.KeyUserToken)
+                        Log.e("HomeToken",commonFuncs.GetFromSP(this@SubCategoryItem, Constants.KeyUserToken).toString())
+                    }
+                    return map
+                }
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)

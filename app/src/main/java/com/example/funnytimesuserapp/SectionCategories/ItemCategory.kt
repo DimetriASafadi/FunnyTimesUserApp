@@ -13,6 +13,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.Interfaces.OnFavoriteClick
 import com.example.funnytimesuserapp.Models.FTBanner
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
@@ -27,7 +28,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class ItemCategory : AppCompatActivity() {
+class ItemCategory : AppCompatActivity(), OnFavoriteClick {
 
     lateinit var binding: FtCategoryItemBinding
     val ftCategory = ArrayList<FTCategory>()
@@ -62,9 +63,9 @@ class ItemCategory : AppCompatActivity() {
             finish()
         }
         categoriesRecView = CategoriesRecView(ftCategory,this,cattype,1)
-        itemBigVerticalRecView = ItemBigVerticalRecView(MostOrder,this)
-        itemInsiderRecView = ItemInsiderRecView(MostFamouse,this)
-        itemInsiderRecView2 = ItemInsiderRecView(Recent,this)
+        itemBigVerticalRecView = ItemBigVerticalRecView(MostOrder,this,this)
+        itemInsiderRecView = ItemInsiderRecView(MostFamouse,this,this)
+        itemInsiderRecView2 = ItemInsiderRecView(Recent,this,this)
 
 
 
@@ -109,8 +110,12 @@ class ItemCategory : AppCompatActivity() {
             false
         })
 
-        category_Request()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        category_Request()
     }
 
     fun category_Request(){
@@ -129,6 +134,10 @@ class ItemCategory : AppCompatActivity() {
 
 
                     val gson = GsonBuilder().create()
+                    ftCategory.clear()
+                    MostOrder.clear()
+                    MostFamouse.clear()
+                    Recent.clear()
                     ftCategory.add(FTCategory(0,"الكل","","",""))
                     ftCategory.addAll(gson.fromJson(categories.toString(),Array<FTCategory>::class.java).toList())
                     MostOrder.addAll(gson.fromJson(mostBooking.toString(),Array<FTItem>::class.java).toList())
@@ -157,6 +166,14 @@ class ItemCategory : AppCompatActivity() {
                     commonFuncs.hideLoadingDialog()
 
                 }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val map = HashMap<String,String>()
+                    if (commonFuncs.IsInSP(this@ItemCategory, Constants.KeyUserToken)){
+                        map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(this@ItemCategory, Constants.KeyUserToken)
+                        Log.e("HomeToken",commonFuncs.GetFromSP(this@ItemCategory, Constants.KeyUserToken).toString())
+                    }
+                    return map
+                }
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)
@@ -164,6 +181,28 @@ class ItemCategory : AppCompatActivity() {
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }
+    }
+
+    override fun OnFavoriteClickListener(item: FTItem) {
+        for (i in 0 until MostOrder.size) {
+            if (MostOrder[i].ItemId == item.ItemId){
+                MostOrder[i].ItemIsFavorite = item.ItemIsFavorite
+            }
+        }
+        for (i in 0 until MostFamouse.size) {
+            if (MostFamouse[i].ItemId == item.ItemId){
+                MostFamouse[i].ItemIsFavorite = item.ItemIsFavorite
+            }
+        }
+
+        for (i in 0 until Recent.size) {
+            if (Recent[i].ItemId == item.ItemId){
+                Recent[i].ItemIsFavorite = item.ItemIsFavorite
+            }
+        }
+        itemBigVerticalRecView.notifyDataSetChanged()
+        itemInsiderRecView.notifyDataSetChanged()
+        itemInsiderRecView2.notifyDataSetChanged()
     }
 
 }

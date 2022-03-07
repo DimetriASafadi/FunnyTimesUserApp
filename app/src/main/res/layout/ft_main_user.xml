@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -90,34 +91,36 @@
         app:layout_constraintTop_toBottomOf="@+id/UserEmail" />
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/ft_radius_fill"
-        android:backgroundTint="@color/ft_grey"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@+id/UserPhone">
+        android:background="@drawable/ft_radius_fill"
+        android:backgroundTint="@color/ft_grey"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/UserPhone"
+        tools:layout_editor_absoluteX="13dp">
+
         <LinearLayout
             android:id="@+id/BooksButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:paddingVertical="@dimen/_6sdp"
             android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
             android:background="@drawable/ft_radius_fill"
-            >
+            android:gravity="center_horizontal"
+            android:paddingVertical="@dimen/_6sdp">
+
             <TextView
                 android:id="@+id/BooksTextImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/ft_dark_blue"
-                android:text="حجوزاتي"
                 android:drawableStart="@drawable/ft_property_building_icon"
                 android:fontFamily="@font/montserrat_arabic"
                 android:gravity="center_horizontal"
-                />
+                android:text="حجوزاتي"
+                android:textColor="@color/ft_dark_blue" />
 
         </LinearLayout>
 
@@ -125,25 +128,52 @@
             android:id="@+id/OrdersButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:paddingVertical="@dimen/_6sdp"
             android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
             android:background="@null"
-            >
+            android:gravity="center_horizontal"
+            android:paddingVertical="@dimen/_6sdp">
+
             <TextView
                 android:id="@+id/OrdersTextImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/ft_grey_1"
-                android:text="طلباتي"
                 android:drawableStart="@drawable/ft_bag_shoping_icon"
                 android:fontFamily="@font/montserrat_arabic"
                 android:gravity="center_horizontal"
-                />
+                android:text="طلباتي"
+                android:textColor="@color/ft_grey_1" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/SwipeBooks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:srl_direction="top">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/BooksRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp" />
+    </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+    <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/SwipeOrders"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:srl_direction="top"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/OrdersRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp" />
+    </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
 
 
 

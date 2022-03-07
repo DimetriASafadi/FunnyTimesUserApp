@@ -53,9 +53,6 @@ class FragFavourite: Fragment()  {
             false)
         binding.FavoriteItemsRecycler.adapter = favoritesRecView
 
-        if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)){
-            get_favourite_Request(requireActivity())
-        }
 
 
         return binding.root
@@ -66,6 +63,11 @@ class FragFavourite: Fragment()  {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)){
+            get_favourite_Request(requireActivity())
+        }    }
 
     fun get_favourite_Request(activity: Activity){
         commonFuncs.showLoadingDialog(activity)

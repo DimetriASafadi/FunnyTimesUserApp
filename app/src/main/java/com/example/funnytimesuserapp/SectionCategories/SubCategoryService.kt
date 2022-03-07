@@ -14,7 +14,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
-import com.example.funnytimesuserapp.Interfaces.SubCategoryClickListener
+import com.example.funnytimesuserapp.Interfaces.OnSubCategoryClick
 import com.example.funnytimesuserapp.Models.FTCategory
 import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.Models.FTSubCategory
@@ -30,7 +30,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 
-class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
+class SubCategoryService : AppCompatActivity(), OnSubCategoryClick {
 
     lateinit var binding: FtCategorySubServiceBinding
     val suncategories = ArrayList<FTSubCategory>()
@@ -39,6 +39,8 @@ class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
     lateinit var serviceInsiderRecView : ServiceInsider2RecView
     val commonFuncs = CommonFuncs()
     val searchFuncs = SearchFuncs()
+
+    lateinit var selfCat:FTCategory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,7 @@ class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
             finish()
         }
 
-        val selfCat = intent.getSerializableExtra("subCat") as FTCategory
+        selfCat = intent.getSerializableExtra("subCat") as FTCategory
         val catPos = intent.getIntExtra("subPos",0)
         val selfCats = intent.getSerializableExtra("subCats") as ArrayList<FTCategory>
         for (i in 0 until selfCats.size)
@@ -116,9 +118,15 @@ class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
             }
             false
         })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         subcategory_Request(selfCat.CategoryId!!)
 
     }
+
     fun subcategory_Request(subcatid:Int){
         commonFuncs.showLoadingDialog(this)
         val url = Constants.APIMain + "api/subcategory/"+subcatid
@@ -153,6 +161,14 @@ class SubCategoryService : AppCompatActivity(), SubCategoryClickListener {
                     commonFuncs.hideLoadingDialog()
 
                 }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val map = HashMap<String,String>()
+                    if (commonFuncs.IsInSP(this@SubCategoryService, Constants.KeyUserToken)){
+                        map["Authorization"] = "Bearer "+commonFuncs.GetFromSP(this@SubCategoryService, Constants.KeyUserToken)
+                        Log.e("HomeToken",commonFuncs.GetFromSP(this@SubCategoryService, Constants.KeyUserToken).toString())
+                    }
+                    return map
+                }
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)
