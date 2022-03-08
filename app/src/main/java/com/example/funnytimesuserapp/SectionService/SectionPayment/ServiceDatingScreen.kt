@@ -44,6 +44,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
     var end_hour = ""
     var start_date = ""
     var end_date = ""
+    var ncounts1 = ""
     val clinicServices = ArrayList<FTClinicService>()
     val commonFuncs = CommonFuncs()
 
@@ -81,7 +82,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                 start_date = commonFuncs.convertMilliToDate(startDate.time)
                 end_date = commonFuncs.convertMilliToDate(endDate.time)
                 val result = temp2.timeInMillis - temp1.timeInMillis
-                var ncounts1 = TimeUnit.MILLISECONDS.toDays(result).toString()
+                ncounts1 = TimeUnit.MILLISECONDS.toDays(result).toString()
                 total = (total.toDouble() * ncounts1.toDouble()).toString()
                 binding.NightsCount.text = "عدد الليالي : $ncounts1 ليلة"
             }
@@ -195,6 +196,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                             intent.putExtra("booking_type",booking_type)
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("end_date",end_date)
+                            intent.putExtra("nights_count",ncounts1)
                             intent.putExtra("total",total)
                             startActivity(intent)
                         }else if (booking_type == 2){
@@ -203,6 +205,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("start_hour",start_hour)
                             intent.putExtra("end_hour",end_hour)
+                            intent.putExtra("nights_count","1")
                             intent.putExtra("price",price)
                             startActivity(intent)
                         }else if (booking_type == 3){
@@ -210,6 +213,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                             intent.putExtra("booking_type",booking_type)
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("period",period)
+                            intent.putExtra("nights_count","1")
                             intent.putExtra("price",price)
                             startActivity(intent)
                         }else if (booking_type == 4){
@@ -218,6 +222,7 @@ class ServiceDatingScreen : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
                             intent.putExtra("start_date",start_date)
                             intent.putExtra("start_hour",start_hour)
                             intent.putExtra("price",price)
+                            intent.putExtra("nights_count","1")
                             intent.putExtra("services",clinicServices)
                             startActivity(intent)
                         }

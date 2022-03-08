@@ -58,6 +58,7 @@ class PaymentScreen : AppCompatActivity() {
     var end_hour = ""
     var start_date = ""
     var end_date = ""
+    var nights_count = ""
     val clinicServices = ArrayList<FTClinicService>()
 
 
@@ -69,6 +70,7 @@ class PaymentScreen : AppCompatActivity() {
 
         itemid = intent.getIntExtra("itemid",0)
         booking_type = intent.getIntExtra("booking_type",0)
+        nights_count = intent.getStringExtra("nights_count").toString()
 
         if (booking_type == 1){
             start_date = intent.getStringExtra("start_date").toString()
@@ -144,6 +146,7 @@ class PaymentScreen : AppCompatActivity() {
             multipartBody.setType(MultipartBody.FORM)
             multipartBody.addFormDataPart("product_id", itemid.toString())
             multipartBody.addFormDataPart("type", booking_type.toString())
+            multipartBody.addFormDataPart("nights_count", nights_count)
             multipartBody.addFormDataPart("payment_gateway", payment_gateway)
 
             if (booking_type == 1){
@@ -155,14 +158,17 @@ class PaymentScreen : AppCompatActivity() {
                 multipartBody.addFormDataPart("start_date", start_date)
                 multipartBody.addFormDataPart("start_hour", start_hour)
                 multipartBody.addFormDataPart("end_hour", end_hour)
+                multipartBody.addFormDataPart("nights_count", nights_count)
                 multipartBody.addFormDataPart("total", price)
             }else if (booking_type == 3){
                 multipartBody.addFormDataPart("start_date", start_date)
                 multipartBody.addFormDataPart("period", period)
+                multipartBody.addFormDataPart("nights_count", nights_count)
                 multipartBody.addFormDataPart("total", price)
             }else if (booking_type == 4){
                 multipartBody.addFormDataPart("start_date", start_date)
                 multipartBody.addFormDataPart("start_hour", start_hour)
+                multipartBody.addFormDataPart("nights_count", nights_count)
                 multipartBody.addFormDataPart("total", price)
                 for (i in 0 until clinicServices.size) {
                     multipartBody.addFormDataPart("services[]",clinicServices[i].ServiceId.toString())

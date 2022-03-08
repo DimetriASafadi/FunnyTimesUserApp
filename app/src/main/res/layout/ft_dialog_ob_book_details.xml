@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:background="@drawable/ft_radius_top_fill"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10sdp"
+        >
+        <TextView
+            android:id="@+id/BDId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* الحجز رقم 42 *"
+            android:fontFamily="@font/montserrat_arabic"
+            android:textColor="@color/ft_dark_blue"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="اسم الخدمة أو العقار :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:id="@+id/BookPropName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="تاريخ الدخول :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="تاريخ الخروج :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="وقت الدخول :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="وقت الخروج :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="إجمالي المبلغ المدفوع :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="الفترة :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="عدد الليالي :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="طريقة الدفع :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="اسم صاحب المنشأة :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="عنوان المنشأة :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="الخدمات المسجلة :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
