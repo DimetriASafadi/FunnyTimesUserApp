@@ -5,33 +5,33 @@ import java.io.Serializable
 
 data class FTBook(
     @SerializedName("id")
-    var BookId:Int?,
+    var BookId:Int? = 0,
     @SerializedName("name")
-    var BookName:String,
+    var BookName:String? = "لا يوجد",
     @SerializedName("start_date")
-    var BookStartDate:String? = "",
+    var BookStartDate:String? = "لا يوجد",
     @SerializedName("end_date")
-    var BookEndDate:String? = "",
+    var BookEndDate:String? = "لا يوجد",
     @SerializedName("start_hour")
-    var BookStartHour:String? = "",
+    var BookStartHour:String? = "لا يوجد",
     @SerializedName("end_hour")
-    var BookEndHour:String? = "",
+    var BookEndHour:String? = "لا يوجد",
     @SerializedName("period")
-    var BookPeriod:Int?,
+    var BookPeriod:Int? = 0,
     @SerializedName("total")
-    var BookTotal:Int?,
+    var BookTotal:Int? = 0,
     @SerializedName("nights_count")
-    var BookNightCount:Int?,
+    var BookNightCount:Int? = 0,
     @SerializedName("booking_type")
-    var BookType:Int?,
+    var BookType:Int? = 0,
     @SerializedName("status")
-    var BookStatus:String?,
+    var BookStatus:String? = "لا يوجد",
     @SerializedName("payment_gateway")
-    var BookPayment:String?,
+    var BookPayment:String? = "لا يوجد",
     @SerializedName("data")
     var BookDetails:FTBookDetails?,
     @SerializedName("created_at")
-    var BookCreatedAt:String?,
+    var BookCreatedAt:String? = "لا يوجد",
 
 
 

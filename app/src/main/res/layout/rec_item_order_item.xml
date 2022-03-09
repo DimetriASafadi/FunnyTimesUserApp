@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/ft_radius_fill"
+    android:layout_margin="@dimen/_5sdp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_margin="@dimen/_5sdp"
+        >
+
+
+
+
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ProductImage"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:src="@drawable/ft_splash_logo"
+                app:riv_corner_radius="@dimen/_10sdp" />
+
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1.8"
+            >
+
+            <TextView
+                android:id="@+id/ProductTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه أخضر مع ملعب طائرة"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/ft_black"
+                android:fontFamily="@font/montserrat_arabic"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:maxLines="1"
+                android:textDirection="rtl"
+                />
+
+            <TextView
+                android:id="@+id/ProductAttributes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="حي الرياض,الرياض"
+                android:textSize="@dimen/_9ssp"
+                android:textDirection="rtl"
+                android:textColor="@color/ft_dark_blue"
+                android:fontFamily="@font/montserrat_arabic"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                />
+            <TextView
+                android:id="@+id/ProductVendorLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="حي الرياض,الرياض"
+                android:textSize="@dimen/_9ssp"
+                android:maxLines="1"
+                android:textDirection="rtl"
+                android:textColor="@color/ft_menu_unselected"
+                android:fontFamily="@font/montserrat_arabic"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                >
+                <TextView
+                    android:id="@+id/ProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="سعر الوحدة : 200 ر.س"
+                    android:textSize="@dimen/_9ssp"
+                    android:textColor="@color/ft_dark_blue"
+                    android:fontFamily="@font/montserrat_arabic"
+                    android:layout_marginHorizontal="@dimen/_2sdp"
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/ProductQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                android:background="@drawable/ft_radius_fill_light"
+                android:backgroundTint="@color/ft_grey"
+                android:fontFamily="@font/montserrat_arabic"
+                android:padding="@dimen/_3sdp"
+                android:layout_margin="@dimen/_2sdp"
+                android:text="الكمية : 99"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/ft_black" />
+            <TextView
+                android:id="@+id/ProductTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                android:background="@drawable/ft_radius_fill_light"
+                android:backgroundTint="@color/ft_dark_blue"
+                android:fontFamily="@font/montserrat_arabic"
+                android:padding="@dimen/_3sdp"
+                android:layout_margin="@dimen/_2sdp"
+                android:textSize="@dimen/_9ssp"
+                android:text="الإجمالي  2000"
+                android:gravity="center"
+                android:textColor="@color/ft_white" />
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

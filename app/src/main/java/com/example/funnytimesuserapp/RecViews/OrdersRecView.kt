@@ -4,14 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.funnytimesuserapp.Interfaces.OnOrderClick
 import com.example.funnytimesuserapp.Models.FTOrder
 import com.example.funnytimesuserapp.R
 import com.makeramen.roundedimageview.RoundedImageView
 
-class OrdersRecView (val data : ArrayList<FTOrder>, val context: Context) : RecyclerView.Adapter<OrderViewHolder>() {
+class OrdersRecView (val data : ArrayList<FTOrder>, val context: Context,val onOrderClick: OnOrderClick) : RecyclerView.Adapter<OrderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         return OrderViewHolder(LayoutInflater.from(context).inflate(R.layout.rec_item_ob_orders, parent, false))    }
@@ -35,12 +37,16 @@ class OrdersRecView (val data : ArrayList<FTOrder>, val context: Context) : Recy
         holder.OrderAddress.text = data[position].OrderItems!![0].ItemDetails.ItemAddress
         holder.OrderDate.text = data[position].OrderCreatedAt
         holder.OrderStatus.text = data[position].OrderStatus
+        holder.WholeOrder.setOnClickListener {
+            onOrderClick.OnOrderClickListener(data[position])
+        }
 
 
     }
 }
 class OrderViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to
+    val WholeOrder = view.findViewById<LinearLayout>(R.id.WholeOrder)
     val OrderImage = view.findViewById<RoundedImageView>(R.id.OrderImage)
     val OrderPrice = view.findViewById<TextView>(R.id.OrderPrice)
     val OrderName = view.findViewById<TextView>(R.id.OrderName)

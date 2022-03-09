@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="@dimen/_10sdp"
-    android:layout_marginTop="@dimen/_10sdp"
     android:background="@drawable/ft_radius_top_fill"
     >
 
@@ -12,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         >
         <TextView
-            android:id="@+id/BDId"
+            android:id="@+id/BookId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="* الحجز رقم 42 *"
@@ -30,8 +30,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_10sdp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="تاريخ الحجز :"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_black"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10ssp"
+                android:alpha="0.6"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+            <TextView
+                android:id="@+id/BookCreatedAt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="شاليه النور"
+                android:fontFamily="@font/montserrat_arabic"
+                android:textColor="@color/ft_dark_blue"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ft_black"
+            android:alpha="0.1"
+            android:layout_marginVertical="@dimen/_10sdp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -78,6 +119,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -109,6 +151,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -140,6 +183,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookStartHour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -171,6 +215,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookEndHour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -202,6 +247,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -233,6 +279,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -264,6 +311,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookNightsCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -296,6 +344,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookPaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -328,6 +377,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookVendor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -360,6 +410,7 @@
                 />
 
             <TextView
+                android:id="@+id/BookPropAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="شاليه النور"
@@ -371,11 +422,21 @@
                 />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ft_black"
+            android:alpha="0.1"
+            android:layout_marginVertical="@dimen/_10sdp"
+            />
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/BookServicesSection"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_10sdp"
             >
             <TextView
@@ -390,15 +451,12 @@
                 android:layout_marginHorizontal="@dimen/_2sdp"
                 />
 
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/BookServicesRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
-                android:fontFamily="@font/montserrat_arabic"
-                android:textColor="@color/ft_dark_blue"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/_11ssp"
                 android:layout_marginHorizontal="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_50sdp"
                 />
 
         </LinearLayout>
