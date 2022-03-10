@@ -116,7 +116,7 @@ class FoodScreen : AppCompatActivity() {
                     binding.FoodRating.setOnTouchListener { _, _ ->
                         return@setOnTouchListener true
                     }
-                    binding.FoodPrice.text = data.getString("price")
+                    binding.FoodPrice.text = data.getString("price")+" ر.س"
                     val gson = GsonBuilder().create()
                     val ftPhotos = ArrayList<FTItemPhoto>()
                     val ftReviews = ArrayList<FTReview>()

@@ -184,7 +184,7 @@ class ClinicScreen : AppCompatActivity(), OnClinicServiceClick {
     }
 
     override fun OnClinicServiceClickListener(total: Double) {
-        binding.ClinicDynamicPrice.text = total.toString()
+        binding.ClinicDynamicPrice.text = "$total ر.س"
         price = total.toString()
     }
 }

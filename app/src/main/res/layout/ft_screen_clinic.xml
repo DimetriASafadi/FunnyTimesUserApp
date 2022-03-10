@@ -319,7 +319,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_arabic"
-                android:text="العربون"
+                android:text="الإجمالي"
                 android:textColor="@color/ft_menu_unselected"
                 android:textSize="@dimen/_10ssp" />
 

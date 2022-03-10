@@ -90,8 +90,8 @@ class ChaletScreen : AppCompatActivity() {
                         .into(binding.ChaletImage)
                     binding.ChaletCity.text = data.getString("address")
                     binding.ChaletDesc.text = data.getString("description")
-                    binding.ChaletPrice.text = data.getString("price")
-                    binding.ChaletDepositPrice.text = data.getString("deposit")
+                    binding.ChaletPrice.text = data.getString("price")+" ر.س"
+                    binding.ChaletDepositPrice.text = data.getString("deposit")+" ر.س"
                     binding.VendorPolicies.setOnClickListener {
                         commonFuncs.showDefaultDialog(activity,"الشروط والأحكام",data.getString("policy").toString())
                     }
