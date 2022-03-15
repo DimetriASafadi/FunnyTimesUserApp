@@ -1,9 +1,9 @@
 package com.example.funnytimesuserapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -15,13 +15,13 @@ import com.example.funnytimesuserapp.CommonSection.Constants.FilterTools
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyAppLanguage
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyOpenBefore
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
-import com.example.funnytimesuserapp.Models.FTItem
 import com.example.funnytimesuserapp.SplashSection.SplashMenu
-import com.google.gson.GsonBuilder
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
+
 import java.util.*
+
 
 class SplashScreen : AppCompatActivity() {
 
@@ -112,4 +112,6 @@ class SplashScreen : AppCompatActivity() {
             Log.e("Response", error.toString())
         }
     }
+
+
 }

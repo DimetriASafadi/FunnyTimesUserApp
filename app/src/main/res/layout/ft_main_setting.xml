@@ -108,6 +108,7 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/SettingChangePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -200,6 +201,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/SettingSignOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -208,6 +210,7 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         >
         <ImageView
+            android:id="@+id/SignInOutIcon"
             android:layout_width="@dimen/_37sdp"
             android:layout_height="@dimen/_37sdp"
             android:scaleX="-1"
@@ -215,6 +218,7 @@
             android:layout_marginHorizontal="@dimen/_5sdp"
             />
         <TextView
+            android:id="@+id/SignInOut"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

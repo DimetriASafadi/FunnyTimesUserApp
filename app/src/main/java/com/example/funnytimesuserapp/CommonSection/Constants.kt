@@ -10,4 +10,8 @@ object Constants {
     val KeyUserID = "UserID"
     val KeyAppLanguage = "AppLanguage"
     val FilterTools = "FilterTools"
+    const val EMAIL = "email"
+    const val USER_POSTS = "user_posts"
+    const val AUTH_TYPE = "rerequest"
+
 }

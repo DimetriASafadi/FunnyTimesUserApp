@@ -35,6 +35,10 @@ class PhoneConfirmScreen : AppCompatActivity() {
         comingFrom = intent.getStringExtra("comingFrom").toString()
 
 
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
 
         binding.CountryPicker.registerCarrierNumberEditText(binding.PhoneNumber)
 

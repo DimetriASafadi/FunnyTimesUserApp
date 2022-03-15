@@ -1,32 +1,61 @@
 package com.example.funnytimesuserapp.AuthSection
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.funnytimesuserapp.CommonSection.CommonFuncs
 import com.example.funnytimesuserapp.CommonSection.Constants
+import com.example.funnytimesuserapp.CommonSection.Constants.AUTH_TYPE
+import com.example.funnytimesuserapp.CommonSection.Constants.EMAIL
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserID
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
+import com.example.funnytimesuserapp.CommonSection.Constants.USER_POSTS
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtSignInScreenBinding
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
+import java.util.*
+
 
 class SignInScreen : AppCompatActivity() {
     lateinit var binding: FtSignInScreenBinding
     val commonFuncs = CommonFuncs()
+    lateinit var callbackManager:CallbackManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtSignInScreenBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        callbackManager = CallbackManager.Factory.create()
+
+        binding.UserFaceBook.setPermissions(listOf(EMAIL, USER_POSTS))
+        binding.UserFaceBook.authType = AUTH_TYPE
+        binding.UserFaceBook.registerCallback(
+            callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    Log.e("onSuccess",loginResult.toString())
+                }
+                override fun onCancel() {
+                    Log.e("onCancel","onCancel")
+                }
+                override fun onError(e: FacebookException) {
+                    Log.e("onError",e.message.toString())
+                }
+            })
+
         binding.SSignIn.setOnClickListener {
             val username = binding.SUserEmail.text.toString()
             val password = binding.SUserPassword.text.toString()
@@ -84,7 +113,6 @@ class SignInScreen : AppCompatActivity() {
                         intent.putExtra("TempToken",token)
                         startActivity(intent)
                         commonFuncs.hideLoadingDialog()
-                        finish()
                     }else{
                         val intent = Intent(this,CodeConfirmScreen::class.java)
                         intent.putExtra("comingFrom","signin")

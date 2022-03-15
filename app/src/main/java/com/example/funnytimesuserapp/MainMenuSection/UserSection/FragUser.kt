@@ -87,12 +87,12 @@ class FragUser : Fragment(), OnBookClick, OnOrderClick {
 
         binding.SwipeBooks.setOnRefreshListener(SwipyRefreshLayout.OnRefreshListener { direction ->
             if (direction == SwipyRefreshLayoutDirection.TOP) {
-                Log.e("SwipeBooks","Top")
+                get_Books_Request(requireActivity())
             }
         })
         binding.SwipeOrders.setOnRefreshListener(SwipyRefreshLayout.OnRefreshListener { direction ->
             if (direction == SwipyRefreshLayoutDirection.TOP) {
-                Log.e("SwipeOrders","Top")
+                get_Orders_Request(requireActivity())
             }
         })
 

@@ -107,12 +107,17 @@ class MainMenu : AppCompatActivity() {
                     }
                 }
                 R.id.nav_user -> {
-                    supportFragmentManager.beginTransaction().hide(active).show(fragment4).commit()
-                    active = fragment4
-                    binding.TopSection.visibility = View.VISIBLE
-                    binding.SearchSection.visibility = View.GONE
-                    return@setOnItemSelectedListener true
-
+                    if (commonFuncs.IsInSP(this, Constants.KeyUserToken)) {
+                        supportFragmentManager.beginTransaction().hide(active).show(fragment4)
+                            .commit()
+                        active = fragment4
+                        binding.TopSection.visibility = View.VISIBLE
+                        binding.SearchSection.visibility = View.GONE
+                        return@setOnItemSelectedListener true
+                    }else{
+                        commonFuncs.showLoginDialog(this)
+                        return@setOnItemSelectedListener false
+                    }
                 }
                 R.id.nav_setting -> {
                     supportFragmentManager.beginTransaction().hide(active).show(fragment5).commit()

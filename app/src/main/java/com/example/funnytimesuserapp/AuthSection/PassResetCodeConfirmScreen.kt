@@ -80,7 +80,6 @@ class PassResetCodeConfirmScreen : AppCompatActivity() {
                         Log.e("eResponsew", "RequestError:$error")
                     }
                     commonFuncs.hideLoadingDialog()
-
                 }) {
                 override fun getParams(): MutableMap<String, String>? {
                     val params = HashMap<String,String>()
@@ -88,7 +87,6 @@ class PassResetCodeConfirmScreen : AppCompatActivity() {
                     params["code"] = code
                     return params
                 }
-
             }
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)

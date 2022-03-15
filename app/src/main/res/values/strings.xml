@@ -3,4 +3,9 @@
     <string name="skip">Skip</string>
     <string name="ok">Ok</string>
     <string name="start_now">Start Now</string>
+
+
+    <string name="facebook_app_id">1108723679923921</string>
+    <string name="fb_login_protocol_scheme">fb1108723679923921</string>
+    <string name="facebook_client_token">84905e29a8927a035889f8c94d5f9e7a</string>
 </resources>
