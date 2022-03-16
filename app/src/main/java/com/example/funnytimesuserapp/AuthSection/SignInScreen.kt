@@ -17,15 +17,13 @@ import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
 import com.example.funnytimesuserapp.CommonSection.Constants.USER_POSTS
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtSignInScreenBinding
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
+import com.facebook.*
 import com.facebook.login.LoginResult
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class SignInScreen : AppCompatActivity() {
@@ -42,11 +40,18 @@ class SignInScreen : AppCompatActivity() {
 
         binding.UserFaceBook.setPermissions(listOf(EMAIL, USER_POSTS))
         binding.UserFaceBook.authType = AUTH_TYPE
+
+
         binding.UserFaceBook.registerCallback(
             callbackManager,
             object : FacebookCallback<LoginResult> {
-                override fun onSuccess(loginResult: LoginResult) {
-                    Log.e("onSuccess",loginResult.toString())
+                override fun onSuccess(result: LoginResult) {
+                    commonFuncs.showLoadingDialog(this@SignInScreen)
+                    Timer().schedule(object : TimerTask() {
+                        override fun run() {
+                            setFacebookData(result)
+                        }
+                    }, 1000)
                 }
                 override fun onCancel() {
                     Log.e("onCancel","onCancel")
@@ -143,10 +148,7 @@ class SignInScreen : AppCompatActivity() {
                 params["password"] = password
                 return params
             }
-//            override fun getHeaders(): MutableMap<String, String> {
-//
-//                return headers
-//            }
+
         }
         val requestQueue = Volley.newRequestQueue(this)
         requestQueue.add(stringRequest)
@@ -154,5 +156,105 @@ class SignInScreen : AppCompatActivity() {
             Log.e("Response", error.toString())
             commonFuncs.hideLoadingDialog()
         }
+    }
+    fun social_login_Request(email:String,name:String,accessToken:String,avatar_img:String,provider:String) {
+        val url = Constants.APIMain + "api/auth/login/social"
+        try {
+            val stringRequest = object : StringRequest(
+                Request.Method.POST, url, Response.Listener<String> { response ->
+                    Log.e("Response", response.toString())
+                    val jsonobj = JSONObject(response.toString())
+                    val data = jsonobj.getJSONObject("data")
+                    val token = data.getString("access_token")
+                    val userid = data.getJSONObject("user").getInt("id")
+//                    val userphone = data.getJSONObject("user").getString("phone").toString()
+                    val isactive = data.getJSONObject("user").getString("status")
+                    if (isactive == "active"){
+                        commonFuncs.WriteOnSP(this,KeyUserID,userid.toString())
+                        commonFuncs.WriteOnSP(this,KeyUserToken,token)
+                        commonFuncs.hideLoadingDialog()
+                        val intent = Intent(this,MainMenu::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+                    }else{
+                        if (data.getJSONObject("user").isNull("phone")){
+                            val intent = Intent(this,PhoneConfirmScreen::class.java)
+                            intent.putExtra("comingFrom","signin")
+                            intent.putExtra("TempToken",token)
+                            startActivity(intent)
+                            commonFuncs.hideLoadingDialog()
+                        }else{
+                            val intent = Intent(this,CodeConfirmScreen::class.java)
+                            intent.putExtra("comingFrom","signin")
+                            intent.putExtra("TempToken",token)
+                            startActivity(intent)
+                            commonFuncs.hideLoadingDialog()
+                            finish()
+                        }
+
+                    }
+                }, Response.ErrorListener { error ->
+                    if (error.networkResponse != null && error.networkResponse.data != null) {
+                        val errorw = String(error.networkResponse.data, Charset.forName("UTF-8"))
+                        val err = JSONObject(errorw)
+                        val errMessage = err.getJSONObject("status").getString("message")
+                        commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول",errMessage)
+                        Log.e("eResponser", errorw.toString())
+                    } else {
+                        commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول","حصل خطأ ما")
+                        Log.e("eResponsew", "RequestError:$error")
+                    }
+                    commonFuncs.hideLoadingDialog()
+
+                }) {
+                override fun getParams(): MutableMap<String, String>? {
+                    val params = HashMap<String,String>()
+                    params["email"] = email
+                    params["name"] = name
+                    params["accessToken"] = accessToken
+                    params["avatar_img"] = avatar_img
+                    params["provider"] = provider
+                    return params
+                }
+
+            }
+            val requestQueue = Volley.newRequestQueue(this)
+            requestQueue.add(stringRequest)
+        }catch (error:JSONException){
+            Log.e("Response", error.toString())
+            commonFuncs.hideLoadingDialog()
+        }
+    }
+
+    private fun setFacebookData(loginResult: LoginResult) {
+        val request = GraphRequest.newMeRequest(
+            loginResult.accessToken
+        ) { _, response -> // Application code
+            try {
+                Log.i("Response", response.toString())
+                val email = response!!.getJSONObject()!!.getString("email")
+                val firstName = response.getJSONObject()!!.getString("first_name")
+                val lastName = response.getJSONObject()!!.getString("last_name")
+                val profile = Profile.getCurrentProfile()
+                val id: String = profile!!.id.toString()
+                val link: String = profile.getProfilePictureUri(450, 450).toString()
+                Log.e("id", id)
+                Log.e("Link", link)
+                social_login_Request(email, "$firstName $lastName",loginResult.accessToken.token,link,"facebook")
+                Log.e("Login" + "Email", email)
+                Log.e("Login" + "FirstName", firstName)
+                Log.e("Login" + "LastName", lastName)
+            } catch (e: JSONException) {
+                Log.e("LoginError" , e.message.toString())
+                commonFuncs.hideLoadingDialog()
+                commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول","فشل عملية التسجيل بإستخدام الفيسبوك")
+                e.printStackTrace()
+            }
+        }
+        val parameters = Bundle()
+        parameters.putString("fields", "id,email,first_name,last_name,gender")
+        request.parameters = parameters
+        request.executeAsync()
     }
 }

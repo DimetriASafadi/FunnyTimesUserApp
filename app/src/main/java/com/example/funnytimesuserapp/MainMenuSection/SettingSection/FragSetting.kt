@@ -24,6 +24,7 @@ import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.SplashScreen
 import com.example.funnytimesuserapp.databinding.FtDialogResetPasswordBinding
 import com.example.funnytimesuserapp.databinding.FtMainSettingBinding
+import com.facebook.login.LoginManager
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
@@ -56,6 +57,7 @@ class FragSetting : Fragment() {
             binding.SignInOutIcon.scaleX*-1
             binding.SettingSignOut.setOnClickListener {
                 commonFuncs.DeleteFromSP(requireContext(),KeyUserToken)
+                LoginManager.getInstance().logOut();
                 val intent = Intent(requireContext(),SplashScreen::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
