@@ -13,5 +13,6 @@ object Constants {
     const val EMAIL = "email"
     const val USER_POSTS = "user_posts"
     const val AUTH_TYPE = "rerequest"
+    const val RC_SIGN_IN = 799
 
 }

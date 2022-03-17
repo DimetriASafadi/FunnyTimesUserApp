@@ -1,8 +1,10 @@
 package com.example.funnytimesuserapp.AuthSection
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
@@ -14,22 +16,29 @@ import com.example.funnytimesuserapp.CommonSection.Constants.AUTH_TYPE
 import com.example.funnytimesuserapp.CommonSection.Constants.EMAIL
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserID
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
+import com.example.funnytimesuserapp.CommonSection.Constants.RC_SIGN_IN
 import com.example.funnytimesuserapp.CommonSection.Constants.USER_POSTS
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtSignInScreenBinding
 import com.facebook.*
 import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class SignInScreen : AppCompatActivity() {
     lateinit var binding: FtSignInScreenBinding
     val commonFuncs = CommonFuncs()
     lateinit var callbackManager:CallbackManager
+    lateinit var mGoogleSignInClient:GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtSignInScreenBinding.inflate(layoutInflater)
@@ -37,6 +46,11 @@ class SignInScreen : AppCompatActivity() {
         setContentView(view)
 
         callbackManager = CallbackManager.Factory.create()
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         binding.UserFaceBook.setPermissions(listOf(EMAIL, USER_POSTS))
         binding.UserFaceBook.authType = AUTH_TYPE
@@ -60,6 +74,19 @@ class SignInScreen : AppCompatActivity() {
                     Log.e("onError",e.message.toString())
                 }
             })
+
+        binding.UserGoogle.setOnClickListener {
+            val signInIntent = mGoogleSignInClient.signInIntent
+            val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RC_SIGN_IN) {
+                    val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                    handleSignInResult(task)
+                }
+            }
+            resultLauncher.launch(signInIntent)
+        }
+
+
 
         binding.SSignIn.setOnClickListener {
             val username = binding.SUserEmail.text.toString()
@@ -90,6 +117,21 @@ class SignInScreen : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+
+            // Signed in successfully, show authenticated UI.
+            Log.e("GoogleDone", account.displayName.toString())
+            account.displayName
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.e("failed", "signInResult:failed code=" + e.statusCode)
+        }
+    }
+
     fun login_Request(username:String,password:String) {
         commonFuncs.showLoadingDialog(this)
         val url = Constants.APIMain + "api/auth/login"
