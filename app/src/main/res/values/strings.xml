@@ -9,6 +9,7 @@
     <string name="fb_login_protocol_scheme">fb1108723679923921</string>
     <string name="facebook_client_token">84905e29a8927a035889f8c94d5f9e7a</string>
 
-    <string name="google_client_id">708944007620-ucphq6tnkafur4vk5p8vcbumaoa7pos6.apps.googleusercontent.com</string>
+    <string name="google_web_client_id">708944007620-ucphq6tnkafur4vk5p8vcbumaoa7pos6.apps.googleusercontent.com</string>
+    <string name="google_client_id">708944007620-mv33m1g8c733vrlnsvas4vt7immoie85.apps.googleusercontent.com</string>
     <string name="google_client_secret">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</string>
 </resources>

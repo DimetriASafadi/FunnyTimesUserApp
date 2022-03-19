@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_10sdp"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ft_radius_fill"
+        android:backgroundTint="@color/ft_white"
+        android:layout_margin="@dimen/_15sdp"
+        >
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@color/ft_dark_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ProfileImage"
+        android:layout_width="@dimen/_95sdp"
+        android:layout_height="@dimen/_95sdp"
+        android:src="@drawable/ft_splash_b_icon"
+        app:civ_border_color="@color/ft_white"
+        app:civ_border_width="@dimen/_2sdp"
+        app:civ_circle_background_color="@color/ft_white"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+        app:layout_constraintEnd_toEndOf="@+id/circleImageView"
+        app:layout_constraintStart_toStartOf="@+id/circleImageView"
+        app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+    <RelativeLayout
+        android:id="@+id/ProEditImage"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/ProfileImage"
+        app:layout_constraintStart_toStartOf="@+id/ProfileImage"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_centerInParent="true"
+            android:src="@color/ft_dark_blue"
+            app:civ_circle_background_color="@color/ft_dark_blue" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ft_pin_edit_icon" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:fontFamily="@font/montserrat_arabic"
+        android:text="اسم الحساب *"
+        android:textColor="@color/ft_black"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView"
+        />
+
+    <EditText
+        android:id="@+id/ProfileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/ft_radius_stroke"
+        android:fontFamily="@font/montserrat_arabic"
+        android:hint="اسم حسابك"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:textColor="@color/ft_black"
+        android:textColorHint="@color/ft_grey_2"
+        android:textSize="@dimen/_12ssp"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:fontFamily="@font/montserrat_arabic"
+        android:text="عنوان البريد الإلكتروني *"
+        android:textColor="@color/ft_black"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfileName" />
+
+    <EditText
+        android:id="@+id/ProfileEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/ft_radius_stroke"
+        android:fontFamily="@font/montserrat_arabic"
+        android:hint="البريد الإلكتروني"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:textColor="@color/ft_black"
+        android:textColorHint="@color/ft_grey_2"
+        android:textSize="@dimen/_12ssp"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/ProfileSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginVertical="@dimen/_50sdp"
+        android:background="@drawable/ft_radius_fill"
+        android:backgroundTint="@color/ft_orange"
+        android:fontFamily="@font/montserrat_arabic"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_7sdp"
+        android:text="حفظ البيانات"
+        android:textColor="@color/ft_white"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfileEmail" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

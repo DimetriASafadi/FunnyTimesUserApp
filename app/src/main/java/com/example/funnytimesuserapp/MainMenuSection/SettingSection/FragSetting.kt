@@ -25,6 +25,9 @@ import com.example.funnytimesuserapp.SplashScreen
 import com.example.funnytimesuserapp.databinding.FtDialogResetPasswordBinding
 import com.example.funnytimesuserapp.databinding.FtMainSettingBinding
 import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
@@ -38,6 +41,8 @@ class FragSetting : Fragment() {
 
     val commonFuncs = CommonFuncs()
 
+    lateinit var mGoogleSignInClient:GoogleSignInClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +55,19 @@ class FragSetting : Fragment() {
         _binding = FtMainSettingBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("708944007620-ucphq6tnkafur4vk5p8vcbumaoa7pos6.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
+
         if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)) {
             binding.SettingChangePassword.visibility = View.GONE
             binding.SignInOut.text = "تسجيل خروج"
             binding.SignInOutIcon.setImageResource(R.drawable.ft_setting_signin_icon)
             binding.SignInOutIcon.scaleX*-1
             binding.SettingSignOut.setOnClickListener {
+                mGoogleSignInClient.signOut()
                 commonFuncs.DeleteFromSP(requireContext(),KeyUserToken)
                 LoginManager.getInstance().logOut();
                 val intent = Intent(requireContext(),SplashScreen::class.java)
@@ -74,6 +86,9 @@ class FragSetting : Fragment() {
         binding.SettingChangePassword.setOnClickListener {
             showPasswordChangeDialog()
         }
+
+
+
 
         return view
     }

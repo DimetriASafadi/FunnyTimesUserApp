@@ -16,7 +16,6 @@ import com.example.funnytimesuserapp.CommonSection.Constants.AUTH_TYPE
 import com.example.funnytimesuserapp.CommonSection.Constants.EMAIL
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserID
 import com.example.funnytimesuserapp.CommonSection.Constants.KeyUserToken
-import com.example.funnytimesuserapp.CommonSection.Constants.RC_SIGN_IN
 import com.example.funnytimesuserapp.CommonSection.Constants.USER_POSTS
 import com.example.funnytimesuserapp.MainMenu
 import com.example.funnytimesuserapp.databinding.FtSignInScreenBinding
@@ -39,6 +38,8 @@ class SignInScreen : AppCompatActivity() {
     val commonFuncs = CommonFuncs()
     lateinit var callbackManager:CallbackManager
     lateinit var mGoogleSignInClient:GoogleSignInClient
+    private val RC_SIGN_IN = 9001
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FtSignInScreenBinding.inflate(layoutInflater)
@@ -48,9 +49,24 @@ class SignInScreen : AppCompatActivity() {
         callbackManager = CallbackManager.Factory.create()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("708944007620-ucphq6tnkafur4vk5p8vcbumaoa7pos6.apps.googleusercontent.com")
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        val signInIntent = mGoogleSignInClient.signInIntent
+        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            Log.e("SignIn", "resultLauncher")
+                val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                handleSignInResult(task)
+        }
+
+        binding.UserGoogle.setOnClickListener {
+            commonFuncs.showLoadingDialog(this)
+            Log.e("SignIn", "Google Clicked")
+            resultLauncher.launch(signInIntent)
+        }
+
 
         binding.UserFaceBook.setPermissions(listOf(EMAIL, USER_POSTS))
         binding.UserFaceBook.authType = AUTH_TYPE
@@ -68,25 +84,12 @@ class SignInScreen : AppCompatActivity() {
                     }, 1000)
                 }
                 override fun onCancel() {
-                    Log.e("onCancel","onCancel")
+                    Log.e("SignIn","onCancel")
                 }
                 override fun onError(e: FacebookException) {
-                    Log.e("onError",e.message.toString())
+                    Log.e("SignIn",e.message.toString())
                 }
             })
-
-        binding.UserGoogle.setOnClickListener {
-            val signInIntent = mGoogleSignInClient.signInIntent
-            val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == RC_SIGN_IN) {
-                    val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-                    handleSignInResult(task)
-                }
-            }
-            resultLauncher.launch(signInIntent)
-        }
-
-
 
         binding.SSignIn.setOnClickListener {
             val username = binding.SUserEmail.text.toString()
@@ -118,17 +121,21 @@ class SignInScreen : AppCompatActivity() {
         }
     }
 
+
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        Log.e("SignIn", "handleSignInResult")
         try {
             val account = completedTask.getResult(ApiException::class.java)
-
+            social_login_Request(account.email.toString(),account.displayName.toString(),account.idToken.toString(),account.photoUrl.toString(),"google")
             // Signed in successfully, show authenticated UI.
-            Log.e("GoogleDone", account.displayName.toString())
+            Log.e("SignIn", "Google "+account.displayName.toString())
             account.displayName
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.e("failed", "signInResult:failed code=" + e.statusCode)
+            Log.e("SignIn", "Google "+"signInResult:failed code=" + e.statusCode)
+            commonFuncs.hideLoadingDialog()
+
         }
     }
 
@@ -138,7 +145,7 @@ class SignInScreen : AppCompatActivity() {
         try {
         val stringRequest = object : StringRequest(
             Request.Method.POST, url, Response.Listener<String> { response ->
-                Log.e("Response", response.toString())
+                Log.e("SignIn", response.toString())
                 val jsonobj = JSONObject(response.toString())
                 val data = jsonobj.getJSONObject("data")
                 val token = data.getString("access_token")
@@ -176,10 +183,10 @@ class SignInScreen : AppCompatActivity() {
                     val err = JSONObject(errorw)
                     val errMessage = err.getJSONObject("status").getString("message")
                     commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول",errMessage)
-                    Log.e("eResponser", errorw.toString())
+                    Log.e("SignIn", errorw.toString())
                 } else {
                     commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول","حصل خطأ ما")
-                    Log.e("eResponsew", "RequestError:$error")
+                    Log.e("SignIn", "RequestError:$error")
                 }
                 commonFuncs.hideLoadingDialog()
 
@@ -195,7 +202,7 @@ class SignInScreen : AppCompatActivity() {
         val requestQueue = Volley.newRequestQueue(this)
         requestQueue.add(stringRequest)
         }catch (error:JSONException){
-            Log.e("Response", error.toString())
+            Log.e("SignIn", error.toString())
             commonFuncs.hideLoadingDialog()
         }
     }
@@ -204,7 +211,7 @@ class SignInScreen : AppCompatActivity() {
         try {
             val stringRequest = object : StringRequest(
                 Request.Method.POST, url, Response.Listener<String> { response ->
-                    Log.e("Response", response.toString())
+                    Log.e("SignIn", response.toString())
                     val jsonobj = JSONObject(response.toString())
                     val data = jsonobj.getJSONObject("data")
                     val token = data.getString("access_token")
@@ -242,10 +249,10 @@ class SignInScreen : AppCompatActivity() {
                         val err = JSONObject(errorw)
                         val errMessage = err.getJSONObject("status").getString("message")
                         commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول",errMessage)
-                        Log.e("eResponser", errorw.toString())
+                        Log.e("SignIn", errorw.toString())
                     } else {
                         commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول","حصل خطأ ما")
-                        Log.e("eResponsew", "RequestError:$error")
+                        Log.e("SignIn", "RequestError:$error")
                     }
                     commonFuncs.hideLoadingDialog()
 
@@ -264,7 +271,7 @@ class SignInScreen : AppCompatActivity() {
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(stringRequest)
         }catch (error:JSONException){
-            Log.e("Response", error.toString())
+            Log.e("SignIn", error.toString())
             commonFuncs.hideLoadingDialog()
         }
     }
@@ -281,14 +288,14 @@ class SignInScreen : AppCompatActivity() {
                 val profile = Profile.getCurrentProfile()
                 val id: String = profile!!.id.toString()
                 val link: String = profile.getProfilePictureUri(450, 450).toString()
-                Log.e("id", id)
-                Log.e("Link", link)
+                Log.e("SignIn", id)
+                Log.e("SignIn", link)
                 social_login_Request(email, "$firstName $lastName",loginResult.accessToken.token,link,"facebook")
-                Log.e("Login" + "Email", email)
-                Log.e("Login" + "FirstName", firstName)
-                Log.e("Login" + "LastName", lastName)
+                Log.e("SignIn" + "Email", email)
+                Log.e("SignIn" + "FirstName", firstName)
+                Log.e("SignIn" + "LastName", lastName)
             } catch (e: JSONException) {
-                Log.e("LoginError" , e.message.toString())
+                Log.e("SignIn" , e.message.toString())
                 commonFuncs.hideLoadingDialog()
                 commonFuncs.showDefaultDialog(this,"فشل تسجيل الدخول","فشل عملية التسجيل بإستخدام الفيسبوك")
                 e.printStackTrace()
