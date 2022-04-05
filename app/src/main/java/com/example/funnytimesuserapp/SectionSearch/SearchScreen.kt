@@ -263,4 +263,13 @@ class SearchScreen : AppCompatActivity() {
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (filterDialog != null){
+            if (filterDialog!!.isShowing){
+                filterDialog!!.dismiss()
+            }
+        }
+    }
 }

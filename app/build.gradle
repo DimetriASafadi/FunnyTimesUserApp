@@ -74,7 +74,6 @@ dependencies {
     // Range Seek Bar library
     implementation 'com.github.guojilong:RangeSeekBar:v1.0.7'
 
-
     // Circle Image library
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 

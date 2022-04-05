@@ -61,9 +61,7 @@ class FragUser : Fragment(), OnBookClick, OnOrderClick {
 
 
     val commonFuncs = CommonFuncs()
-
     val ftBooks = ArrayList<FTBook>()
-
     val ftOrders = ArrayList<FTOrder>()
 
     lateinit var booksRecView: BooksRecView
@@ -154,9 +152,13 @@ class FragUser : Fragment(), OnBookClick, OnOrderClick {
         binding.OrdersRecycler.adapter = ordersRecView
         binding.BooksRecycler.adapter = booksRecView
 
-        get_profile_Request(requireActivity())
-        get_Books_Request(requireActivity())
-        get_Orders_Request(requireActivity())
+
+        if (commonFuncs.IsInSP(requireContext(), Constants.KeyUserToken)){
+            get_profile_Request(requireActivity())
+            get_Books_Request(requireActivity())
+            get_Orders_Request(requireActivity())
+        }
+
         return view
     }
 
