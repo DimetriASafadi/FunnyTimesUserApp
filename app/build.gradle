@@ -130,6 +130,11 @@ dependencies {
     // Google Library
     implementation 'com.google.android.gms:play-services-auth:20.1.0'
 
+    // Google Location Library
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+
+    // EasyPermission Library
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
 
 
