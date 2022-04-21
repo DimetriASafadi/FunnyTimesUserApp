@@ -25,27 +25,33 @@ class BooksRecView(val data : ArrayList<FTBook>, val context: Context,val onBook
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
 
-        Glide.with(context)
-            .load(data[position].BookDetails!!.BookPropImg)
-            .centerCrop()
-            .placeholder(R.drawable.ft_broken_image)
-            .into(holder.BookImage)
-        if (data[position].BookType == 4){
-            holder.BookPrice.text = getTotalFromServices(data[position].BookDetails!!.BookPropServices!!).toString()
-        }else{
-            holder.BookPrice.text = data[position].BookTotal.toString()
-        }
-        holder.BookName.text = data[position].BookName
-        holder.BookAddress.text = data[position].BookDetails!!.BookPropAddress
-        holder.BookDate.text = data[position].BookCreatedAt
-        holder.BookStatus.text = data[position].BookStatus
 
+        if (data[position].BookDetails != null){
+            Glide.with(context)
+                .load(data[position].BookDetails!!.BookPropImg)
+                .centerCrop()
+                .placeholder(R.drawable.ft_broken_image)
+                .into(holder.BookImage)
+            if (data[position].BookType == 4){
+                holder.BookPrice.text = getTotalFromServices(data[position].BookDetails!!.BookPropServices!!).toString()
+            }else{
+                holder.BookPrice.text = data[position].BookTotal.toString()
+            }
+            holder.BookName.text = data[position].BookName
+            holder.BookAddress.text = data[position].BookDetails!!.BookPropAddress
+            holder.BookDate.text = data[position].BookCreatedAt
+            holder.BookStatus.text = data[position].BookStatus
+
+
+            holder.BookStatus.setOnClickListener {
+
+            }
+        }
         holder.WholeBook.setOnClickListener {
             onBookClick.OnBookClickListener(data[position])
         }
-        holder.BookStatus.setOnClickListener {
 
-        }
+
 
     }
 

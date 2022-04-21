@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,7 +18,7 @@
             android:id="@+id/BookId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="* الحجز رقم 42 *"
+            android:text="* الحجز غير متوفر *"
             android:fontFamily="@font/montserrat_arabic"
             android:textColor="@color/ft_dark_blue"
             android:gravity="center_horizontal"
@@ -49,7 +49,7 @@
                 android:id="@+id/BookCreatedAt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                android:text="غير متوفر"
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -90,7 +90,8 @@
                 android:id="@+id/BookPropName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -122,7 +123,8 @@
                 android:id="@+id/BookStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -154,7 +156,8 @@
                 android:id="@+id/BookEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -186,7 +189,8 @@
                 android:id="@+id/BookStartHour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -218,7 +222,8 @@
                 android:id="@+id/BookEndHour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -250,7 +255,8 @@
                 android:id="@+id/BookTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -282,7 +288,8 @@
                 android:id="@+id/BookPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -314,7 +321,8 @@
                 android:id="@+id/BookNightsCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -347,7 +355,8 @@
                 android:id="@+id/BookPaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -380,7 +389,8 @@
                 android:id="@+id/BookVendor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -413,7 +423,8 @@
                 android:id="@+id/BookPropAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                    android:text="غير متوفر"
+
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -464,4 +475,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

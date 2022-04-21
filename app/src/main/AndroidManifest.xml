@@ -47,6 +47,8 @@
                     tools:ignore="ManifestResource" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".SectionCart.SectionPayment.CartPayment"
             android:configChanges="locale|orientation"

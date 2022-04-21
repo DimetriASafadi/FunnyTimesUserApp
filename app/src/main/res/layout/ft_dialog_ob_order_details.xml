@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,7 +18,7 @@
             android:id="@+id/OrderId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="* طلب رقم 42 *"
+            android:text="* طلب غير متوفر *"
             android:fontFamily="@font/montserrat_arabic"
             android:textColor="@color/ft_dark_blue"
             android:gravity="center_horizontal"
@@ -49,7 +49,7 @@
                 android:id="@+id/OrderCreatedAt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                android:text="غير متوفر"
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -90,7 +90,7 @@
                 android:id="@+id/OrderTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                android:text="غير متوفر"
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -122,7 +122,7 @@
                 android:id="@+id/OrderPaymentStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" شاليه النور"
+                android:text="غير متوفر"
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -154,7 +154,7 @@
                 android:id="@+id/OrderVendorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                android:text="غير متوفر"
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -186,7 +186,7 @@
                 android:id="@+id/OrderStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                android:text="غير متوفر"
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -218,7 +218,7 @@
                 android:id="@+id/OrderPaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="شاليه النور"
+                android:text="غير متوفر"
                 android:fontFamily="@font/montserrat_arabic"
                 android:textColor="@color/ft_dark_blue"
                 android:gravity="center_horizontal"
@@ -270,4 +270,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

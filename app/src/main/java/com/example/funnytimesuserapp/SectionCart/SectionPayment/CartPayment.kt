@@ -28,6 +28,7 @@ import com.example.funnytimesuserapp.Models.FTProAttrContainer
 import com.example.funnytimesuserapp.Models.FTProAttribute
 import com.example.funnytimesuserapp.R
 import com.example.funnytimesuserapp.RecViews.BankRecView
+import com.example.funnytimesuserapp.SectionItems.ItemsFuncs
 import com.example.funnytimesuserapp.databinding.FtScreenCartPaymentBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.gms.common.api.ResolvableApiException
@@ -54,6 +55,7 @@ class CartPayment : AppCompatActivity() {
 
     lateinit var fusedLocationClient: FusedLocationProviderClient
     val commonFuncs = CommonFuncs()
+    val itemFuncs = ItemsFuncs()
     val client = OkHttpClient()
     val ItemsArr = ArrayList<FTInCart>()
 
@@ -93,6 +95,9 @@ class CartPayment : AppCompatActivity() {
         banks_Request()
 
         ItemsArr.addAll(intent.getSerializableExtra("SelectCartItems") as ArrayList<FTInCart>)
+
+        binding.ConfirmPayment.text = "ادفع "+itemFuncs.GetCartTotal(ItemsArr).toString()+" ر.س"
+
         vendor_id = ItemsArr[0].ItemVendorId
         val ItemsTotal = intent.getDoubleExtra("SelectCartItemsTotal",0.0)
         Log.e("ItemsArr",ItemsArr.toString())

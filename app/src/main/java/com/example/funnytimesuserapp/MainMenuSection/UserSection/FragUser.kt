@@ -337,23 +337,27 @@ class FragUser : Fragment(), OnBookClick, OnOrderClick {
         dialogBinding.BookPeriod.text = ftbook.BookPeriod.toString()
         dialogBinding.BookNightsCount.text = ftbook.BookNightCount.toString()
         dialogBinding.BookPaymentMethod.text = ftbook.BookPayment.toString()
-        dialogBinding.BookVendor.text = ftbook.BookDetails!!.BookVendorName.toString()
-        dialogBinding.BookPropAddress.text = ftbook.BookDetails!!.BookPropAddress.toString()
-        val bookservices = ArrayList<FTClinicService>()
-        bookservices.clear()
-        if (!ftbook.BookDetails!!.BookPropServices.isNullOrEmpty()){
-            bookservices.addAll(ftbook.BookDetails!!.BookPropServices!!)
+        if (ftbook.BookDetails != null){
+            dialogBinding.BookVendor.text = ftbook.BookDetails!!.BookVendorName.toString()
+            dialogBinding.BookPropAddress.text = ftbook.BookDetails!!.BookPropAddress.toString()
+            val bookservices = ArrayList<FTClinicService>()
+            bookservices.clear()
+            if (!ftbook.BookDetails!!.BookPropServices.isNullOrEmpty()){
+                bookservices.addAll(ftbook.BookDetails!!.BookPropServices!!)
+            }
+            if (bookservices.size == 0){
+                dialogBinding.BookServicesSection.visibility = View.GONE
+            }else{
+                dialogBinding.BookServicesSection.visibility = View.VISIBLE
+                val bookServicesRecView = BookServicesRecView(bookservices,requireContext())
+                dialogBinding.BookServicesRecycler.layoutManager = LinearLayoutManager(requireContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false)
+                dialogBinding.BookServicesRecycler.adapter = bookServicesRecView
+            }
         }
-        if (bookservices.size == 0){
-            dialogBinding.BookServicesSection.visibility = View.GONE
-        }else{
-            dialogBinding.BookServicesSection.visibility = View.VISIBLE
-            val bookServicesRecView = BookServicesRecView(bookservices,requireContext())
-            dialogBinding.BookServicesRecycler.layoutManager = LinearLayoutManager(requireContext(),
-                LinearLayoutManager.VERTICAL,
-                false)
-            dialogBinding.BookServicesRecycler.adapter = bookServicesRecView
-        }
+
+
         val window: Window = bookDialog?.window!!
         window.setBackgroundDrawable(
             ColorDrawable(requireActivity().resources
