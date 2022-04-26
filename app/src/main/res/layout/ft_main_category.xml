@@ -13,6 +13,7 @@
         android:orientation="horizontal"
         >
         <LinearLayout
+            android:id="@+id/BookingSection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,6 +44,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ServiceSection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,6 +83,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/FoodSection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,6 +114,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ShopSection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

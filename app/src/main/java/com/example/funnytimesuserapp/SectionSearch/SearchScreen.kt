@@ -1,8 +1,6 @@
 package com.example.funnytimesuserapp.SectionSearch
 
-import android.app.Activity
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
